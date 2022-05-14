@@ -1,21 +1,38 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import 'react-native-gesture-handler';
+import { StatusBar } from "expo-status-bar";
+import { ActivityIndicator} from "react-native";
+import React from "react";
+import { SafeAreaProvider } from "react-native-safe-area-context";
+
+import useCachedResources from "./src/hooks/useCachedResources";
+import Navigation from "./src/navigation";
+import {RecoilRoot} from "recoil";
+import MediaPlayer from "./src/components/Audio/BottomMediaPlayer";
+import "./src/shared/helpers/init"
+import useTrackPlayer from "./src/hooks/useTrackPlayer";
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+  const isLoadingComplete = useCachedResources();
+  const { setup } =useTrackPlayer();
+  
+  React.useEffect(() => {
+    if (isLoadingComplete) {
+      setup();
+    }
+  } , [isLoadingComplete]);
+  if (!isLoadingComplete) {
+    return <ActivityIndicator  />;
+  } else {
+    return (
+      <SafeAreaProvider>
+        <RecoilRoot>
+          <React.Suspense fallback={<ActivityIndicator />}>
+            <Navigation />
+            <MediaPlayer />
+            <StatusBar />
+          </React.Suspense>
+        </RecoilRoot>
+      </SafeAreaProvider>
+    );
+  }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

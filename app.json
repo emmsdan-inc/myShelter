@@ -3,8 +3,33 @@
     "name": "myShelter",
     "slug": "myShelter",
     "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./src/assets/images/icon.png",
+    "userInterfaceStyle": "automatic",
+    "splash": {
+      "image": "./src/assets/images/splash.png",
+      "resizeMode": "cover",
+      "backgroundColor": "#0A2732"
+    },
     "assetBundlePatterns": [
       "**/*"
-    ]
+    ],
+    "scheme": "my-shelter",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.emmsdan.shelter-rccg"
+    },
+    "android": {
+      "package": "com.emmsdan.myShelter",
+      "adaptiveIcon": {
+        "foregroundImage": "./src/assets/images/icon.png",
+        "backgroundColor": "#0A2732"
+      }
+    },
+    "web": {
+      "favicon": "./src/assets/images/icon.png"
+    },
+    "description": "",
+    "githubUrl": "https://github.com/emmsdan/TheShelter"
   }
 }
