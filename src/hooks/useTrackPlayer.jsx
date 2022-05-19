@@ -15,7 +15,7 @@ import {
 import SoundPlayer from "react-native-sound-player";
 import env from "../services/environment";
 // Creates the player
-const setup = async (num = 0,) => {
+const setup = async (num = 0) => {
   try {
     try {
       const currentTrack = await TrackPlayer.getCurrentTrack();
@@ -23,13 +23,13 @@ const setup = async (num = 0,) => {
         return;
       }
       await TrackPlayer.setupPlayer();
-        await TrackPlayer.add(env.initAudio);
+      await TrackPlayer.add(env.initAudio);
       await TrackPlayer.setRepeatMode(RepeatMode.Queue);
     } catch (error) {
-      if(error.code !== 'player_already_initialized') {
+      if (error.code !== "player_already_initialized") {
         await TrackPlayer.setupPlayer();
-        await setup ( num + 1 );
-          console.warn ( 'Init Player Error:', error.message, {num} );
+        await setup(num + 1);
+        console.warn("Init Player Error:", error.message, { num });
       }
     }
   } catch (e) {
@@ -37,7 +37,7 @@ const setup = async (num = 0,) => {
   }
 };
 
-const togglePlayback = playbackState => async () => {
+const togglePlayback = (playbackState) => async () => {
   const currentTrack = await TrackPlayer.getCurrentTrack();
   if (currentTrack == null) {
     const tracks = await TrackPlayer.getQueue();
@@ -69,7 +69,7 @@ const add = async (musics) => {
     console.error(error.message);
   }
   await TrackPlayer.play();
-}
+};
 export function useTrackPlayer() {
   const state = usePlaybackState();
   const progress = useProgress();
@@ -77,7 +77,7 @@ export function useTrackPlayer() {
   const [track, setTrack] = React.useState(null);
   const [info, setInfo] = React.useState({ percent: 0, duration: 0 });
 
-  useTrackPlayerEvents([Event.PlaybackTrackChanged], async event => {
+  useTrackPlayerEvents([Event.PlaybackTrackChanged], async (event) => {
     if (
       event.type === Event.PlaybackTrackChanged &&
       event.nextTrack !== undefined
@@ -92,7 +92,7 @@ export function useTrackPlayer() {
     const currentTime = _getHHMMSSFromMillis(progress.position * 1000);
     const duration = _getHHMMSSFromMillis(progress.duration * 1000);
     const timeLeft = _getHHMMSSFromMillis(
-      progress.duration * 1000 - progress.position * 1000,
+      progress.duration * 1000 - progress.position * 1000
     );
     setInfo({
       percent,
@@ -103,8 +103,8 @@ export function useTrackPlayer() {
     (async () => {
       const currentTrack = await TrackPlayer.getCurrentTrack();
       if (currentTrack !== null) {
-        const track = await TrackPlayer.getTrack ( currentTrack );
-        setTrack ( track );
+        const track = await TrackPlayer.getTrack(currentTrack);
+        setTrack(track);
       }
     })();
   }, [progress.position]);
@@ -121,7 +121,7 @@ export function useTrackPlayer() {
     progress,
     track,
     getCurrentTrack: () => {
-      return track
+      return track;
     },
     add,
     next: async () => {
@@ -130,11 +130,11 @@ export function useTrackPlayer() {
     previous: async () => {
       await TrackPlayer.skipToPrevious();
     },
-    seekTo: async position => {
+    seekTo: async (position) => {
       await TrackPlayer.seekTo(position);
     },
-    resetAndPlay: async (musics, reset=false) => {
-        await TrackPlayer.removeUpcomingTracks();
+    resetAndPlay: async (musics, reset = false) => {
+      await TrackPlayer.removeUpcomingTracks();
       const tracks = toTrackFormat(musics);
       await TrackPlayer.add(tracks);
       await TrackPlayer.skipToNext();
@@ -148,8 +148,8 @@ export function useTrackPlayer() {
         const queue = await TrackPlayer.getQueue();
         // remove current track from playlist
         const tracks = toTrackFormat(musics).reduce((arr, track) => {
-          if(track.id !== currentTrack.id) {
-            const index = queue.findIndex(t => t.id === track.id);
+          if (track.id !== currentTrack.id) {
+            const index = queue.findIndex((t) => t.id === track.id);
             if (index === -1) {
               arr.push(track);
             } else {
@@ -161,7 +161,7 @@ export function useTrackPlayer() {
         // add to playlist
         await TrackPlayer.add(tracks);
       }
-    }
+    },
   };
 }
 

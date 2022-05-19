@@ -31,7 +31,7 @@ class AudioPlayer {
           : {
               // allowsRecordingIOS: true,
               staysActiveInBackground: true,
-            },
+            }
       );
       this.audioInstance.setOnPlaybackStatusUpdate(this.onPlaybackStatusUpdate);
     }
@@ -46,7 +46,7 @@ class AudioPlayer {
   getStatusUpdate = (cb = () => {}) => {
     this.statusUpdate = cb;
   };
-  onPlaybackStatusUpdate = status => {
+  onPlaybackStatusUpdate = (status) => {
     if (status.isLoaded && this.audioInstance) {
       this.isPlaying = status.isPlaying;
       this.audioInstance.playAsync();
@@ -60,7 +60,7 @@ class AudioPlayer {
     await this.disable();
     await this.enable();
   };
-  start = async url => {
+  start = async (url) => {
     if (this.audioInstance && url) {
       const source = {
         uri: url,
@@ -72,7 +72,7 @@ class AudioPlayer {
           shouldPlay: true,
           volume: 1.0,
         },
-        false,
+        false
       );
     } else {
       console.log("AudioPlayer: start: no audio instance or url");
@@ -115,16 +115,16 @@ class AudioPlayer {
   isPlayingAudio = async () => {
     return this.isPlaying;
   };
-  infoAsync = info => {
+  infoAsync = (info) => {
     this.info = info;
   };
 
-  seekTo = position => {
+  seekTo = (position) => {
     if (this.audioInstance) {
-      this.audioInstance.getStatusAsync().then(status => {
+      this.audioInstance.getStatusAsync().then((status) => {
         if (status && this.audioInstance) {
           this.audioInstance.setPositionAsync(
-            getXFromPercentageOf(position, status.durationMillis),
+            getXFromPercentageOf(position, status.durationMillis)
           );
         }
       });

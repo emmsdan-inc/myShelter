@@ -19,7 +19,7 @@ import {
 } from "../../services/others";
 import { searchService } from "../../services/media";
 
-const onShare = item => {
+const onShare = (item) => {
   prayerAndTestimoniesActions()(item.id, "testimony");
 };
 
@@ -28,15 +28,15 @@ export const GetTestimony = ({ onCreateTestimony, route }) => {
   const [loading, setLoading] = React.useState(null);
   const navigation = useNavigation();
 
-  const onDelete = async item => {
+  const onDelete = async (item) => {
     await prayerAndTestimoniesActions(() => {
       fetchData();
     })(item.id, "testimony", "delete");
   };
-  const onEdit = item => {
+  const onEdit = (item) => {
     navigation.navigate(Routes.CreateTestimony, item);
   };
-  const onSend = item => {
+  const onSend = (item) => {
     console.log("onShare", item);
   };
   const getId = (item, action = () => {}) => {
@@ -61,7 +61,7 @@ export const GetTestimony = ({ onCreateTestimony, route }) => {
     <FlatList
       showsVerticalScrollIndicator={false}
       data={data}
-      keyExtractor={item => item.id}
+      keyExtractor={(item) => item.id}
       renderItem={({ item, index }) => (
         <Item
           onPress={getId(item, onEdit)}
@@ -156,7 +156,7 @@ export function CreateTestimony({ route }) {
         <TextInput
           placeholder="Enter Your Testimony"
           value={state.testimony}
-          onChangeText={text => setState({ ...state, testimony: text })}
+          onChangeText={(text) => setState({ ...state, testimony: text })}
           style={[styles.textArea, { height: "90%" }]}
           multiline={true}
           showsVerticalScrollIndicator={false}

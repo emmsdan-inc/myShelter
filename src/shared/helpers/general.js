@@ -8,7 +8,7 @@ export const returnStyle = (conditions, data) => {
   return result;
 };
 
-export const isExpired = dateString => {
+export const isExpired = (dateString) => {
   const now = new Date().getTime();
   const date = new Date(dateString).getTime();
   return now >= date;
@@ -65,8 +65,8 @@ export function getPercentageOf(value, number) {
 //   document.calculator_4.result_4.value = result;
 // }
 
-export const toTrackFormat = musics =>
-  (Array.isArray(musics) ? musics : [musics]).map(music => ({
+export const toTrackFormat = (musics) =>
+  (Array.isArray(musics) ? musics : [musics]).map((music) => ({
     ...music,
     id: music.id,
     url: music.url,
@@ -74,3 +74,16 @@ export const toTrackFormat = musics =>
     artist: music.author,
     artwork: music.thumbnail_url,
   }));
+
+export const mapStatesKeysToObject = (states) => {
+  const newState = {}
+  for (const key in states) {
+    const state = states[key]
+    if (typeof state === 'object' && state.key) {
+      newState[state.key] = state.value ?? null;
+    } else {
+      newState[state] = null
+    }
+  }
+  return newState
+}

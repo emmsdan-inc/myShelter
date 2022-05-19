@@ -1,10 +1,10 @@
 import React from "react";
-import { rcMediaAllMediaSelector } from "../store/recoil/media";
+import { rcMediaAllMediaSelector } from "../store/redux/states";
 import { searchService } from "../services/media";
-import { useRecoilState } from "recoil";
+import useReduxState from "./useReduxState";
 
 export function useGetMedia(mediaId = "", customUrl = null) {
-  const [getMedia, setMedia] = useRecoilState(rcMediaAllMediaSelector);
+  const [getMedia, setMedia] = useReduxState(rcMediaAllMediaSelector);
 
   const [id, setId] = React.useState(mediaId);
   const [state, setState] = React.useState({});
@@ -20,11 +20,11 @@ export function useGetMedia(mediaId = "", customUrl = null) {
           } else {
             const response = await searchService(
               customUrl ?? "media/" + mediaId,
-              {},
+              {}
             );
             // setMedia(response?.data || response || {});
             setState(response?.data || response[0] || {});
-            console.log(customUrl ?? "media/" + mediaId,);
+            console.log(customUrl ?? "media/" + mediaId);
           }
         }
       } catch (error) {

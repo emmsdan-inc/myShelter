@@ -35,11 +35,11 @@ export default function Button({
         width: scale(200),
         height: scale(40),
       },
-    ],
+    ]
   );
   const text = returnStyle(
     [md, sm, textColor],
-    [styles.mdText, styles.smText, { color: textColor }],
+    [styles.mdText, styles.smText, { color: textColor }]
   );
   const onPressEvent = () => {
     if (!disabled && onPress) onPress();

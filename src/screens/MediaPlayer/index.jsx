@@ -15,17 +15,20 @@ import Colors from "../../constants/Colors";
 import Spacer from "../../components/Spacer";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import AudioDropdown from "../../components/Audio/Dropdown";
-import {  useNavigation } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 import MediaPlayerActions, {
   MedialPlayerTimeTracker,
 } from "../../components/MediaPlayerController";
-import { useRecoilState } from "recoil";
-import { rcNavigatorAtom, rcOpenMiniPlayerAtom } from "../../store/recoil/general";
 import useGetMedia from "../../hooks/useGetMedia";
 import useTrackPlayer from "../../hooks/useTrackPlayer";
-import { useFocusEffect } from '@react-navigation/native';
+import { useFocusEffect } from "@react-navigation/native";
+import useReduxState from "../../hooks/useReduxState";
+import {
+  rcNavigatorAtom,
+  rcOpenMiniPlayerAtom,
+} from "../../store/redux/states";
 
-export const TopNavigation = props => {
+export const TopNavigation = (props) => {
   const [open, setOpen] = React.useState(false);
   const navigation = useNavigation();
 
@@ -78,8 +81,8 @@ export default function MediaPlayerScreen({ navigation, route }) {
   const routeInfo = route.params || {};
   // fetch data from server/store api
   const [media, setMedia] = useGetMedia(routeInfo.id);
-  const [, setNavigation] = useRecoilState(rcNavigatorAtom);
-  const [, setOpenMiniPlayer] = useRecoilState(rcOpenMiniPlayerAtom);
+  const [, setNavigation] = useReduxState(rcNavigatorAtom);
+  const [, setOpenMiniPlayer] = useReduxState(rcOpenMiniPlayerAtom);
   const { addPlaylist, resetAndPlay, track } = useTrackPlayer();
 
   const insets = useSafeAreaInsets();
@@ -88,11 +91,11 @@ export default function MediaPlayerScreen({ navigation, route }) {
       setMedia(route.params.id);
     }
   }, [route.params]);
-  
+
   React.useEffect(() => {
     setNavigation(navigation);
   }, [navigation]);
-  
+
   useFocusEffect(
     React.useCallback(() => {
       setOpenMiniPlayer(false);
@@ -101,20 +104,20 @@ export default function MediaPlayerScreen({ navigation, route }) {
       };
     }, [])
   );
-  
+
   useFocusEffect(
     React.useCallback(() => {
       if (!media.dataIsLoading && media.url) {
-        resetAndPlay(media, true)
-          .then(async () => {
-            if (route.params.playlist && route.params.playlist.length > 0) {
-              route.params.playlist.splice(route.params.playlistIndex, 1);
-              await addPlaylist(route.params.playlist);
-            }
-          });
+        resetAndPlay(media, true).then(async () => {
+          if (route.params.playlist && route.params.playlist.length > 0) {
+            route.params.playlist.splice(route.params.playlistIndex, 1);
+            await addPlaylist(route.params.playlist);
+          }
+        });
       }
-    }, [media.dataIsLoading]))
-  
+    }, [media.dataIsLoading])
+  );
+
   return (
     <ScrollView style={{ paddingTop: insets.top }}>
       <BaseWrapper style={{ paddingTop: insets.top }}>

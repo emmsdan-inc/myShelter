@@ -31,12 +31,12 @@ import { CreatePrayerRequest } from "../screens/PrayerRequest/PrayerRequest";
 import Testimony from "../screens/Testimony";
 import { CreateTestimony } from "../screens/Testimony/Testimony";
 
-const headerCompsGenerateor = props => ({
+const headerCompsGenerateor = (props) => ({
   headerShadowVisible: false,
   headerShown: true,
   headerLeft: MenuIcon(props),
   headerRight: MenuIcon(props, "notification", () =>
-    props.navigation.navigate(Routes.Notification),
+    props.navigation.navigate(Routes.Notification)
   ),
   headerTitle: () => <></>,
 });
@@ -129,7 +129,7 @@ function BottomTabNavigator(props) {
         ...headerCompsGenerateor(props),
         tabBarActiveTintColor: Colors().tint,
       }}
-      tabBar={props => <TabBar {...props} />}
+      tabBar={(props) => <TabBar {...props} />}
     >
       <BottomTab.Screen name={Routes.Home} component={HomeScreen} />
       <BottomTab.Screen
@@ -199,12 +199,12 @@ function DrawerNavigator(props) {
   return (
     <Drawer.Navigator
       initialRouteName="App"
-      drawerContent={props => <SidebarComponent {...props} />}
+      drawerContent={(props) => <SidebarComponent {...props} />}
     >
       <Drawer.Screen
         name="App"
         component={BottomTabNavigator}
-        options={props => ({
+        options={(props) => ({
           drawerLabel: "",
           headerShown: false,
         })}

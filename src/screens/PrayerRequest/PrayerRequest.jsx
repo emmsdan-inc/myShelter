@@ -21,7 +21,7 @@ import {
 import { searchService } from "../../services/media";
 import useCacheableGetRequest from "../../hooks/useCacheableGetRequest";
 
-const onShare = item => {
+const onShare = (item) => {
   prayerAndTestimoniesActions(item.id, "prayer-request");
 };
 
@@ -30,15 +30,15 @@ export const GetPrayerRequests = ({ onCreatePrayer, route }) => {
   const [loading, setLoading] = React.useState(null);
   const navigation = useNavigation();
 
-  const onDelete = async item => {
+  const onDelete = async (item) => {
     await prayerAndTestimoniesActions(() => {
       fetchData();
     })(item.id, "prayer-request", "delete");
   };
-  const onEdit = item => {
+  const onEdit = (item) => {
     navigation.navigate(Routes.CreatePrayerRequest, item);
   };
-  const onSend = item => {
+  const onSend = (item) => {
     console.log("onShare", item);
   };
   const getId = (item, action = () => {}) => {
@@ -62,7 +62,7 @@ export const GetPrayerRequests = ({ onCreatePrayer, route }) => {
     <FlatList
       showsVerticalScrollIndicator={false}
       data={data}
-      keyExtractor={item => item.id}
+      keyExtractor={(item) => item.id}
       renderItem={({ item, index }) => (
         <Item
           onPress={getId(item, onEdit)}
@@ -158,7 +158,7 @@ export function CreatePrayerRequest({ route }) {
         <TextInput
           placeholder="Enter Your Prayer request"
           value={state.description}
-          onChangeText={text => setState({ ...state, description: text })}
+          onChangeText={(text) => setState({ ...state, description: text })}
           style={[styles.textArea, { height: "90%" }]}
           multiline={true}
           showsVerticalScrollIndicator={false}

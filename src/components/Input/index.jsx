@@ -9,7 +9,7 @@ import ImageIcon from "../ImageIcon";
 export default function Input(props = {}) {
   const { icon, onIconPress } = props;
   const [isPassword, setIsPassword] = React.useState(
-    props.secureTextEntry || false,
+    props.secureTextEntry || false
   );
   const textInput = returnStyle([!!icon], [{ paddingRight: 40 }]);
   const passIcon = props.secureTextEntry ? "hide" : null;
@@ -49,7 +49,7 @@ export const SearchInput = ({
   placeholder,
 } = {}) => {
   const [value, setValue] = React.useState(propsValue || "");
-  const onChangeText = value => {
+  const onChangeText = (value) => {
     setValue(value);
     if (onTextChange) onTextChange(value);
   };

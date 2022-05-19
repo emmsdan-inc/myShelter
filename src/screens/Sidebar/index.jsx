@@ -18,7 +18,7 @@ export default function SidebarComponent({ navigation }) {
   const insets = useSafeAreaInsets();
   const [profile, , logout] = useAuthenticateUser(navigation);
   const [active, setActive] = React.useState(0);
-  const onMenuPress = menu => {
+  const onMenuPress = (menu) => {
     return () => {
       console.log("menu", { menu });
       if (menu.toLowerCase() === "logout") {
@@ -76,7 +76,7 @@ export default function SidebarComponent({ navigation }) {
             <Text style={[styles.menuText]}>{menu.label}</Text>
             <Icon name={menu.icon} color={Colors().primary} size={15} />
           </TouchableOpacity>
-        ),
+        )
       )}
 
       <View style={styles.footer}>

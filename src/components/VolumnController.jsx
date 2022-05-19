@@ -4,23 +4,22 @@ import FlexSpaceBetweenCenter from "./Untils";
 import Icon from "./Icon";
 import { Slider } from "@miblanchard/react-native-slider";
 import { Dimensions } from "react-native";
-import { useRecoilState } from "recoil";
+import useReduxState from "../hooks/useReduxState";
 import {
-  rcMediaPlaybackStatusUpdateAtom,
   rcMediaPlayObjectAtom,
-} from "../store/recoil/media";
+  rcMediaPlaybackStatusUpdateAtom,
+} from "../store/redux/states";
 const { width } = Dimensions.get("screen");
 
 export default function VolumeController() {
-  const [instance] = useRecoilState(rcMediaPlaybackStatusUpdateAtom);
-  const [playStatus] = useRecoilState(rcMediaPlayObjectAtom);
+  const [instance] = useReduxState(rcMediaPlaybackStatusUpdateAtom);
+  const [playStatus] = useReduxState(rcMediaPlayObjectAtom);
   const [isMuted, setIsMuted] = React.useState(false);
 
   const mutedColor = isMuted ? Colors().primary : Colors().blackGlaze;
   const mutedColorWash = isMuted ? Colors().primaryWash : Colors().blackWash;
 
-  // const [audioObject, setAudioObject] = useRecoilSelector();
-  const handleVolumeChange = value => {
+  const handleVolumeChange = (value) => {
     console.log({ value: value });
     instance.setVolumeAsync(value);
   };

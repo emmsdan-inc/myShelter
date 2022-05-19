@@ -31,7 +31,7 @@ export default function ChangePasswordScreen({ navigation }) {
     resolver: yupResolver(changePasswordScheme),
     mode: "all",
   });
-  const onSubmit = handleSubmit(async data => {
+  const onSubmit = handleSubmit(async (data) => {
     // console.log({data})
     if (data.password !== data.password1) {
       setIsError("Password does not match");

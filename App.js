@@ -6,10 +6,15 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 
 import useCachedResources from "./src/hooks/useCachedResources";
 import Navigation from "./src/navigation";
-import {RecoilRoot} from "recoil";
 import MediaPlayer from "./src/components/Audio/BottomMediaPlayer";
 import "./src/shared/helpers/init"
 import useTrackPlayer from "./src/hooks/useTrackPlayer";
+import { Provider } from "react-redux";
+
+// REDUX-PERSIST
+import {PersistGate} from 'redux-persist/integration/react';
+
+import { fetchAll, store, persistor } from "./src/store/redux";
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
@@ -18,6 +23,7 @@ export default function App() {
   React.useEffect(() => {
     if (isLoadingComplete) {
       setup();
+      fetchAll()
     }
   } , [isLoadingComplete]);
   if (!isLoadingComplete) {
@@ -25,13 +31,13 @@ export default function App() {
   } else {
     return (
       <SafeAreaProvider>
-        <RecoilRoot>
-          <React.Suspense fallback={<ActivityIndicator />}>
+        <Provider store={store}>
+          <PersistGate  loading={<ActivityIndicator />} persistor={persistor}>
             <Navigation />
             <MediaPlayer />
             <StatusBar />
-          </React.Suspense>
-        </RecoilRoot>
+          </PersistGate>
+        </Provider>
       </SafeAreaProvider>
     );
   }

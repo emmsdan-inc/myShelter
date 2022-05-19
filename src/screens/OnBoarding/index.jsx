@@ -4,17 +4,17 @@ import { View } from "../../components/Themed";
 
 import SliderIndicator from "../../components/SliderIndicator";
 import { scale } from "react-native-size-matters";
-import { useRecoilState } from "recoil";
-import { rcFirstTimeUseSelector } from "../../store/recoil/general";
 import Routes from "../../navigation/Routes";
 import styles from "./style";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import data from "./data";
 import OnboardingPage from "../../components/Onboarding/OnboardingPage";
+
+import { rcFirstTimeUseSelector } from "../../store/redux/states";
+import useReduxState from "../../hooks/useReduxState";
+
 export default function Index({ navigation }) {
-  const [isFirstTimeUse, setIsFirstTimeUse] = useRecoilState(
-    rcFirstTimeUseSelector,
-  );
+  const [isFirstTimeUse] = useReduxState(rcFirstTimeUseSelector);
   const insets = useSafeAreaInsets();
 
   const [active, setActive] = React.useState(0);
@@ -29,7 +29,7 @@ export default function Index({ navigation }) {
       navigation.navigate(Routes.Login);
       return;
     }
-  }, []);
+  }, [isFirstTimeUse]);
 
   function next() {
     if (active >= 2) {
@@ -48,7 +48,7 @@ export default function Index({ navigation }) {
       {data.map((data, index) =>
         index === active ? (
           <OnboardingPage {...data} key={data.text + index} />
-        ) : null,
+        ) : null
       )}
       <View style={[{ paddingTop: scale(100) }]} />
       <View style={{ height: scale(width >= 750 ? 70 : 0) }} />

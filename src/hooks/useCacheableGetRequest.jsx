@@ -4,7 +4,7 @@ import { searchService } from "../services/media";
 export default function useCacheableGetRequest(
   initUri,
   cache = true,
-  queryParams = {},
+  queryParams = {}
 ) {
   const [init, setInit] = React.useState(cache);
   const [page, setPage] = React.useState(1);
@@ -64,7 +64,7 @@ export default function useCacheableGetRequest(
     setLimit,
     setUrl,
     meta,
-    reset: params => {
+    reset: (params) => {
       setData([]);
       setParams(params);
       setPage(1);
@@ -92,7 +92,7 @@ export default function useCacheableGetRequest(
   };
 }
 
-export const useHttpRequest = httpUrl => {
+export const useHttpRequest = (httpUrl) => {
   const [loading, setLoading] = React.useState(false);
   const [data, setData] = React.useState(null);
   const [error, setError] = React.useState(null);

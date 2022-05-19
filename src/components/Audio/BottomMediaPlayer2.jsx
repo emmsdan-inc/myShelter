@@ -1,10 +1,4 @@
 import React from "react";
-import { useRecoilState } from "recoil";
-import {
-  rcBottomTabHeightAtom,
-  rcNavigatorAtom,
-  rcOpenMiniPlayerAtom,
-} from "../../store/recoil/general";
 import { Image, Text, TouchableOpacity, View } from "react-native";
 import styles from "./style";
 import FlexSpaceBetweenCenter from "../Untils";
@@ -12,29 +6,34 @@ import Icon from "../Icon";
 import Colors from "../../constants/Colors";
 import Spacer from "../Spacer";
 import { LikeMedia } from "../../screens/MediaPlayer";
-import {
-  rcMediaCurrentlyPlayingSelector,
-  rcMediaObjectAtom,
-  rcMediaPlaybackStatusUpdateAtom,
-  rcMediaPlayObjectAtom,
-} from "../../store/recoil/media";
+
 import { Audio } from "expo-av";
 import Routes from "../../navigation/Routes";
+import useReduxState from "../../hooks/useReduxState";
+import {
+  rcBottomTabHeightAtom,
+  rcMediaObjectAtom,
+  rcOpenMiniPlayerAtom,
+  rcMediaPlaybackStatusUpdateAtom,
+  rcMediaPlayObjectAtom,
+  rcMediaCurrentlyPlayingSelector,
+  rcNavigatorAtom,
+} from "../../store/redux/states";
 
 export default function MediaPlayer() {
-  const [height] = useRecoilState(rcBottomTabHeightAtom);
-  const [open] = useRecoilState(rcOpenMiniPlayerAtom);
-  const [, setPlaybackInstance] = useRecoilState(
-    rcMediaPlaybackStatusUpdateAtom,
+  const [height] = useReduxState(rcBottomTabHeightAtom);
+  const [open] = useReduxState(rcOpenMiniPlayerAtom);
+  const [, setPlaybackInstance] = useReduxState(
+    rcMediaPlaybackStatusUpdateAtom
   );
-  const [playStatus, onPlaybackStatusUpdate] = useRecoilState(
-    rcMediaPlayObjectAtom,
+  const [playStatus, onPlaybackStatusUpdate] = useReduxState(
+    rcMediaPlayObjectAtom
   );
-  const [currentlyPlaying, setCurrentlyPlaying] = useRecoilState(
-    rcMediaCurrentlyPlayingSelector,
+  const [currentlyPlaying, setCurrentlyPlaying] = useReduxState(
+    rcMediaCurrentlyPlayingSelector
   );
-  const [media] = useRecoilState(rcMediaObjectAtom);
-  const [navigation] = useRecoilState(rcNavigatorAtom);
+  const [media] = useReduxState(rcMediaObjectAtom);
+  const [navigation] = useReduxState(rcNavigatorAtom);
 
   // const [open, setOpen] = React.useState(false);
   const [isPlaying, setIsPlaying] = React.useState(true);
@@ -44,7 +43,7 @@ export default function MediaPlayer() {
   const source = uri ? { uri } : require("../../assets/images/logo.png");
 
   // console.log({playStatus, media}, "playStatus");
-  const loadAudio = async uri => {
+  const loadAudio = async (uri) => {
     try {
       if (currentlyPlaying.uri === uri) return;
       console.log(uri, "9876-098ujh", "playStatus");

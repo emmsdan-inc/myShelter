@@ -1,23 +1,22 @@
 import React from "react";
-import { useRecoilState, useRecoilValue } from "recoil";
-import { rcFirstTimeUseSelector } from "../store/recoil/general";
-import {
-  rcUserProfileAtom,
-  rcUserProfileSelector,
-  rcUserTokenSelector,
-} from "../store/recoil/user";
 import { isExpired } from "../shared/helpers/general";
 import Routes from "../navigation/Routes";
+import useReduxState from "./useReduxState";
+import {
+  rcFirstTimeUseSelector,
+  rcUserTokenSelector,
+  rcUserProfileSelector,
+  rcUserProfileAtom,
+} from "../store/redux/states";
 
 export default function useAuthenticateUser(navigation, logout = false) {
-  const [, setIsFirstTimeUse] = useRecoilState(rcFirstTimeUseSelector);
-  const [token, setAuthToken] = useRecoilState(rcUserTokenSelector);
-  const profile = useRecoilValue(rcUserProfileSelector);
-  const [, setUserProfile] = useRecoilState(rcUserProfileAtom);
+  const [, setIsFirstTimeUse] = useReduxState(rcFirstTimeUseSelector);
+  const [token, setAuthToken] = useReduxState(rcUserTokenSelector);
+  const [profile, setUserProfile] = useReduxState(rcUserProfileAtom);
 
-  function logUserOut() {
-    setAuthToken("");
-    setUserProfile({ ...profile, token: "", expires_at: null });
+  async function logUserOut() {
+    await setAuthToken("");
+    await setUserProfile({ ...profile, token: "", expires_at: null });
     navigation.navigate(Routes.Login);
   }
 
@@ -29,15 +28,17 @@ export default function useAuthenticateUser(navigation, logout = false) {
   React.useEffect(() => {
     if (!token || !profile) return;
     if (!isExpired(profile.expires_at) && profile.expires_at) {
-      setIsFirstTimeUse("true");
-      navigation.navigate(Routes.Home);
+      setIsFirstTimeUse("true").then((r) => {
+        console.log("User is authenticated");
+        navigation.navigate(Routes.Home);
+      });
     }
   }, []);
-
-  function successfulLogin(profile) {
-    setIsFirstTimeUse("true");
-    setAuthToken(profile.token);
-    setUserProfile(profile);
+  
+  async function successfulLogin(profile) {
+    await setIsFirstTimeUse("true");
+    await setAuthToken(profile.token);
+    await setUserProfile(profile);
     if (profile.token) {
       navigation.navigate(Routes.Home);
     }

@@ -30,7 +30,7 @@ export default function ForgotPasswordScreen({ navigation }) {
     resolver: yupResolver(forgotPasswordScheme),
     mode: "all",
   });
-  const onSubmit = handleSubmit(async data => {
+  const onSubmit = handleSubmit(async (data) => {
     // console.log({data})
     setIsError(false);
     const resp = await forgetPasswordService(data);

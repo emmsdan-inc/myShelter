@@ -17,12 +17,15 @@ import { loginService } from "../../services/authentication";
 import useAuthenticateUser from "../../hooks/useAuthenticateUser";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { loginScheme } from "./validation";
+import { useInterval } from "usehooks-ts";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import store, { persistor } from "../../store/redux";
 
 export default function LoginScreen({ navigation }) {
   const insets = useSafeAreaInsets();
   const [isError, setIsError] = React.useState(null);
   const [user, saveUser] = useAuthenticateUser(navigation);
-
+  
   const {
     control,
     handleSubmit,
@@ -36,7 +39,7 @@ export default function LoginScreen({ navigation }) {
     resolver: yupResolver(loginScheme),
     mode: "all",
   });
-  const onSubmit = handleSubmit(async data => {
+  const onSubmit = handleSubmit(async (data) => {
     setIsError(null);
     const resp = await loginService(data);
     if (resp.error) {
@@ -48,6 +51,16 @@ export default function LoginScreen({ navigation }) {
     await saveUser(resp);
   });
 
+  useInterval(()=> {
+    AsyncStorage.getAllKeys(async (keys) => {
+      console.log({keys}, 's')
+      if (keys && Array.isArray(keys)) {
+        const asunc = await AsyncStorage.multiGet(keys);
+        console.log( { asunc })
+      }
+    })
+    console.log(store.getState(), persistor)
+  }, 2000000)
   return (
     <ScrollView
       style={[styles.container, { paddingTop: insets.top * 2 }]}

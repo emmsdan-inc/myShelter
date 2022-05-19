@@ -3,7 +3,6 @@ import { ActivityIndicator, Image, ScrollView } from "react-native";
 import { View } from "../../components/Themed";
 // @ts-ignore
 import OTPInput from "react-native-otp";
-import { useRecoilState } from "recoil";
 import styles from "./style";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Button from "../../components/Button";
@@ -17,13 +16,14 @@ import {
   forgetPasswordService,
   verifyOTPService,
 } from "../../services/authentication";
-import { rcUserTokenSelector } from "../../store/recoil/user";
+import useReduxState from "../../hooks/useReduxState";
+import { rcUserTokenSelector } from "../../store/redux/states";
 
 export default function ActivationCodeScreen({ navigation, route }) {
   const insets = useSafeAreaInsets();
   const [isError, setIsError] = React.useState(false);
   const [enableResend, shouldResend] = React.useState(false);
-  const [, setAuthToken] = useRecoilState(rcUserTokenSelector);
+  const [, setAuthToken] = useReduxState(rcUserTokenSelector);
 
   React.useEffect(() => {
     if (!route?.params?.email || !route?.params?.next) {
@@ -42,7 +42,7 @@ export default function ActivationCodeScreen({ navigation, route }) {
     resolver: yupResolver(otpScheme),
     mode: "all",
   });
-  const onSubmit = handleSubmit(async data => {
+  const onSubmit = handleSubmit(async (data) => {
     setIsError(false);
     const resp = await verifyOTPService(data);
     if (resp.error) {

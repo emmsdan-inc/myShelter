@@ -4,18 +4,19 @@ import { BaseWrapper } from "../../components/Untils";
 import { scale } from "react-native-size-matters";
 import Spacer from "../../components/Spacer";
 import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
-import { useRecoilState } from "recoil";
-import { rcBottomTabHeightAtom } from "../../store/recoil/general";
 import LiveEventPlaceholders from "../../components/LiveEventPlaceholders";
 import ListHomeContent from "./ListHomeContent";
 import $http from "../../services/api";
+import { rcBottomTabHeightAtom } from "../../store/redux/states";
+import useReduxState from "../../hooks/useReduxState";
 
 export default function HomeScreen({ navigation }) {
   const height = useBottomTabBarHeight();
-  const [, setBottomTabHeight] = useRecoilState(rcBottomTabHeightAtom);
+  const [, setBottomTabHeight] = useReduxState(rcBottomTabHeightAtom);
   React.useEffect(() => {
-    setBottomTabHeight(height);
-    $http.$__navigation = navigation;
+    setBottomTabHeight(height).then(() => {
+      $http.$__navigation = navigation;
+    });
   }, [height]);
 
   return (

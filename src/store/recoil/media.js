@@ -72,8 +72,8 @@ export const rcMediaAllMediaSelector = selector({
               artwork: data.thumbnail_url,
             },
           }),
-          {},
-        ),
+          {}
+        )
       );
     } else {
       newValues = Object.assign({}, values, newValue);
@@ -88,7 +88,7 @@ export const rcGetMediaOrAPISelectorFamily = selector({
   key: "RCGetMediaOrAPISelectorFamily ",
   get:
     ({ get }) =>
-    async id => {
+    async (id) => {
       try {
         const medias = await get(rcMediaAllMediaSelector);
         const media = medias[id];

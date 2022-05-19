@@ -41,7 +41,7 @@ const TabBar = ({ state, descriptors, navigation }) => {
             });
           };
 
-          const getIconName = name => {
+          const getIconName = (name) => {
             const icon = {
               Root: "Home",
               Give: "wallet",

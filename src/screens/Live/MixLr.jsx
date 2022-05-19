@@ -18,7 +18,7 @@ export default function MixlrMediaPlayerScreen({ route }) {
       const broadcast = get(route.params, "broadcasts.0", {});
       const appEmbedUrl = `https://listen.mixlr.com/${get(
         route.params,
-        "broadcast_ids.0",
+        "broadcast_ids.0"
       )}`;
       setState({
         ...route.params,
@@ -33,7 +33,7 @@ export default function MixlrMediaPlayerScreen({ route }) {
   const image = get(
     state,
     "profile_image_url",
-    get(state, "artwork_url", null),
+    get(state, "artwork_url", null)
   );
   return (
     <ScrollView style={{ paddingTop: insets.top }}>

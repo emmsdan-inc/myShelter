@@ -7,7 +7,7 @@ import Routes from "../navigation/Routes";
 
 const $http = axios.create({ baseURL: env.baseURL });
 
-$http.interceptors.request.use(async config => {
+$http.interceptors.request.use(async (config) => {
   const token = await AsyncStorage.getItem(TOKEN);
   return {
     ...config,
@@ -18,21 +18,21 @@ $http.interceptors.request.use(async config => {
   };
 });
 $http.interceptors.response.use(
-  async response => {
+  async (response) => {
     return response;
   },
-  async error => {
+  async (error) => {
     if (error.response && error.response.status === 401) {
       Alert.alert("", "Session has expired. Please login to continue.", [
         {
           onPress: async () => {
             await AsyncStorage.removeItem(TOKEN, null);
             const value = JSON.parse(
-              (await AsyncStorage.getItem(PROFILE)) || "{}",
+              (await AsyncStorage.getItem(PROFILE)) || "{}"
             );
             await AsyncStorage.setItem(
               PROFILE,
-              JSON.stringify({  email: value.email, name: value.name }),
+              JSON.stringify({ email: value.email, name: value.name })
             );
             console.log("value", value);
             try {
@@ -48,7 +48,7 @@ $http.interceptors.response.use(
       ]);
     }
     return Promise.reject(error);
-  },
+  }
 );
 
 export default $http;

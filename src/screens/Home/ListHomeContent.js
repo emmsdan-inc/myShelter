@@ -42,7 +42,7 @@ const ListHomeContent = ({ navigation }) => {
   ) : (
     <>
       {response
-        .filter(item => (item.media || []).length)
+        .filter((item) => (item.media || []).length)
         .map((item, index) => {
           const data = [];
 

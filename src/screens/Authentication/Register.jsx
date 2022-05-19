@@ -41,7 +41,7 @@ export default function RegisterScreen({ navigation }) {
     resolver: yupResolver(registerScheme),
     mode: "all",
   });
-  const onSubmit = handleSubmit(async data => {
+  const onSubmit = handleSubmit(async (data) => {
     setIsError(null);
     const resp = await registerService(data);
     if (resp.error || resp.errorInfo) {
@@ -54,7 +54,7 @@ export default function RegisterScreen({ navigation }) {
           ? `User already with this ${isPhoneUnique} ${
               isPhoneUnique && isEmailUnique ? "and" : ""
             } ${isEmailUnique} already exist.`
-          : resp.message,
+          : resp.message
       );
       saveUser({ token: "" });
       return;

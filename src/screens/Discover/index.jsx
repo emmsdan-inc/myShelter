@@ -22,7 +22,7 @@ export default function DiscoverScreen() {
 
   const { data, error, prev, next, loading, setParams, reset } =
     useCacheableGetRequest("media", true, { categories: category, series });
-  const onTitlePress = type => () => {
+  const onTitlePress = (type) => () => {
     setType(type);
   };
   const loadData = () => {
@@ -101,7 +101,7 @@ export default function DiscoverScreen() {
               playlist={index}
             />
           )}
-          keyExtractor={item => item.id}
+          keyExtractor={(item) => item.id}
           style={styles.flatList}
           ListFooterComponent={() => (
             <>

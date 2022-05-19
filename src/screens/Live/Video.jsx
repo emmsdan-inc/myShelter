@@ -26,17 +26,17 @@ export default function VideoScreen({ route }) {
   const { id, publishedAt, ...video } = get(
     route.params,
     "params",
-    route.params,
+    route.params
   );
 
-  const onStateChange = React.useCallback(state => {
+  const onStateChange = React.useCallback((state) => {
     if (state === "ended") {
       setPlaying(false);
       alert("video has finished playing!");
     }
   }, []);
   const saveNote = React.useCallback(
-    async state => {
+    async (state) => {
       try {
         const payload = {
           title: video.title,
@@ -51,11 +51,11 @@ export default function VideoScreen({ route }) {
         console.log(e);
       }
     },
-    [note],
+    [note]
   );
 
   React.useEffect(() => {
-    getSingleNoteService(id + publishedAt).then(resp => {
+    getSingleNoteService(id + publishedAt).then((resp) => {
       if (resp && resp.length > 0) {
         saveNote(resp[0]?.note);
       }

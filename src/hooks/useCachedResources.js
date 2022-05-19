@@ -38,7 +38,7 @@ export default function useCachedResources() {
   React.useEffect(() => {
     async function loadResourcesAndDataAsync() {
       try {
-        await SplashScreen.preventAutoHideAsync ();
+        await SplashScreen.preventAutoHideAsync();
 
         // Load fonts
         await Font.loadAsync({
@@ -82,10 +82,10 @@ export default function useCachedResources() {
         console.warn(e);
       } finally {
         setTimeout(() => {
-          setLoadingComplete ( true )
+          setLoadingComplete(true);
           console.log("SplashScreen.hideAsync");
         }, 2000);
-       await SplashScreen.hideAsync();
+        await SplashScreen.hideAsync();
       }
     }
 

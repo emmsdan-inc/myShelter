@@ -10,7 +10,7 @@ import { useDebounce } from "usehooks-ts";
 import useTrackPlayer from "../hooks/useTrackPlayer";
 
 let lastId = 0;
-const getRandomArrayId = arr => {
+const getRandomArrayId = (arr) => {
   const yu = Math.floor(Math.random() * (arr.length - 1));
   if (yu !== lastId) {
     lastId = yu;
@@ -97,7 +97,7 @@ export const MedialPlayerTimeTracker = () => {
   const debouncedValue = useDebounce(allowSeek, 500);
   const { state, seekTo } = useTrackPlayer();
 
-  const seek = time => {
+  const seek = (time) => {
     let percent;
     if (Array.isArray(time)) {
       percent = time[0] * 888;
