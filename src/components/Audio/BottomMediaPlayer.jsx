@@ -26,7 +26,7 @@ export default function MediaPlayer() {
   const uri = get(track, "artwork", get(track, "thumbnail_url", null));
   const title = get(track, "title", "");
   const author = get(track, "artist", "");
-  const source = uri ? { uri } : require("../../assets/images/logo.png");
+  const source = uri ? { uri } : require("../../../assets/images/logo.png");
 
   React.useEffect(() => {
     if (state.isPlaying || state.isPaused) {

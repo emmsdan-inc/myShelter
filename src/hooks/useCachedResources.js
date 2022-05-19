@@ -42,8 +42,8 @@ export default function useCachedResources() {
 
         // Load fonts
         await Font.loadAsync({
-          shelter: require("../assets/fonts/shelter.ttf"),
-          fontello: require("../assets/fonts/shelter.ttf"),
+          shelter: require("../../assets/fonts/shelter.ttf"),
+          fontello: require("../../assets/fonts/shelter.ttf"),
           Nunito_200ExtraLight,
           Nunito_200ExtraLight_Italic,
           Nunito_300Light,

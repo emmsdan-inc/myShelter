@@ -132,7 +132,7 @@ export default function MediaPlayerScreen({ navigation, route }) {
             source={
               track && track.artwork
                 ? { uri: track.artwork }
-                : require("../../assets/images/logo.png")
+                : require("../../../assets/images/logo.png")
             }
             style={{ width: "100%", height: 315, borderRadius: 15 }}
           />

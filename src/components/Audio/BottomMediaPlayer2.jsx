@@ -40,7 +40,7 @@ export default function MediaPlayer() {
   const uri = null;
   const title = "The Rise of a Great Army Pst. Ayoola Jolayemi";
   const author = "Pst. Ayoola Jolayemi";
-  const source = uri ? { uri } : require("../../assets/images/logo.png");
+  const source = uri ? { uri } : require("../../../assets/images/logo.png");
 
   // console.log({playStatus, media}, "playStatus");
   const loadAudio = async (uri) => {

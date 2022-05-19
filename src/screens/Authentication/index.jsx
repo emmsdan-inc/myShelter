@@ -71,7 +71,7 @@ export default function LoginScreen({ navigation }) {
           <Spacer size={30} />
           <View style={{ alignItems: "center" }}>
             <Image
-              source={require("../../assets/images/logo-black.png")}
+              source={require("../../../assets/images/logo-black.png")}
               style={styles.image}
             />
           </View>

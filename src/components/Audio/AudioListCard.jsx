@@ -34,7 +34,7 @@ export default function AudioListCard({
     setOpen(!open);
     if (onPress) onPress();
   };
-  const source = uri ? { uri } : require("../../assets/images/logo.png");
+  const source = uri ? { uri } : require("../../../assets/images/logo.png");
   return (
     <TouchableOpacity onPress={navigate}>
       <View style={styles.audioListCard}>

@@ -17,13 +17,11 @@ import {
   getSingleNoteService,
 } from "../../services/note";
 import get from "lodash/get";
+import { heightPercentageToDP, widthPercentageToDP } from "react-native-responsive-screen";
 export default function VideoScreen({ route }) {
   const [playing, setPlaying] = React.useState(false);
-  const [saving, setSaving] = React.useState(false);
-  const [note, setNote] = React.useState("");
-  const noteREf = React.useRef();
   const playerRef = React.useRef();
-  const { id, publishedAt, ...video } = get(
+  const { id } = get(
     route.params,
     "params",
     route.params
@@ -35,42 +33,14 @@ export default function VideoScreen({ route }) {
       alert("video has finished playing!");
     }
   }, []);
-  const saveNote = React.useCallback(
-    async (state) => {
-      try {
-        const payload = {
-          title: video.title,
-          note,
-          uniqueId: id + publishedAt,
-        };
-        setSaving(!saving);
-        // const data = await createOrUpdateByUniqueIdService(payload);
-        setSaving(false);
-      } catch (e) {
-        setSaving(false);
-        console.log(e);
-      }
-    },
-    [note]
-  );
-
-  React.useEffect(() => {
-    getSingleNoteService(id + publishedAt).then((resp) => {
-      if (resp && resp.length > 0) {
-        saveNote(resp[0]?.note);
-      }
-    });
-  }, [video, route]);
-
   return (
-    <KeyboardAvoidingView
-      style={{ height: "90%", padding: 0, margin: 0 }}
-      behavior={"height"}
-    >
       <ScrollView style={{ paddingTop: 10 }}>
-        <BaseWrapper>
+        <BaseWrapper style={[ {
+          // transform: [{ rotate: "90deg" }]
+        }]}>
           <YoutubePlayer
-            height={300}
+            height={heightPercentageToDP('50%')}
+            width={widthPercentageToDP('100%')}
             play={playing}
             videoId={id}
             ref={playerRef}
@@ -81,36 +51,6 @@ export default function VideoScreen({ route }) {
             }}
           />
         </BaseWrapper>
-        <BaseWrapper style={{ height: "80%", maxHeight: 400 }}>
-          <Pressable
-            onPress={() => {
-              noteREf.current?.focus();
-            }}
-            style={{
-              minHeight: 300,
-              backgroundColor: Colors().background,
-              flex: 1,
-              borderColor: Colors().primary2,
-              borderWidth: 1,
-              padding: 10,
-              marginTop: -40,
-            }}
-          >
-            <TextInput
-              ref={noteREf}
-              placeholder={"Take notes..."}
-              multiline
-              onChangeText={setNote}
-              value={note}
-            />
-          </Pressable>
-          <Spacer />
-          <Button disabled={saving || note.length <= 5} onPress={saveNote}>
-            {saving ? <ActivityIndicator color={Colors().primary} /> : "Save"}
-          </Button>
-        </BaseWrapper>
-        <Spacer size={50} />
       </ScrollView>
-    </KeyboardAvoidingView>
   );
 }

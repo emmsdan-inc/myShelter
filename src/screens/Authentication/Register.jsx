@@ -76,7 +76,7 @@ export default function RegisterScreen({ navigation }) {
         <Spacer size={8} />
         <View style={{ alignItems: "center" }}>
           <Image
-            source={require("../../assets/images/logo-black.png")}
+            source={require("../../../assets/images/logo-black.png")}
             style={styles.image}
           />
         </View>

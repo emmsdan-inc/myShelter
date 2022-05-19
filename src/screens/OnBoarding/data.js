@@ -1,8 +1,8 @@
 import { scale } from "react-native-size-matters";
 
-const Image1 = require("../../assets/images/onboarding/loving.png");
-const Image2 = require("../../assets/images/onboarding/ice-cream.png");
-const Image3 = require("../../assets/images/onboarding/plant.png");
+const Image1 = require("../../../assets/images/onboarding/loving.png");
+const Image2 = require("../../../assets/images/onboarding/ice-cream.png");
+const Image3 = require("../../../assets/images/onboarding/plant.png");
 export default [
   {
     text: "Do you want a family where love abounds?",

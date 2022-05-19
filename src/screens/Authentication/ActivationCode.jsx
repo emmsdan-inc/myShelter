@@ -69,7 +69,7 @@ export default function ActivationCodeScreen({ navigation, route }) {
       <View style={[{ paddingTop: insets.top * 3 }]}>
         <View style={{ alignItems: "center" }}>
           <Image
-            source={require("../../assets/images/logo-black.png")}
+            source={require("../../../assets/images/logo-black.png")}
             style={styles.image}
           />
         </View>

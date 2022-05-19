@@ -15,7 +15,12 @@ import { Provider } from "react-redux";
 import {PersistGate} from 'redux-persist/integration/react';
 
 import { fetchAll, store, persistor } from "./src/store/redux";
+import Colors from "./src/constants/Colors";
+import { View } from "./src/components/Themed";
 
+const Loading = () =>(<View style={{ flex: 1, justifyContent: 'center'}}>
+  <ActivityIndicator size={40} color={Colors().primary} />
+</View>)
 export default function App() {
   const isLoadingComplete = useCachedResources();
   const { setup } =useTrackPlayer();
@@ -27,12 +32,12 @@ export default function App() {
     }
   } , [isLoadingComplete]);
   if (!isLoadingComplete) {
-    return <ActivityIndicator  />;
+    return <Loading  />;
   } else {
     return (
       <SafeAreaProvider>
         <Provider store={store}>
-          <PersistGate  loading={<ActivityIndicator />} persistor={persistor}>
+          <PersistGate  loading={<Loading />} persistor={persistor}>
             <Navigation />
             <MediaPlayer />
             <StatusBar />
