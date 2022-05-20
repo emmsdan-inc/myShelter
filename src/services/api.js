@@ -23,7 +23,7 @@ $http.interceptors.response.use(
   },
   async (error) => {
     if (error.response && error.response.status === 401) {
-      Alert.alert("", "Session has expired. Please login to continue.", [
+      Alert.alert("", "      Authorization: \"Bearer \" + token,\n Session has expired. Please login to continue.", [
         {
           onPress: async () => {
             await AsyncStorage.removeItem(TOKEN, null);
@@ -34,7 +34,6 @@ $http.interceptors.response.use(
               PROFILE,
               JSON.stringify({ email: value.email, name: value.name })
             );
-            console.log("value", value);
             try {
               $http.$__navigation?.reset({
                 index: 0,

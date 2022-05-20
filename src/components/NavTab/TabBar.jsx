@@ -7,6 +7,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Colors from "../../constants/Colors";
 import { useNavigation } from "@react-navigation/native";
 import { Text, View } from "../Themed";
+import MediaPlayer from "../Audio/BottomMediaPlayer";
 
 const TabBar = ({ state, descriptors, navigation }) => {
   const insets = useSafeAreaInsets();
@@ -17,6 +18,7 @@ const TabBar = ({ state, descriptors, navigation }) => {
 
   return (
     <BaseWrapper style={styles.tabShadow}>
+      <MediaPlayer navigation={navigation} />
       <FlexSpaceBetweenCenter style={[bottom]}>
         {state.routes.map((route, index) => {
           const { options } = descriptors[route.key];
@@ -98,7 +100,7 @@ export const TopHeader = ({ title, back, rightContent }) => {
             }
             navigation.goBack();
           } catch (error) {
-            console.log(error);
+            console.error(error);
           }
         }}
         size={16}

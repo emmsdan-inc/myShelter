@@ -6,7 +6,6 @@ function fetchMedia(setState) {
   )
     .then((res) => res.json())
     .then((resp) => {
-      console.log(resp, "resp");
       if (resp.meta) {
         setState(resp.data);
       } else {

@@ -26,7 +26,6 @@ export const prayerAndTestimoniesActions =
 
     const message =
       messageObj[`${type}-${action}`] || messageObj["testimony-share"];
-    console.log({ message });
     Alert.alert(message.title, message.body, [
       {
         text: "Cancel",
@@ -52,10 +51,9 @@ export const prayerAndTestimoniesActions =
 export async function create(url, data) {
   try {
     const resp = await $http.post(url, data);
-    console.log(resp.data);
     return resp.data;
   } catch (error) {
-    console.log(error, { url, data }, "response");
+    console.error(error, { url, data }, "response");
     return error?.response?.data || error.message;
   }
 }

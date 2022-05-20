@@ -48,7 +48,6 @@ export const GetTestimony = ({ onCreateTestimony, route }) => {
     searchService("testimony", { limit: 100 }).then(({ data }) => {
       setLoading(false);
       setSearch(data);
-      console.log("data", data);
     });
   }
   React.useEffect(() => {
@@ -133,7 +132,6 @@ export function CreateTestimony({ route }) {
       };
       const data = await create("testimony", payload);
       setState(data);
-      console.log("data-create", data);
     }
   };
 

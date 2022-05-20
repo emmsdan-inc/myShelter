@@ -6,7 +6,6 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 
 import useCachedResources from "./src/hooks/useCachedResources";
 import Navigation from "./src/navigation";
-import MediaPlayer from "./src/components/Audio/BottomMediaPlayer";
 import "./src/shared/helpers/init"
 import useTrackPlayer from "./src/hooks/useTrackPlayer";
 import { Provider } from "react-redux";
@@ -39,7 +38,6 @@ export default function App() {
         <Provider store={store}>
           <PersistGate  loading={<Loading />} persistor={persistor}>
             <Navigation />
-            <MediaPlayer />
             <StatusBar />
           </PersistGate>
         </Provider>

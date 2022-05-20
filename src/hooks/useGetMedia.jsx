@@ -5,7 +5,7 @@ import useReduxState from "./useReduxState";
 
 export function useGetMedia(mediaId = "", customUrl = null) {
   const [getMedia, setMedia] = useReduxState(rcMediaAllMediaSelector);
-
+  
   const [id, setId] = React.useState(mediaId);
   const [state, setState] = React.useState({});
   const [isLoading, setIsLoading] = React.useState(true);
@@ -14,8 +14,7 @@ export function useGetMedia(mediaId = "", customUrl = null) {
     (async () => {
       try {
         if (mediaId || mediaId === "") {
-          const data = getMedia[mediaId];
-          if (data) {
+          if (getMedia && mediaId && getMedia[mediaId]) {
             setState(data);
           } else {
             const response = await searchService(
@@ -24,11 +23,10 @@ export function useGetMedia(mediaId = "", customUrl = null) {
             );
             // setMedia(response?.data || response || {});
             setState(response?.data || response[0] || {});
-            console.log(customUrl ?? "media/" + mediaId);
           }
         }
       } catch (error) {
-        console.log(error.message, "error");
+        console.error(error.message, "error");
       }
       setIsLoading(false);
     })();

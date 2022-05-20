@@ -14,27 +14,30 @@ import {
 } from "../shared/helpers/general";
 import SoundPlayer from "react-native-sound-player";
 import env from "../services/environment";
+import { Platform } from "react-native";
 // Creates the player
 const setup = async (num = 0) => {
   try {
     try {
-      const currentTrack = await TrackPlayer.getCurrentTrack();
-      if (currentTrack !== null) {
-        return;
-      }
-      await TrackPlayer.setupPlayer();
-      await TrackPlayer.add(env.initAudio);
-      await TrackPlayer.setRepeatMode(RepeatMode.Queue);
-    } catch (error) {
-      if (error.code !== "player_already_initialized") {
+      try {
+        const currentTrack = await TrackPlayer.getCurrentTrack();
+        if (currentTrack !== null) {
+          return;
+        }
         await TrackPlayer.setupPlayer();
-        await setup(num + 1);
-        console.warn("Init Player Error:", error.message, { num });
+        await TrackPlayer.add(env.initAudio);
+        await TrackPlayer.setRepeatMode(RepeatMode.Queue);
+      } catch (error) {
+        if (error.code !== "player_already_initialized") {
+          await TrackPlayer.setupPlayer();
+          await setup(num + 1);
+          console.warn("Init Player Error:", error.message, { num });
+        }
       }
+    } catch (e) {
+      console.warn(e.message);
     }
-  } catch (e) {
-    console.warn(e.message);
-  }
+  } catch (e) {}
 };
 
 const togglePlayback = (playbackState) => async () => {
@@ -59,16 +62,19 @@ const togglePlayback = (playbackState) => async () => {
 };
 
 const add = async (musics) => {
-  const tracks = toTrackFormat(musics);
   try {
-    await TrackPlayer.add(tracks);
-  } catch (error) {
-    // await setup();
-    await TrackPlayer.add(tracks);
-    // @ts-ignore
-    console.error(error.message);
-  }
-  await TrackPlayer.play();
+  
+    const tracks = toTrackFormat(musics);
+    try {
+      await TrackPlayer.add(tracks);
+    } catch (error) {
+      // await setup();
+      await TrackPlayer.add(tracks);
+      // @ts-ignore
+      console.error(error.message);
+    }
+    await TrackPlayer.play();
+  } catch (e) {}
 };
 export function useTrackPlayer() {
   const state = usePlaybackState();
@@ -123,6 +129,7 @@ export function useTrackPlayer() {
     getCurrentTrack: () => {
       return track;
     },
+    play: TrackPlayer.play,
     add,
     next: async () => {
       await TrackPlayer.skipToNext();
@@ -134,33 +141,47 @@ export function useTrackPlayer() {
       await TrackPlayer.seekTo(position);
     },
     resetAndPlay: async (musics, reset = false) => {
-      await TrackPlayer.removeUpcomingTracks();
-      const tracks = toTrackFormat(musics);
-      await TrackPlayer.add(tracks);
-      await TrackPlayer.skipToNext();
-      await TrackPlayer.play();
+      try {
+  
+        if (Platform.OS === 'ios') {
+          await TrackPlayer.removeUpcomingTracks ();
+        } else {
+          await TrackPlayer.reset()
+        }
+        // console.log(TrackPlayer)
+        // return;
+        const tracks = toTrackFormat(musics);
+        await TrackPlayer.add(tracks);
+        await TrackPlayer.skipToNext();
+        await TrackPlayer.play();
+      } catch (e) {
+        console.warn(e)
+      }
     },
     addPlaylist: async (musics) => {
-      // check currently playing track
-      const id = await TrackPlayer.getCurrentTrack();
-      if (id !== null) {
-        const currentTrack = await TrackPlayer.getTrack(id);
-        const queue = await TrackPlayer.getQueue();
-        // remove current track from playlist
-        const tracks = toTrackFormat(musics).reduce((arr, track) => {
-          if (track.id !== currentTrack.id) {
-            const index = queue.findIndex((t) => t.id === track.id);
-            if (index === -1) {
-              arr.push(track);
-            } else {
-              queue.splice(index, 1);
+      try {
+  
+        // check currently playing track
+        const id = await TrackPlayer.getCurrentTrack();
+        if (id !== null) {
+          const currentTrack = await TrackPlayer.getTrack(id);
+          const queue = await TrackPlayer.getQueue();
+          // remove current track from playlist
+          const tracks = toTrackFormat(musics).reduce((arr, track) => {
+            if (track.id !== currentTrack.id) {
+              const index = queue.findIndex((t) => t.id === track.id);
+              if (index === -1) {
+                arr.push(track);
+              } else {
+                queue.splice(index, 1);
+              }
             }
-          }
-          return arr;
-        }, []);
-        // add to playlist
-        await TrackPlayer.add(tracks);
-      }
+            return arr;
+          }, []);
+          // add to playlist
+          await TrackPlayer.add(tracks);
+        }
+      } catch (e) {}
     },
   };
 }

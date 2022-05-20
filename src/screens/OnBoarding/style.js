@@ -43,7 +43,7 @@ export default EStyleSheet.create({
   },
   text: {
     color: Colors().blackGlaze, // global variable $textColor
-    fontFamily: "lato",
+    fontFamily: "Nunito",
     fontStyle: "normal",
     fontWeight: "normal",
     fontSize: scale(15),

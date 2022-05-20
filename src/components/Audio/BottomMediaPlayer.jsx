@@ -16,11 +16,11 @@ import {
   rcNavigatorAtom,
   rcOpenMiniPlayerAtom,
 } from "../../store/redux/states";
-export default function MediaPlayer() {
+export default function MediaPlayer({ navigation}) {
   const [height] = useReduxState(rcBottomTabHeightAtom);
   const { state, toggle, track, getCurrentTrack } = useTrackPlayer();
   const [open, setOpen] = React.useState(false);
-  const [navigation] = useReduxState(rcNavigatorAtom);
+  // const [navigation] = useReduxState(rcNavigatorAtom);
   const [openA] = useReduxState(rcOpenMiniPlayerAtom);
 
   const uri = get(track, "artwork", get(track, "thumbnail_url", null));
@@ -46,7 +46,7 @@ export default function MediaPlayer() {
   const onPress = () => {
     navigation.navigate(Routes.MediaPlayer, {});
   };
-  console.log("height", { open, height });
+  // console.log ( { openA })
   return open ? (
     <View style={[styles.miniPlayerContainer, { bottom: height }]}>
       <FlexSpaceBetweenCenter style={[{ width: "100%" }]}>

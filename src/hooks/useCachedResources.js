@@ -18,18 +18,6 @@ import {
   Nunito_900Black,
   Nunito_900Black_Italic,
 } from "@expo-google-fonts/nunito";
-import {
-  Lato_100Thin,
-  Lato_100Thin_Italic,
-  Lato_300Light,
-  Lato_300Light_Italic,
-  Lato_400Regular,
-  Lato_400Regular_Italic,
-  Lato_700Bold,
-  Lato_700Bold_Italic,
-  Lato_900Black,
-  Lato_900Black_Italic,
-} from "@expo-google-fonts/lato";
 
 export default function useCachedResources() {
   const [isLoadingComplete, setLoadingComplete] = React.useState(false);
@@ -50,6 +38,7 @@ export default function useCachedResources() {
           Nunito_Light: Nunito_300Light,
           Nunito_300Light_Italic,
           Nunito_400Regular,
+          Nunito: Nunito_400Regular,
           nunito: Nunito_400Regular,
           Nunito_400Regular_Italic,
           Nunito_600SemiBold,
@@ -61,21 +50,6 @@ export default function useCachedResources() {
           Nunito_800ExtraBold_Italic,
           Nunito_900Black,
           Nunito_900Black_Italic,
-
-          Lato_100Thin,
-          Lato_100Thin_Italic,
-          Lato_300Light,
-          Lato_Light: Lato_300Light,
-          Lato_300Light_Italic,
-          Lato_400Regular,
-          lato: Lato_400Regular,
-          Lato_Regular_Italic: Lato_400Regular_Italic,
-          Lato_400Regular_Italic,
-          Lato_700Bold,
-          Lato_Bold: Lato_700Bold,
-          Lato_700Bold_Italic,
-          Lato_900Black,
-          Lato_900Black_Italic,
         });
       } catch (e) {
         // We might want to provide this error information to an error reporting service

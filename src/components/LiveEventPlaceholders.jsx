@@ -24,7 +24,7 @@ export default function LiveEventPlaceholders({ navigation }) {
     }
     getLiveEventService().then(async (res) => {
       setIsLoading(false);
-      await setLiveEvent ( { ...res, lastCheck: new Date () } );
+      await setLiveEvent ( { ...res, lastCheck: new Date ().toISOString() } );
     });
   }, []);
 

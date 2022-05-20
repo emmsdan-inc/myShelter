@@ -22,7 +22,7 @@ export default EStyleSheet.create({
   },
   text: {
     color: Colors().blackGlaze, // global variable $textColor
-    fontFamily: "lato",
+    fontFamily: "Nunito",
     fontStyle: "normal",
     fontWeight: "400",
     fontSize: scale(width >= 750 ? 15 : 20),

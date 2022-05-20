@@ -8,7 +8,7 @@ export default EStyleSheet.create({
     // justifyContent: "center",
   },
   text: {
-    fontFamily: "Lato_300Light",
+    fontFamily: "Nunito_300Light",
     fontSize: 10,
   },
   link: {

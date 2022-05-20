@@ -20,7 +20,6 @@ export default function SidebarComponent({ navigation }) {
   const [active, setActive] = React.useState(0);
   const onMenuPress = (menu) => {
     return () => {
-      console.log("menu", { menu });
       if (menu.toLowerCase() === "logout") {
         logout();
       } else {

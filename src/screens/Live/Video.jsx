@@ -1,27 +1,20 @@
 import React from "react";
 import YoutubePlayer from "react-native-youtube-iframe";
-import WebView from "react-native-webview";
 import {
-  ActivityIndicator,
-  KeyboardAvoidingView,
-  Pressable,
   ScrollView,
-  TextInput,
 } from "react-native";
-import Colors from "../../constants/Colors";
 import { BaseWrapper } from "../../components/Untils";
-import Button from "../../components/Button";
-import Spacer from "../../components/Spacer";
-import {
-  createOrUpdateByUniqueIdService,
-  getSingleNoteService,
-} from "../../services/note";
 import get from "lodash/get";
-import { heightPercentageToDP, widthPercentageToDP } from "react-native-responsive-screen";
+import { heightPercentageToDP } from "react-native-responsive-screen";
+import * as ScreenOrientation from 'expo-screen-orientation';
+import { Text, View } from "../../components/Themed";
+import Colors from "../../constants/Colors";
+import moment from "moment";
+
 export default function VideoScreen({ route }) {
   const [playing, setPlaying] = React.useState(false);
   const playerRef = React.useRef();
-  const { id } = get(
+  const { id, ...info } = get(
     route.params,
     "params",
     route.params
@@ -33,23 +26,32 @@ export default function VideoScreen({ route }) {
       alert("video has finished playing!");
     }
   }, []);
+  async function changeScreenOrientation() {
+    await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.LANDSCAPE_RIGHT);
+  }
+  
   return (
       <ScrollView style={{ paddingTop: 10 }}>
-        <BaseWrapper style={[ {
-          // transform: [{ rotate: "90deg" }]
-        }]}>
-          <YoutubePlayer
-            height={heightPercentageToDP('50%')}
-            width={widthPercentageToDP('100%')}
-            play={playing}
-            videoId={id}
-            ref={playerRef}
-            onChangeState={onStateChange}
-            webViewStyle={{
-              borderRadius: 10,
-              backgroundColor: Colors().primary2,
-            }}
-          />
+        <BaseWrapper >
+          <View style={[ {
+            maxHeight: heightPercentageToDP('50%')/2,
+            overflow: 'hidden',
+            marginVertical: 15
+          }]}>
+            <YoutubePlayer
+              height={heightPercentageToDP('50%')}
+              play={playing}
+              videoId={id}
+              ref={playerRef}
+              onChangeState={onStateChange}
+              onFullScreenChange={changeScreenOrientation}
+            />
+          </View>
+          <Text style={{ fontWeight: 'bold', fontSize: 18}}>
+            {get(info, 'title', '')}
+          </Text>
+          <Text style={{ paddingBottom: 10, fontSize: 14, fontWeight: 'normal', color: Colors().primary }}>Started {moment(get(info, 'publishedAt', '')).fromNow()}</Text>
+          <Text style={{ fontSize: 16}}>{get(info, 'description', '')}</Text>
         </BaseWrapper>
       </ScrollView>
   );

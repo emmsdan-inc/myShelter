@@ -135,7 +135,6 @@ export function CreatePrayerRequest({ route }) {
       };
       const data = await create("prayer-request", payload);
       setState(data);
-      console.log("data", data);
     }
   };
 

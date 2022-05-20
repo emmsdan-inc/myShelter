@@ -42,7 +42,7 @@ export default function useCacheableGetRequest(
         setLastPage(resp.meta.last_page);
       }
     } catch (error) {
-      console.log({ error });
+      console.error({ error });
       setError(error);
     }
     setLoading(false);
