@@ -9,7 +9,7 @@ import { rcMediaLiveEventAtom } from "../store/redux/states";
 export default function LiveEventPlaceholders({ navigation }) {
   // const navigation = useNavigation();
   const [liveEvent, setLiveEvent] = useReduxState(rcMediaLiveEventAtom);
-  
+
   const [isLoading, setIsLoading] = React.useState(true);
   const offlineImage =
     "https://via.placeholder.com/300x200.png?text=\n\nWe+are+Currently+offline.+++";
@@ -17,14 +17,15 @@ export default function LiveEventPlaceholders({ navigation }) {
   React.useEffect(() => {
     if (
       liveEvent.lastCheck &&
-      new Date(liveEvent.lastCheck)?.getTime() + 1000 * 60 * 15 > new Date().getTime()
+      new Date(liveEvent.lastCheck)?.getTime() + 1000 * 60 * 15 >
+        new Date().getTime()
     ) {
       setIsLoading(false);
       return;
     }
     getLiveEventService().then(async (res) => {
       setIsLoading(false);
-      await setLiveEvent ( { ...res, lastCheck: new Date ().toISOString() } );
+      await setLiveEvent({ ...res, lastCheck: new Date().toISOString() });
     });
   }, []);
 

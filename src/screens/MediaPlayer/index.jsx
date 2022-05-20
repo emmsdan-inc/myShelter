@@ -81,7 +81,8 @@ export default function MediaPlayerScreen({ navigation, route }) {
   const routeInfo = route.params || {};
   // fetch data from server/store api
   const [media, setMedia] = useGetMedia(routeInfo.id);
-  const [openMiniPlayer, setOpenMiniPlayer] = useReduxState(rcOpenMiniPlayerAtom);
+  const [openMiniPlayer, setOpenMiniPlayer] =
+    useReduxState(rcOpenMiniPlayerAtom);
   const { addPlaylist, resetAndPlay, track, play } = useTrackPlayer();
 
   const insets = useSafeAreaInsets();
@@ -90,15 +91,12 @@ export default function MediaPlayerScreen({ navigation, route }) {
       setMedia(route.params.id);
     }
   }, [route.params]);
-  
 
   useFocusEffect(
     React.useCallback(() => {
-      setOpenMiniPlayer ( !openMiniPlayer ).then (  r => {
-      });
+      setOpenMiniPlayer(!openMiniPlayer).then((r) => {});
       return () => {
-        setOpenMiniPlayer ( !openMiniPlayer ).then (  r => {
-        });
+        setOpenMiniPlayer(!openMiniPlayer).then((r) => {});
       };
     }, [route.params])
   );

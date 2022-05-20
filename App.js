@@ -9,7 +9,7 @@ import Navigation from "./src/navigation";
 import "./src/shared/helpers/init"
 import useTrackPlayer from "./src/hooks/useTrackPlayer";
 import { Provider } from "react-redux";
-
+import Toast from 'react-native-toast-message';
 // REDUX-PERSIST
 import {PersistGate} from 'redux-persist/integration/react';
 
@@ -37,7 +37,9 @@ export default function App() {
       <SafeAreaProvider>
         <Provider store={store}>
           <PersistGate  loading={<Loading />} persistor={persistor}>
+            
             <Navigation />
+            <Toast />
             <StatusBar />
           </PersistGate>
         </Provider>

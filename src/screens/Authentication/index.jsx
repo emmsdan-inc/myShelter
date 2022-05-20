@@ -25,7 +25,7 @@ export default function LoginScreen({ navigation }) {
   const insets = useSafeAreaInsets();
   const [isError, setIsError] = React.useState(null);
   const [user, saveUser] = useAuthenticateUser(navigation);
-  
+
   const {
     control,
     handleSubmit,

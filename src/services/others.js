@@ -1,10 +1,12 @@
 import $http from "./api";
 import { Alert } from "react-native";
 import startCase from "lodash/startCase";
+import { toaster } from "../shared/helpers/func";
 
 export const prayerAndTestimoniesActions =
   (cb = () => {}) =>
   (id, type = "testimony", action = "share") => {
+    console.log ("prayerAndTestimoniesActions", id, type, action);
     const messageObj = {
       "testimony-share": {
         title: "Send Testimony",
@@ -38,6 +40,11 @@ export const prayerAndTestimoniesActions =
           try {
             const resp = await $http.get(url);
             cb(resp);
+            if (action === "share") {
+              toaster(startCase(`${type}`),`Thank you for sharing your ${startCase(`${type}`)}`);
+            } else {
+              toaster(startCase(`${type}`),`${startCase(`${type}`)} deleted successfully`);
+            }
             return resp.data;
           } catch (err) {
             console.warn(err.response.data, { url });
@@ -54,7 +61,7 @@ export async function create(url, data) {
     return resp.data;
   } catch (error) {
     console.error(error, { url, data }, "response");
-    return error?.response?.data || error.message;
+    throw error?.response?.data || error.message;
   }
 }
 
@@ -63,7 +70,7 @@ export async function update(url, data) {
     const resp = await $http.put(url, data);
     return resp.data;
   } catch (error) {
-    console.log(error?.response, "na error");
-    return error?.response?.data || error.message;
+    console.error(error?.response, "na error");
+    throw error?.response?.data || error.message;
   }
 }

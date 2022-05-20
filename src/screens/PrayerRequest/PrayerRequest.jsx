@@ -20,9 +20,10 @@ import {
 } from "../../services/others";
 import { searchService } from "../../services/media";
 import useCacheableGetRequest from "../../hooks/useCacheableGetRequest";
+import { toaster } from "../../shared/helpers/func";
 
 const onShare = (item) => {
-  prayerAndTestimoniesActions(item.id, "prayer-request");
+  prayerAndTestimoniesActions()(item.id, "prayer-request");
 };
 
 export const GetPrayerRequests = ({ onCreatePrayer, route }) => {
@@ -127,6 +128,7 @@ export function CreatePrayerRequest({ route }) {
         description: state.description,
       };
       await update("prayer-request/" + state.id, payload);
+      toaster("Prayer Request", "Your PR has been updated");
     } else {
       // create
       const payload = {
@@ -135,6 +137,7 @@ export function CreatePrayerRequest({ route }) {
       };
       const data = await create("prayer-request", payload);
       setState(data);
+      toaster("Prayer Request", "Your PR has been created");
     }
   };
 
@@ -147,6 +150,12 @@ export function CreatePrayerRequest({ route }) {
             name: Routes.PrayerRequest,
             params: { id: state.id, random: Math.random() },
           }}
+          rightContent={ <Ionicons
+            name="checkmark-circle"
+            size={30}
+            color={Colors().primary}
+            onPress={onSave}
+          />}
         />
       </BaseWrapper>
       <Spacer size={15} />
@@ -176,13 +185,6 @@ export function CreatePrayerRequest({ route }) {
             size={30}
             color={Colors().primary}
             onPress={() => onShare(state)}
-          />
-          <Spacer size={10} />
-          <Ionicons
-            name="checkmark-circle"
-            size={30}
-            color={Colors().primary}
-            onPress={onSave}
           />
         </FlexSpaceBetween>
       </KeyboardAvoidingView>

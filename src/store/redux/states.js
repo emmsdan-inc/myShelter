@@ -7,7 +7,7 @@ export const rcFirstTimeUseSelector = rcFirstTimeUseAtom;
 export const rcUserTokenAtom = "rcUserTokenAtom";
 export const rcUserTokenSelector = {
   key: rcUserTokenAtom,
-  value: ''
+  value: "",
 };
 
 export const rcUserProfileAtom = "rcUserProfileAtom";
@@ -31,7 +31,7 @@ export const rcMediaCurrentlyPlayingSelector = rcMediaCurrentlyPlayingAtom;
 
 export const rcMediaLiveEventAtom = {
   key: "rcMediaLiveEventAtom",
-  value: {}
+  value: {},
 };
 export const rcMediasAtom = "rcMediasAtom";
 

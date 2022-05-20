@@ -48,6 +48,6 @@ export default EStyleSheet.create({
     bottom: 0,
     right: 20,
     resizeMode: "contain",
-    zIndex: 100
+    zIndex: 100,
   },
 });

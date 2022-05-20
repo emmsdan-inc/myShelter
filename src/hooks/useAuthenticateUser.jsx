@@ -34,7 +34,7 @@ export default function useAuthenticateUser(navigation, logout = false) {
       });
     }
   }, []);
-  
+
   async function successfulLogin(profile) {
     await setIsFirstTimeUse("true");
     await setAuthToken(profile.token);

@@ -76,14 +76,14 @@ export const toTrackFormat = (musics) =>
   }));
 
 export const mapStatesKeysToObject = (states) => {
-  const newState = {}
+  const newState = {};
   for (const key in states) {
-    const state = states[key]
-    if (typeof state === 'object' && state.key) {
+    const state = states[key];
+    if (typeof state === "object" && state.key) {
       newState[state.key] = state.value ?? null;
     } else {
-      newState[state] = null
+      newState[state] = null;
     }
   }
-  return newState
-}
+  return newState;
+};

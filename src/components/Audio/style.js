@@ -80,11 +80,12 @@ export default EStyleSheet.create({
   },
   miniPlayerContainer: {
     flexDirection: "row",
-    height: 70,
+    // height: 70,
     backgroundColor: Colors().background,
     position: "absolute",
     width: "100%",
     paddingHorizontal: 20,
+    paddingVertical: 5,
     // borderWidth: 1
     // borderTopWidth: 1,
     // borderBottomWidth: 1,
@@ -102,7 +103,7 @@ export default EStyleSheet.create({
     borderRadius: scale(30),
     height: scale(46),
     width: scale(46),
-    // marginRight: scale(4),
+    marginRight: scale(7),
   },
   miniPlayerTitle: {
     fontFamily: "Nunito_Bold",

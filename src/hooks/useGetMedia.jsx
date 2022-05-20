@@ -5,7 +5,7 @@ import useReduxState from "./useReduxState";
 
 export function useGetMedia(mediaId = "", customUrl = null) {
   const [getMedia, setMedia] = useReduxState(rcMediaAllMediaSelector);
-  
+
   const [id, setId] = React.useState(mediaId);
   const [state, setState] = React.useState({});
   const [isLoading, setIsLoading] = React.useState(true);

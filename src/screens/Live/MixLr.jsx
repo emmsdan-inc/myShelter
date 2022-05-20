@@ -1,5 +1,11 @@
 import React from "react";
-import { ActivityIndicator, Image, ScrollView, Text, TouchableOpacity } from "react-native";
+import {
+  ActivityIndicator,
+  Image,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+} from "react-native";
 
 import FlexSpaceBetweenCenter, { BaseWrapper } from "../../components/Untils";
 import styles from "../MediaPlayer/style";
@@ -34,29 +40,30 @@ export default function MixlrMediaPlayerScreen({ route }) {
         appEmbedUrl,
       });
       SoundPlayer.playUrl(appEmbedUrl);
-      setLoading(false)
+      setLoading(false);
     }
   }, [route.params]);
 
-  async function toggle () {
+  async function toggle() {
     if (playing) {
-      await SoundPlayer.pause()
-      setPlaying(false)
-    }  else  {
-      await SoundPlayer.play()
-      setPlaying(true)
+      await SoundPlayer.pause();
+      setPlaying(false);
+    } else {
+      await SoundPlayer.play();
+      setPlaying(true);
     }
   }
-  
+
   const image = get(
     state,
     "profile_image_url",
     get(state, "artwork_url", null)
   );
-  return (
-    loading ? <View style={{ flex: 1, justifyContent: 'center'}}>
-        <ActivityIndicator size={40} color={Colors().primary} />
-      </View>:
+  return loading ? (
+    <View style={{ flex: 1, justifyContent: "center" }}>
+      <ActivityIndicator size={40} color={Colors().primary} />
+    </View>
+  ) : (
     <>
       <FloatingButton onPress={toggle} style={{ bottom: insets.bottom + 20 }}>
         <Icon
@@ -65,39 +72,42 @@ export default function MixlrMediaPlayerScreen({ route }) {
           color={Colors().background}
         />
       </FloatingButton>
-    <ScrollView style={{ paddingTop: insets.top }} showsVerticalScrollIndicator={false}>
-      <BaseWrapper style={{ paddingTop: insets.top }}>
-        <TopNavigation />
-      </BaseWrapper>
-      
-      <Spacer size={15} />
-      <BaseWrapper style={{ zIndex: -1 }}>
-        <Image
-          source={
-            state && image
-              ? { uri: image }
-              : require("../../../assets/images/logo.png")
-          }
-          style={{ width: "100%", height: 315, borderRadius: 15 }}
-        />
-        <Spacer size={20} />
-        <Text style={styles.title} numberOfLines={3}>
-          {state.about_me}
-        </Text>
-        <Spacer size={2} />
-        <FlexSpaceBetweenCenter>
-          <Text style={styles.author} numberOfLines={13}>
+      <ScrollView
+        style={{ paddingTop: insets.top }}
+        showsVerticalScrollIndicator={false}
+      >
+        <BaseWrapper style={{ paddingTop: insets.top }}>
+          <TopNavigation />
+        </BaseWrapper>
+
+        <Spacer size={15} />
+        <BaseWrapper style={{ zIndex: -1 }}>
+          <Image
+            source={
+              state && image
+                ? { uri: image }
+                : require("../../../assets/images/logo.png")
+            }
+            style={{ width: "100%", height: 315, borderRadius: 15 }}
+          />
+          <Spacer size={20} />
+          <Text style={styles.title} numberOfLines={3}>
             {state.about_me}
           </Text>
-        </FlexSpaceBetweenCenter>
+          <Spacer size={2} />
+          <FlexSpaceBetweenCenter>
+            <Text style={styles.author} numberOfLines={13}>
+              {state.about_me}
+            </Text>
+          </FlexSpaceBetweenCenter>
 
-        <Spacer size={20} />
-        <Spacer size={20} />
-  
-        <Spacer size={20} />
-        <Spacer size={20} />
-      </BaseWrapper>
-    </ScrollView>
+          <Spacer size={20} />
+          <Spacer size={20} />
+
+          <Spacer size={20} />
+          <Spacer size={20} />
+        </BaseWrapper>
+      </ScrollView>
     </>
   );
 }

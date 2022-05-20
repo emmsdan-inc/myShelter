@@ -63,7 +63,6 @@ const togglePlayback = (playbackState) => async () => {
 
 const add = async (musics) => {
   try {
-  
     const tracks = toTrackFormat(musics);
     try {
       await TrackPlayer.add(tracks);
@@ -142,11 +141,10 @@ export function useTrackPlayer() {
     },
     resetAndPlay: async (musics, reset = false) => {
       try {
-  
-        if (Platform.OS === 'ios') {
-          await TrackPlayer.removeUpcomingTracks ();
+        if (Platform.OS === "ios") {
+          await TrackPlayer.removeUpcomingTracks();
         } else {
-          await TrackPlayer.reset()
+          await TrackPlayer.reset();
         }
         // console.log(TrackPlayer)
         // return;
@@ -155,12 +153,11 @@ export function useTrackPlayer() {
         await TrackPlayer.skipToNext();
         await TrackPlayer.play();
       } catch (e) {
-        console.warn(e)
+        console.warn(e);
       }
     },
     addPlaylist: async (musics) => {
       try {
-  
         // check currently playing track
         const id = await TrackPlayer.getCurrentTrack();
         if (id !== null) {

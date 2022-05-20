@@ -10,11 +10,11 @@ const getFetchFunction = (rcObject) =>
 const getUpdateFunc = (rcObject) =>
   typeof rcObject === "object" ? get(rcObject, "set", (v) => v) : (v) => v;
 
-const getStore = (store, rcObject) => get(store, getKey(rcObject), store)
+const getStore = (store, rcObject) => get(store, getKey(rcObject), store);
 export const useStore = (rcObject, globalState = null) => {
   const dispatch = useDispatch();
   const store = useSelector((state) =>
-      getStore(globalState ? state[globalState] : state, rcObject)
+    getStore(globalState ? state[globalState] : state, rcObject)
   );
   const set = getUpdateFunc(rcObject);
   const update = async (value) => {

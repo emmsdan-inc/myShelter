@@ -18,6 +18,8 @@ import {
   update,
 } from "../../services/others";
 import { searchService } from "../../services/media";
+import { sendNotification, toaster } from "../../shared/helpers/func";
+import Toast from "react-native-toast-message";
 
 const onShare = (item) => {
   prayerAndTestimoniesActions()(item.id, "testimony");
@@ -124,6 +126,10 @@ export function CreateTestimony({ route }) {
         testimony: state.testimony,
       };
       await update("testimony/" + state.id, payload);
+      await toaster(
+        "Testimony",
+        "Your testimony has been updated"
+      );
     } else {
       // create
       const payload = {
@@ -132,6 +138,7 @@ export function CreateTestimony({ route }) {
       };
       const data = await create("testimony", payload);
       setState(data);
+      await toaster("Testimony", "Your testimony has been added");
     }
   };
 
@@ -144,6 +151,13 @@ export function CreateTestimony({ route }) {
             name: Routes.Testimony,
             params: { id: state.id, random: Math.random() },
           }}
+          rightContent={
+            <Ionicons
+              name="checkmark-circle"
+              size={30}
+              color={Colors().primary}
+              onPress={onSave}
+            />}
         />
       </BaseWrapper>
       <Spacer size={15} />
@@ -175,12 +189,6 @@ export function CreateTestimony({ route }) {
             onPress={() => onShare(state)}
           />
           <Spacer size={10} />
-          <Ionicons
-            name="checkmark-circle"
-            size={30}
-            color={Colors().primary}
-            onPress={onSave}
-          />
         </FlexSpaceBetween>
       </KeyboardAvoidingView>
     </View>

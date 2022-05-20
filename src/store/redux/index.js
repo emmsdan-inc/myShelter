@@ -1,8 +1,5 @@
 import React from "react";
-import {
-  configureStore,
-  getDefaultMiddleware,
-} from "@reduxjs/toolkit";
+import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
 import globalStore, { updateSlice } from "./global";
 import * as states from "./states";
 import {
@@ -16,7 +13,7 @@ import {
   REHYDRATE,
 } from "redux-persist";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import {combineReducers} from 'redux';
+import { combineReducers } from "redux";
 
 export const fetchAll = async () => {
   try {
@@ -52,7 +49,15 @@ export const store = configureStore({
   reducer: persistedReducer,
   middleware: getDefaultMiddleware({
     serializableCheck: {
-      ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER, "store/update"],
+      ignoredActions: [
+        FLUSH,
+        REHYDRATE,
+        PAUSE,
+        PERSIST,
+        PURGE,
+        REGISTER,
+        "store/update",
+      ],
     },
   }),
 });

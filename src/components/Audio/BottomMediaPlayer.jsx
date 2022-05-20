@@ -16,12 +16,15 @@ import {
   rcNavigatorAtom,
   rcOpenMiniPlayerAtom,
 } from "../../store/redux/states";
-export default function MediaPlayer({ navigation}) {
-  const [height] = useReduxState(rcBottomTabHeightAtom);
+import { widthPercentageToDP } from "react-native-responsive-screen";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+export default function MediaPlayer({ navigation }) {
+  const [bottom] = useReduxState(rcBottomTabHeightAtom);
   const { state, toggle, track, getCurrentTrack } = useTrackPlayer();
   const [open, setOpen] = React.useState(false);
   // const [navigation] = useReduxState(rcNavigatorAtom);
   const [openA] = useReduxState(rcOpenMiniPlayerAtom);
+  const insets = useSafeAreaInsets();
 
   const uri = get(track, "artwork", get(track, "thumbnail_url", null));
   const title = get(track, "title", "");
@@ -48,8 +51,17 @@ export default function MediaPlayer({ navigation}) {
   };
   // console.log ( { openA })
   return open ? (
-    <View style={[styles.miniPlayerContainer, { bottom: height }]}>
-      <FlexSpaceBetweenCenter style={[{ width: "100%" }]}>
+    <View
+      style={[
+        styles.miniPlayerContainer,
+        {
+          bottom,
+          marginBottom: -bottom / 4.5,
+          width: widthPercentageToDP("100%"),
+        },
+      ]}
+    >
+      <FlexSpaceBetweenCenter style={[{ width: widthPercentageToDP("88%") }]}>
         <Image source={source} style={styles.miniPlayerIcon} />
         <TouchableOpacity onPress={onPress} style={styles.audioListCardContent}>
           <Text style={styles.miniPlayerTitle} numberOfLines={1}>

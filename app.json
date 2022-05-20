@@ -18,7 +18,13 @@
     "ios": {
       "requireFullScreen": true,
       "supportsTablet": true,
-      "bundleIdentifier": "com.emmsdan.shelter-rccg"
+      "bundleIdentifier": "com.emmsdan.shelter-rccg",
+      "infoPlist": {
+        "UIBackgroundModes": [
+          "audio",
+          "remote-notification"
+        ]
+      }
     },
     "android": {
       "package": "com.emmsdan.myShelter",
@@ -31,6 +37,14 @@
       "favicon": "./assets/images/icon.png"
     },
     "description": "",
-    "githubUrl": "https://github.com/emmsdan/TheShelter"
+    "githubUrl": "https://github.com/emmsdan/TheShelter",
+    "plugins": [
+      [
+        "expo-notifications",
+        {
+          "color": "#ffffff",
+        }
+      ]
+    ]
   }
 }
