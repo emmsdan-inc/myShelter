@@ -43,7 +43,6 @@ export const GetPrayerRequests = ({ onCreatePrayer, route }) => {
     console.log('onShare', item);
   };
   const getId = (item, action = () => {}) => {
-    // console.log ("getId", item.id, action.name);
     return () => action(item);
   };
   function fetchData() {

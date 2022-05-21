@@ -48,20 +48,10 @@ export default function LoginScreen({ navigation }) {
       saveUser({ token: '' });
       return;
     }
-    // console.log(resp)
     await saveUser(resp);
   });
 
-  // useInterval(()=> {
-  //   AsyncStorage.getAllKeys(async (keys) => {
-  //     console.log({keys}, 's')
-  //     if (keys && Array.isArray(keys)) {
-  //       const asunc = await AsyncStorage.multiGet(keys);
-  //       console.log( { asunc })
-  //     }
-  //   })
-  //   console.log(store.getState(), persistor)
-  // }, 2000000)
+ 
   return (
     <ScrollView
       style={[styles.container, { paddingTop: insets.top * 2 }]}

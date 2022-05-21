@@ -6,7 +6,6 @@ import { toaster } from '../shared/helpers/func';
 export const prayerAndTestimoniesActions =
   (cb = () => {}) =>
   (id, type = 'testimony', action = 'share') => {
-    console.log('prayerAndTestimoniesActions', id, type, action);
     const messageObj = {
       'testimony-share': {
         title: 'Send Testimony',

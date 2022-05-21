@@ -48,13 +48,11 @@ const TabBar = ({ state, descriptors, navigation }) => {
               Root: 'Home',
               Give: 'wallet',
             };
-            // console.log('name', {name})
             return icon[name] || name;
           };
           const iconName = getIconName(route.name).toLowerCase();
           // hide header for specific route
           // const hideOnRoute = ['Discovery', 'Media']
-          // console.log(!hideOnRoute.includes(route.name), route.name)
           // drawer.setOptions({
           //   headerShown: !hideOnRoute.includes(route.name),
           // })

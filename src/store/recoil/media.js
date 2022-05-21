@@ -101,7 +101,7 @@ export const rcGetMediaOrAPISelectorFamily = selector({
         }
         throw { error: 'Could not fetch media' };
       } catch (error) {
-        console.log('error---p', await error);
+        console.error('error---p', await error);
         throw error;
       }
     },

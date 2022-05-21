@@ -32,7 +32,6 @@ export default function ForgotPasswordScreen({ navigation }) {
     mode: 'all',
   });
   const onSubmit = handleSubmit(async data => {
-    // console.log({data})
     setIsError(false);
     const resp = await forgetPasswordService(data);
     if (resp.error) {

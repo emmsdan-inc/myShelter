@@ -146,7 +146,6 @@ export function useTrackPlayer() {
         } else {
           await TrackPlayer.reset();
         }
-        // console.log(TrackPlayer)
         // return;
         const tracks = toTrackFormat(musics);
         await TrackPlayer.add(tracks);

@@ -20,7 +20,6 @@ export default function VolumeController() {
   const mutedColorWash = isMuted ? Colors().primaryWash : Colors().blackWash;
 
   const handleVolumeChange = value => {
-    console.log({ value: value });
     instance.setVolumeAsync(value);
   };
   const handleMuteChange = () => {

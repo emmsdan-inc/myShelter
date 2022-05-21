@@ -49,7 +49,6 @@ export default function MediaPlayer({ navigation }) {
   const onPress = () => {
     navigation.navigate(Routes.MediaPlayer, {});
   };
-  // console.log ( { openA })
   return open ? (
     <View
       style={[
