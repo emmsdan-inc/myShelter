@@ -22,8 +22,8 @@ export default function SidebarComponent({ navigation }) {
     return () => {
       if (menu.toLowerCase() === 'logout') {
         logout();
-      } else {
-        navigation.navigate(menu);
+      } else if (navigation && navigation?.navigate) {
+        navigation?.navigate(menu);
       }
     };
   };
@@ -57,7 +57,7 @@ export default function SidebarComponent({ navigation }) {
         <Text style={[styles.heading]} numberOfLines={1}>
           Welcome,{' '}
           <Text style={[styles.heading2]} numberOfLines={1}>
-            {profile.name}
+            {profile?.name}
           </Text>
         </Text>
       </View>

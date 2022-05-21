@@ -31,7 +31,7 @@ const TabBar = ({ state, descriptors, navigation }) => {
               canPreventDefault: true,
             });
 
-            if (!isFocused && !event.defaultPrevented) {
+            if (!isFocused && !event.defaultPrevented && navigation?.navigate) {
               navigation.navigate({ name: route.name, merge: true });
             }
           };
@@ -95,10 +95,10 @@ export const TopHeader = ({ title, back, rightContent }) => {
         onPress={() => {
           try {
             if (back) {
-              navigation.navigate(back);
+              navigation?.navigate(back);
               return;
             }
-            navigation.goBack();
+            navigation?.goBack();
           } catch (error) {
             console.error(error);
           }

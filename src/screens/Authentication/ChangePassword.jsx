@@ -45,7 +45,7 @@ export default function ChangePasswordScreen({ navigation }) {
       return;
     }
     setIsError('success');
-    setTimeout(() => navigation.navigate(Routes.Login), 3000);
+    setTimeout(() => navigation?.navigate(Routes.Login), 3000);
   });
 
   return (

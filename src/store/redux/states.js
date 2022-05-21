@@ -18,9 +18,6 @@ export const rcUserProfileSelector = {
 export const rcMediaPlaybackStatusUpdateAtom =
   'rcMediaPlaybackStatusUpdateAtom';
 
-import { ALL_MEDIAS_IN_STORE, CURRENTLY_PLAYING } from '../../constants/Media';
-import { searchService } from '../../services/media';
-
 export const rcMediaPlayObjectAtom = 'rcMediaPlayObjectAtom';
 
 export const rcMediaObjectAtom = 'rcMediaObjectAtom';

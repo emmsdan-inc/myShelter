@@ -1,7 +1,6 @@
 import React from 'react';
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
-import globalStore, { updateSlice } from './global';
-import * as states from './states';
+import globalStore from './global';
 import {
   FLUSH,
   PAUSE,

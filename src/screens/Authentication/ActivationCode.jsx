@@ -52,7 +52,7 @@ export default function ActivationCodeScreen({ navigation, route }) {
       return;
     }
     setAuthToken(resp.token);
-    navigation.navigate(route?.params?.next);
+    navigation?.navigate(route?.params?.next);
   });
 
   const onResend = async () => {

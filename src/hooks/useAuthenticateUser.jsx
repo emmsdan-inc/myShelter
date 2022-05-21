@@ -18,7 +18,7 @@ export default function useAuthenticateUser(navigation, logout = false) {
   async function logUserOut() {
     await setAuthToken('');
     await setUserProfile({ ...profile, token: '', expires_at: null });
-    navigation.navigate(Routes.Login);
+    navigation?.navigate(Routes.Login);
   }
 
   React.useEffect(() => {
@@ -35,7 +35,7 @@ export default function useAuthenticateUser(navigation, logout = false) {
       setIsFirstTimeUse('true').then(r => {
         console.log('User is authenticated');
         setIsLoggedIn('true');
-        navigation.navigate(Routes.Home);
+        navigation?.navigate(Routes.Home);
       });
     } else {
       setIsLoggedIn('false');
@@ -47,7 +47,7 @@ export default function useAuthenticateUser(navigation, logout = false) {
     await setAuthToken(profile.token);
     await setUserProfile(profile);
     if (profile.token) {
-      navigation.navigate(Routes.Home);
+      navigation?.navigate(Routes.Home);
     }
   }
 

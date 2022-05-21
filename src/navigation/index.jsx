@@ -1,5 +1,5 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { NavigationContainer } from '@react-navigation/native';
+import { DrawerActions, NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as React from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
@@ -31,13 +31,14 @@ import { CreatePrayerRequest } from '../screens/PrayerRequest/PrayerRequest';
 import Testimony from '../screens/Testimony';
 import { CreateTestimony } from '../screens/Testimony/Testimony';
 import useAuthenticateUser from '../hooks/useAuthenticateUser';
+import { useInterval } from "usehooks-ts";
 
-const headerCompsGenerateor = props => ({
+const headerCompsGenerateor = (props, toggle) => ({
   headerShadowVisible: false,
   headerShown: true,
-  headerLeft: MenuIcon(props),
+  headerLeft: MenuIcon(props,'menu', toggle),
   headerRight: MenuIcon(props, 'notification', () =>
-    props.navigation.navigate(Routes.Notification),
+    props.navigation?.navigate(Routes.Notification),
   ),
   headerTitle: () => <></>,
 });
@@ -131,7 +132,7 @@ function BottomTabNavigator(props) {
     <BottomTab.Navigator
       initialRouteName={'Root'}
       screenOptions={{
-        ...headerCompsGenerateor(props),
+        ...headerCompsGenerateor(props, props.navigation.toggleDrawer),
         tabBarActiveTintColor: Colors().tint,
       }}
       tabBar={props => <TabBar {...props} />}
@@ -188,13 +189,16 @@ function BottomTabNavigator(props) {
 const Drawer = createDrawerNavigator();
 
 function MenuIcon(props, name = 'menu', onPress = () => {}) {
+  const navigation = useNavigation();
+  console.log(navigation?.openDrawer, 'toggleDrawer');
   return () => {
     return (
       <BaseWrapper>
         <ImageIcon
           name={name}
           size={17}
-          onPress={onPress || props.navigation.openDrawer}
+          onPress={onPress || navigation?.toggleDrawer}
+          color={Colors().text}
         />
       </BaseWrapper>
     );
