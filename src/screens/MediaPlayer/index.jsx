@@ -47,6 +47,7 @@ export const TopNavigation = props => {
             }
           }}
           size={16}
+          color={Colors().blackGlaze}
         />
 
         <TouchableOpacity
@@ -54,7 +55,7 @@ export const TopNavigation = props => {
           style={styles.rotate}
           onPress={() => setOpen(!open)}
         >
-          <Icon name="dot-3" size={16} color={Colors().primary} />
+          <Icon name="dot-3" size={16} color={Colors().blackGlaze} />
         </TouchableOpacity>
       </View>
       <AudioDropdown

@@ -55,6 +55,7 @@ const colors = {
     tabIconSelected: tintColorDark,
     blackGlaze: basic.white,
     darkBlueBlack: basic.grayText,
+    blackWash: '#D9DBDE',
   },
 };
 export default function Colors(type) {

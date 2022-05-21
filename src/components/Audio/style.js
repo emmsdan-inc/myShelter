@@ -43,7 +43,7 @@ export default EStyleSheet.create({
   audioListCardTitle: {
     fontFamily: 'Nunito_600SemiBold',
     fontSize: scale(14),
-    color: Colors().primary1,
+    color: Colors().blackWash,
     marginBottom: scale(5),
   },
   audioListCardSmallFont: {
@@ -65,7 +65,7 @@ export default EStyleSheet.create({
     padding: 10,
     borderRadius: 5,
     borderWidth: 1,
-    borderColor: Colors().primary,
+    borderColor: Colors().isDark ?  Colors().background :  Colors().primary,
     width: 100,
     zIndex: 100,
   },

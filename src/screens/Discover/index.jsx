@@ -45,7 +45,7 @@ export default function DiscoverScreen() {
     <SafeAreaView>
       <Spacer size={15} />
       <BaseWrapper>
-        <Text style={{ fontSize: scale(24), textTransform: 'capitalize' }}>
+        <Text style={{ color: Colors().blackGlaze, fontSize: scale(24), textTransform: 'capitalize' }}>
           {route.params?.title}
         </Text>
         <Spacer size={5} />

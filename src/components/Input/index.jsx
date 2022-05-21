@@ -62,15 +62,15 @@ export const SearchInput = ({
         height: 58,
       }}
     >
-      <TextInput
+      <Input
         value={value}
         placeholder={placeholder || 'Search'}
         onChangeText={onChangeText}
         style={styles.inputSearch}
       />
-      <View style={styles.searchIcon}>
-        <ImageIcon name={'search'} size={16} onPress={() => onSearch(value)} />
-      </View>
+      <TouchableOpacity style={styles.searchIcon} onPress={() => onSearch(value)}>
+        <ImageIcon name={'search'} size={16} />
+      </TouchableOpacity>
     </View>
   );
 };

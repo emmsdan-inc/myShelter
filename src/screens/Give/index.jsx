@@ -50,8 +50,8 @@ export default function GiveComponent({ navigation }) {
         <Spacer size={8} />
         <GiveAccountInfo />
         <Spacer size={8} />
-      </ScrollView>
-      <View style={[styles.footer]}>
+  
+        <View style={[{ justifyContent: 'center', alignItems: 'center'}]}>
         <OpenURLButton url={env.paymentURL}>
           {({ onPress }) => (
             <Button give sm onPress={onPress}>
@@ -59,7 +59,11 @@ export default function GiveComponent({ navigation }) {
             </Button>
           )}
         </OpenURLButton>
-      </View>
+        </View>
+  
+        <Spacer size={48} />
+
+      </ScrollView>
     </View>
   );
 }
