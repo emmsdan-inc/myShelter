@@ -17,8 +17,8 @@ export default EStyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     width: scale(63),
-    position: 'absolute',
-    bottom: scale(width >= 750 ? 60 : 100),
+    // position: 'absolute',
+    // bottom: scale(width >= 750 ? 60 : 100),
   },
   horizontalContainer: {
     width,

@@ -5,7 +5,7 @@ import { PROFILE, TOKEN } from '../constants/User';
 import { Alert } from 'react-native';
 import Routes from '../navigation/Routes';
 import { getToken } from '../store/redux/getters';
-import store from "../store/redux";
+import store from '../store/redux';
 const $http = axios.create({ baseURL: env.baseURL });
 
 $http.interceptors.request.use(async config => {
