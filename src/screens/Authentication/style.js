@@ -1,6 +1,6 @@
-import EStyleSheet from "react-native-extended-stylesheet";
-import Colors from "../../constants/Colors";
-import { scale } from "react-native-size-matters";
+import EStyleSheet from 'react-native-extended-stylesheet';
+import Colors from '../../constants/Colors';
+import { scale } from 'react-native-size-matters';
 export default EStyleSheet.create({
   container: {
     // flex: 1,
@@ -8,11 +8,11 @@ export default EStyleSheet.create({
     // justifyContent: "center",
   },
   text: {
-    fontFamily: "Nunito_300Light",
+    fontFamily: 'Nunito_300Light',
     fontSize: 10,
   },
   link: {
-    fontFamily: "Nunito_600SemiBold",
+    fontFamily: 'Nunito_600SemiBold',
     fontSize: 10,
     color: Colors().primary,
   },

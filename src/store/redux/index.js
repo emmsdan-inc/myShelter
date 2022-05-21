@@ -1,7 +1,7 @@
-import React from "react";
-import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
-import globalStore, { updateSlice } from "./global";
-import * as states from "./states";
+import React from 'react';
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
+import globalStore, { updateSlice } from './global';
+import * as states from './states';
 import {
   FLUSH,
   PAUSE,
@@ -11,9 +11,9 @@ import {
   PURGE,
   REGISTER,
   REHYDRATE,
-} from "redux-persist";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { combineReducers } from "redux";
+} from 'redux-persist';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { combineReducers } from 'redux';
 
 export const fetchAll = async () => {
   try {
@@ -32,7 +32,7 @@ export const fetchAll = async () => {
 };
 
 const persistConfig = {
-  key: "root",
+  key: 'root',
   version: 1,
   storage: AsyncStorage,
   blacklist: [],
@@ -42,7 +42,7 @@ const persistedReducer = persistReducer(
   persistConfig,
   combineReducers({
     global: globalStore.reducer,
-  })
+  }),
 );
 
 export const store = configureStore({
@@ -56,7 +56,7 @@ export const store = configureStore({
         PERSIST,
         PURGE,
         REGISTER,
-        "store/update",
+        'store/update',
       ],
     },
   }),

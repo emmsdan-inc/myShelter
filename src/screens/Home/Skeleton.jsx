@@ -1,14 +1,14 @@
-import React from "react";
+import React from 'react';
 import FlexSpaceBetweenCenter, {
   BaseWrapper,
   HorizontalScroll,
-} from "../../components/Untils";
-import Spacer from "../../components/Spacer";
-import { View } from "react-native";
-import SkeletonPlaceholder from "react-native-skeleton-placeholder";
-import random from "lodash/random";
-import { widthPercentageToDP as wp } from "react-native-responsive-screen";
-import { scale } from "react-native-size-matters";
+} from '../../components/Untils';
+import Spacer from '../../components/Spacer';
+import { View } from 'react-native';
+import SkeletonPlaceholder from 'react-native-skeleton-placeholder';
+import random from 'lodash/random';
+import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
+import { scale } from 'react-native-size-matters';
 
 export function Skeleton() {
   return (
@@ -22,14 +22,14 @@ export function Skeleton() {
                 <FlexSpaceBetweenCenter>
                   <SkeletonPlaceholder>
                     <SkeletonPlaceholder.Item
-                      width={wp("45%")}
+                      width={wp('45%')}
                       height={10}
                       borderRadius={4}
                     />
                   </SkeletonPlaceholder>
                   <SkeletonPlaceholder>
                     <SkeletonPlaceholder.Item
-                      width={wp("10%")}
+                      width={wp('10%')}
                       height={10}
                       borderRadius={4}
                       speed={0.9}
@@ -43,7 +43,7 @@ export function Skeleton() {
                   <View key={`${Math.random()}${random(10)}`}>
                     <SkeletonPlaceholder>
                       <SkeletonPlaceholder.Item
-                        width={wp("44%")}
+                        width={wp('44%')}
                         marginRight={scale(8)}
                       >
                         <SkeletonPlaceholder.Item

@@ -1,6 +1,6 @@
-import EStyleSheet from "react-native-extended-stylesheet";
-import Colors from "../../constants/Colors";
-import { scale } from "react-native-size-matters";
+import EStyleSheet from 'react-native-extended-stylesheet';
+import Colors from '../../constants/Colors';
+import { scale } from 'react-native-size-matters';
 export default EStyleSheet.create({
   inputContainer: {
     paddingHorizontal: 20,
@@ -10,15 +10,15 @@ export default EStyleSheet.create({
     borderColor: Colors().primary,
   },
   iconContainer: {
-    position: "absolute",
+    position: 'absolute',
     right: 10,
     top: 4,
     width: 40,
     height: 40,
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
   },
-  textInput: { fontFamily: "nunito", fontSize: 12 },
+  textInput: { fontFamily: 'nunito', fontSize: 12 },
   inputSearch: {
     borderWidth: 1,
     borderColor: Colors().primary,
@@ -27,8 +27,8 @@ export default EStyleSheet.create({
     paddingVertical: scale(10),
     flex: 1,
     height: scale(48),
-    fontFamily: "nunito",
+    fontFamily: 'nunito',
     fontSize: 16,
   },
-  searchIcon: { position: "absolute", right: scale(20), top: scale(16) },
+  searchIcon: { position: 'absolute', right: scale(20), top: scale(16) },
 });

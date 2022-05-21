@@ -1,9 +1,9 @@
-import { createSlice } from "@reduxjs/toolkit";
-import * as states from "./states";
-import { mapStatesKeysToObject } from "../../shared/helpers/general";
+import { createSlice } from '@reduxjs/toolkit';
+import * as states from './states';
+import { mapStatesKeysToObject } from '../../shared/helpers/general';
 
 export const globalStore = createSlice({
-  name: "store",
+  name: 'store',
   initialState: mapStatesKeysToObject(states),
   reducers: {
     update: (state, action) => {

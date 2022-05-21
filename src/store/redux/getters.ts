@@ -1,10 +1,9 @@
-import {rcUserTokenAtom} from './states'
-import store from './'
+import { rcUserTokenAtom } from './states';
 // get token from redux store
-export const getToken = () => {
-    try {
-        return store.getState().global[rcUserTokenAtom]
-    } catch (e) {
-        return null
-    }
-}
+export const getToken = (store) => {
+  try {
+    return store.global[rcUserTokenAtom];
+  } catch (e) {
+    return null;
+  }
+};

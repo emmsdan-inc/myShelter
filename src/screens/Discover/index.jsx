@@ -1,28 +1,28 @@
-import React from "react";
-import { ActivityIndicator, FlatList, Text } from "react-native";
-import FlexSpaceBetweenCenter, { BaseWrapper } from "../../components/Untils";
-import { scale } from "react-native-size-matters";
-import { RouteProp, useRoute } from "@react-navigation/native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import styles from "./style";
-import { SearchInput } from "../../components/Input";
-import Spacer from "../../components/Spacer";
-import { Title } from "../../components/SectionTitle/SectionTitle";
-import AudioListCard from "../../components/Audio/AudioListCard";
-import useCacheableGetRequest from "../../hooks/useCacheableGetRequest";
-import Colors from "../../constants/Colors";
-import AudioListSkeleton from "../../components/Audio/AudioListSkeleton";
+import React from 'react';
+import { ActivityIndicator, FlatList, Text } from 'react-native';
+import FlexSpaceBetweenCenter, { BaseWrapper } from '../../components/Untils';
+import { scale } from 'react-native-size-matters';
+import { RouteProp, useRoute } from '@react-navigation/native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import styles from './style';
+import { SearchInput } from '../../components/Input';
+import Spacer from '../../components/Spacer';
+import { Title } from '../../components/SectionTitle/SectionTitle';
+import AudioListCard from '../../components/Audio/AudioListCard';
+import useCacheableGetRequest from '../../hooks/useCacheableGetRequest';
+import Colors from '../../constants/Colors';
+import AudioListSkeleton from '../../components/Audio/AudioListSkeleton';
 
 export default function DiscoverScreen() {
   const route = useRoute();
   const { category, series } = route.params || {};
 
-  const [value, setValue] = React.useState("");
-  const [type, setType] = React.useState(category ? "category" : "series");
+  const [value, setValue] = React.useState('');
+  const [type, setType] = React.useState(category ? 'category' : 'series');
 
   const { data, error, prev, next, loading, setParams, reset } =
-    useCacheableGetRequest("media", true, { categories: category, series });
-  const onTitlePress = (type) => () => {
+    useCacheableGetRequest('media', true, { categories: category, series });
+  const onTitlePress = type => () => {
     setType(type);
   };
   const loadData = () => {
@@ -31,7 +31,7 @@ export default function DiscoverScreen() {
   };
   React.useEffect(() => {
     // setParams({ series, categories: category })
-    if (value || value === "") loadData();
+    if (value || value === '') loadData();
   }, [value, series, category]);
   React.useEffect(() => {
     // reset({ series, categories: category })
@@ -39,13 +39,13 @@ export default function DiscoverScreen() {
   }, [series, category]);
 
   React.useEffect(() => {
-    setValue("");
+    setValue('');
   }, [route.params]);
   return (
     <SafeAreaView>
       <Spacer size={15} />
       <BaseWrapper>
-        <Text style={{ fontSize: scale(24), textTransform: "capitalize" }}>
+        <Text style={{ fontSize: scale(24), textTransform: 'capitalize' }}>
           {route.params?.title}
         </Text>
         <Spacer size={5} />
@@ -57,28 +57,28 @@ export default function DiscoverScreen() {
           <FlexSpaceBetweenCenter>
             {!category ? (
               <Title
-                title={"Series"}
-                onPress={onTitlePress("series")}
-                active={type === "series" || !type}
+                title={'Series'}
+                onPress={onTitlePress('series')}
+                active={type === 'series' || !type}
               />
             ) : null}
             {category ? (
               <Title
-                title={"Category"}
-                onPress={onTitlePress("category")}
-                active={type === "category" || !type}
+                title={'Category'}
+                onPress={onTitlePress('category')}
+                active={type === 'category' || !type}
               />
             ) : null}
             <Title
-              title={"Recently Played"}
-              onPress={onTitlePress("recent")}
-              active={type === "recent"}
+              title={'Recently Played'}
+              onPress={onTitlePress('recent')}
+              active={type === 'recent'}
             />
             {category && series ? null : (
               <Title
-                title={"Downloads"}
-                onPress={onTitlePress("download")}
-                active={type === "download"}
+                title={'Downloads'}
+                onPress={onTitlePress('download')}
+                active={type === 'download'}
               />
             )}
           </FlexSpaceBetweenCenter>
@@ -101,7 +101,7 @@ export default function DiscoverScreen() {
               playlist={index}
             />
           )}
-          keyExtractor={(item) => item.id}
+          keyExtractor={item => item.id}
           style={styles.flatList}
           ListFooterComponent={() => (
             <>
@@ -110,12 +110,12 @@ export default function DiscoverScreen() {
               ) : !data || data.length === 0 ? (
                 <Text
                   style={{
-                    textAlign: "center",
+                    textAlign: 'center',
                     fontSize: scale(16),
                     paddingVertical: 50,
                   }}
                 >
-                  Nothing to display.{"\n"}
+                  Nothing to display.{'\n'}
                   <Text style={{ fontSize: scale(12) }}>
                     Try searching for something else.
                   </Text>

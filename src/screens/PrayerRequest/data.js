@@ -1,5 +1,5 @@
-import { faker } from "@faker-js/faker";
-import querystring from "querystring";
+import { faker } from '@faker-js/faker';
+import querystring from 'querystring';
 export default {
   demoPrayers: Array.from({ length: 20 }, () => ({
     title: faker.lorem.sentence(),

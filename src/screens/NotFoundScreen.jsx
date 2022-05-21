@@ -1,24 +1,24 @@
-import * as React from "react";
-import { StyleSheet, TouchableOpacity } from "react-native";
-import { Text, View } from "../components/Themed";
+import * as React from 'react';
+import { StyleSheet, TouchableOpacity } from 'react-native';
+import { Text, View } from '../components/Themed';
 
-import SliderIndicator from "../components/SliderIndicator";
-import { scale } from "react-native-size-matters";
+import SliderIndicator from '../components/SliderIndicator';
+import { scale } from 'react-native-size-matters';
 
 export default function NotFoundScreen({ navigation }) {
   const [active, setActive] = React.useState(0);
   const colors = {
-    0: "#A8518A",
-    1: "#00AFEF",
-    2: "#A8CF45",
+    0: '#A8518A',
+    1: '#00AFEF',
+    2: '#A8CF45',
   };
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Do you want a family where love abounds?</Text>
       <View
         style={{
-          flexDirection: "row",
-          justifyContent: "space-between",
+          flexDirection: 'row',
+          justifyContent: 'space-between',
           width: scale(63),
         }}
       >
@@ -41,13 +41,13 @@ export default function NotFoundScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
     padding: 20,
   },
   title: {
     fontSize: 20,
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
   link: {
     marginTop: 15,
@@ -55,6 +55,6 @@ const styles = StyleSheet.create({
   },
   linkText: {
     fontSize: 14,
-    color: "#2e78b7",
+    color: '#2e78b7',
   },
 });

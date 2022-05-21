@@ -1,25 +1,25 @@
-import * as React from "react";
-import { ActivityIndicator, Image, ScrollView } from "react-native";
-import { Text, View } from "../../components/Themed";
+import * as React from 'react';
+import { ActivityIndicator, Image, ScrollView } from 'react-native';
+import { Text, View } from '../../components/Themed';
 
-import styles from "./style";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import CheckBox from "expo-checkbox";
-import Routes from "../../navigation/Routes";
-import Button from "../../components/Button";
-import Input from "../../components/Input";
-import Spacer from "../../components/Spacer";
-import Colors from "../../constants/Colors";
-import FlexSpaceBetweenCenter from "../../components/Untils";
-import { useForm, Controller } from "react-hook-form";
-import Notification from "../../components/Notification";
-import { loginService } from "../../services/authentication";
-import useAuthenticateUser from "../../hooks/useAuthenticateUser";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { loginScheme } from "./validation";
-import { useInterval } from "usehooks-ts";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import store, { persistor } from "../../store/redux";
+import styles from './style';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import CheckBox from 'expo-checkbox';
+import Routes from '../../navigation/Routes';
+import Button from '../../components/Button';
+import Input from '../../components/Input';
+import Spacer from '../../components/Spacer';
+import Colors from '../../constants/Colors';
+import FlexSpaceBetweenCenter from '../../components/Untils';
+import { useForm, Controller } from 'react-hook-form';
+import Notification from '../../components/Notification';
+import { loginService } from '../../services/authentication';
+import useAuthenticateUser from '../../hooks/useAuthenticateUser';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { loginScheme } from './validation';
+import { useInterval } from 'usehooks-ts';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import store, { persistor } from '../../store/redux';
 
 export default function LoginScreen({ navigation }) {
   const insets = useSafeAreaInsets();
@@ -32,19 +32,19 @@ export default function LoginScreen({ navigation }) {
     formState: { isValid, isSubmitting },
   } = useForm({
     defaultValues: {
-      email: user?.email || "",
-      password: "",
+      email: user?.email || '',
+      password: '',
       rememberMe: true,
     },
     resolver: yupResolver(loginScheme),
-    mode: "all",
+    mode: 'all',
   });
-  const onSubmit = handleSubmit(async (data) => {
+  const onSubmit = handleSubmit(async data => {
     setIsError(null);
     const resp = await loginService(data);
     if (resp.error) {
       setIsError(resp.message);
-      saveUser({ token: "" });
+      saveUser({ token: '' });
       return;
     }
     // console.log(resp)
@@ -69,14 +69,14 @@ export default function LoginScreen({ navigation }) {
       <View style={[]}>
         <View>
           <Spacer size={30} />
-          <View style={{ alignItems: "center" }}>
+          <View style={{ alignItems: 'center' }}>
             <Image
-              source={require("../../../assets/images/logo-black.png")}
+              source={require('../../../assets/images/logo-black.png')}
               style={styles.image}
             />
           </View>
           <Spacer size={30} />
-          <Notification visible={!!isError} message={isError} mode={"error"} />
+          <Notification visible={!!isError} message={isError} mode={'error'} />
           <Spacer size={8} />
           <Controller
             control={control}
@@ -85,15 +85,15 @@ export default function LoginScreen({ navigation }) {
             }}
             render={({ field: { onChange, onBlur, value } }) => (
               <Input
-                icon={"message"}
+                icon={'message'}
                 onBlur={onBlur}
                 onChangeText={onChange}
                 value={value}
                 placeholder="Email"
                 keyboardType="email-address"
-                autoComplete={"email"}
-                textContentType={"emailAddress"}
-                autoCapitalize={"none"}
+                autoComplete={'email'}
+                textContentType={'emailAddress'}
+                autoCapitalize={'none'}
               />
             )}
             name="email"
@@ -112,7 +112,7 @@ export default function LoginScreen({ navigation }) {
                 onBlur={onBlur}
                 onChangeText={onChange}
                 value={value}
-                autoComplete={"password"}
+                autoComplete={'password'}
               />
             )}
             name="password"
@@ -147,10 +147,10 @@ export default function LoginScreen({ navigation }) {
           </FlexSpaceBetweenCenter>
           <Spacer size={30} />
 
-          <View style={{ alignItems: "center" }}>
+          <View style={{ alignItems: 'center' }}>
             <View style={{ width: 185 }}>
               <Button disabled={!isValid || isSubmitting} onPress={onSubmit}>
-                {isSubmitting ? <ActivityIndicator color={"black"} /> : "Login"}
+                {isSubmitting ? <ActivityIndicator color={'black'} /> : 'Login'}
               </Button>
             </View>
             <Spacer size={8} />

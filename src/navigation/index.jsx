@@ -1,42 +1,42 @@
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import * as React from "react";
-import { createDrawerNavigator } from "@react-navigation/drawer";
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import * as React from 'react';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 
-import Colors from "../constants/Colors";
-import ModalScreen from "../screens/ModalScreen";
-import NotFoundScreen from "../screens/NotFoundScreen";
-import LinkingConfiguration from "./LinkingConfiguration";
-import Index from "../screens/OnBoarding";
-import Routes from "./Routes";
-import LoginScreen from "../screens/Authentication";
-import ForgotPasswordScreen from "../screens/Authentication/ForgotPassword";
-import ActivationCodeScreen from "../screens/Authentication/ActivationCode";
-import RegisterScreen from "../screens/Authentication/Register";
-import SidebarComponent from "../screens/Sidebar";
-import ImageIcon from "../components/ImageIcon";
-import ChangePasswordScreen from "../screens/Authentication/ChangePassword";
-import { BaseWrapper } from "../components/Untils";
-import TabBar from "../components/NavTab/TabBar";
-import HomeScreen from "../screens/Home";
-import DiscoverScreen from "../screens/Discover";
-import MediaPlayerScreen from "../screens/MediaPlayer";
-import VideoScreen from "../screens/Live/Video";
-import MixlrMediaPlayerScreen from "../screens/Live/MixLr";
-import GiveComponent from "../screens/Give";
-import ContactUs from "../screens/ContactUs";
-import PrayerRequest from "../screens/PrayerRequest";
-import { CreatePrayerRequest } from "../screens/PrayerRequest/PrayerRequest";
-import Testimony from "../screens/Testimony";
-import { CreateTestimony } from "../screens/Testimony/Testimony";
+import Colors from '../constants/Colors';
+import ModalScreen from '../screens/ModalScreen';
+import NotFoundScreen from '../screens/NotFoundScreen';
+import LinkingConfiguration from './LinkingConfiguration';
+import Index from '../screens/OnBoarding';
+import Routes from './Routes';
+import LoginScreen from '../screens/Authentication';
+import ForgotPasswordScreen from '../screens/Authentication/ForgotPassword';
+import ActivationCodeScreen from '../screens/Authentication/ActivationCode';
+import RegisterScreen from '../screens/Authentication/Register';
+import SidebarComponent from '../screens/Sidebar';
+import ImageIcon from '../components/ImageIcon';
+import ChangePasswordScreen from '../screens/Authentication/ChangePassword';
+import { BaseWrapper } from '../components/Untils';
+import TabBar from '../components/NavTab/TabBar';
+import HomeScreen from '../screens/Home';
+import DiscoverScreen from '../screens/Discover';
+import MediaPlayerScreen from '../screens/MediaPlayer';
+import VideoScreen from '../screens/Live/Video';
+import MixlrMediaPlayerScreen from '../screens/Live/MixLr';
+import GiveComponent from '../screens/Give';
+import ContactUs from '../screens/ContactUs';
+import PrayerRequest from '../screens/PrayerRequest';
+import { CreatePrayerRequest } from '../screens/PrayerRequest/PrayerRequest';
+import Testimony from '../screens/Testimony';
+import { CreateTestimony } from '../screens/Testimony/Testimony';
 
-const headerCompsGenerateor = (props) => ({
+const headerCompsGenerateor = props => ({
   headerShadowVisible: false,
   headerShown: true,
   headerLeft: MenuIcon(props),
-  headerRight: MenuIcon(props, "notification", () =>
-    props.navigation.navigate(Routes.Notification)
+  headerRight: MenuIcon(props, 'notification', () =>
+    props.navigation.navigate(Routes.Notification),
   ),
   headerTitle: () => <></>,
 });
@@ -90,14 +90,14 @@ function RootNavigator() {
       <Stack.Screen
         name={Routes.NotFound}
         component={NotFoundScreen}
-        options={{ title: "Oops!" }}
+        options={{ title: 'Oops!' }}
       />
       <Stack.Screen
         name={Routes.Home}
         component={DrawerNavigator}
         options={{ headerShown: false }}
       />
-      <Stack.Group screenOptions={{ presentation: "modal" }}>
+      <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen name="Modal" component={ModalScreen} />
       </Stack.Group>
     </Stack.Navigator>
@@ -124,12 +124,12 @@ const BottomTab = createBottomTabNavigator();
 function BottomTabNavigator(props) {
   return (
     <BottomTab.Navigator
-      initialRouteName={"Root"}
+      initialRouteName={'Root'}
       screenOptions={{
         ...headerCompsGenerateor(props),
         tabBarActiveTintColor: Colors().tint,
       }}
-      tabBar={(props) => <TabBar {...props} />}
+      tabBar={props => <TabBar {...props} />}
     >
       <BottomTab.Screen name={Routes.Home} component={HomeScreen} />
       <BottomTab.Screen
@@ -182,7 +182,7 @@ function BottomTabNavigator(props) {
 
 const Drawer = createDrawerNavigator();
 
-function MenuIcon(props, name = "menu", onPress = () => {}) {
+function MenuIcon(props, name = 'menu', onPress = () => {}) {
   return () => {
     return (
       <BaseWrapper>
@@ -199,13 +199,13 @@ function DrawerNavigator(props) {
   return (
     <Drawer.Navigator
       initialRouteName="App"
-      drawerContent={(props) => <SidebarComponent {...props} />}
+      drawerContent={props => <SidebarComponent {...props} />}
     >
       <Drawer.Screen
         name="App"
         component={BottomTabNavigator}
-        options={(props) => ({
-          drawerLabel: "",
+        options={props => ({
+          drawerLabel: '',
           headerShown: false,
         })}
       />

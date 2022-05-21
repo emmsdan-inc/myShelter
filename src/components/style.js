@@ -1,6 +1,6 @@
-import EStyleSheet from "react-native-extended-stylesheet";
-import Colors from "../constants/Colors";
-import { scale } from "react-native-size-matters";
+import EStyleSheet from 'react-native-extended-stylesheet';
+import Colors from '../constants/Colors';
+import { scale } from 'react-native-size-matters';
 
 export default EStyleSheet.create({
   baseWrapper: {
@@ -10,8 +10,8 @@ export default EStyleSheet.create({
   timeStamp: {
     fontSize: scale(12),
     color: Colors().blackGlaze,
-    fontFamily: "nunito",
-    fontStyle: "normal",
+    fontFamily: 'nunito',
+    fontStyle: 'normal',
   },
   shadowBottom: {
     shadowOffset: {

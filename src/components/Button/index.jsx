@@ -1,11 +1,11 @@
-import React from "react";
-import { Text, TouchableOpacity, View } from "react-native";
-import styles from "./style";
-import { returnStyle } from "../../shared/helpers/general";
-import Icon from "../Icon";
-import Colors from "../../constants/Colors";
-import { scale } from "react-native-size-matters";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import React from 'react';
+import { Text, TouchableOpacity, View } from 'react-native';
+import styles from './style';
+import { returnStyle } from '../../shared/helpers/general';
+import Icon from '../Icon';
+import Colors from '../../constants/Colors';
+import { scale } from 'react-native-size-matters';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 export default function Button({
   sm,
   md,
@@ -29,17 +29,17 @@ export default function Button({
       styles.withIconContainer,
       { backgroundColor },
       { backgroundColor: Colors().primary2 },
-      { width: "100%" },
+      { width: '100%' },
       style,
       {
         width: scale(200),
         height: scale(40),
       },
-    ]
+    ],
   );
   const text = returnStyle(
     [md, sm, textColor],
-    [styles.mdText, styles.smText, { color: textColor }]
+    [styles.mdText, styles.smText, { color: textColor }],
   );
   const onPressEvent = () => {
     if (!disabled && onPress) onPress();

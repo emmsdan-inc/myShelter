@@ -1,7 +1,7 @@
-import { FontAwesome } from "@expo/vector-icons";
-import * as Font from "expo-font";
-import * as SplashScreen from "expo-splash-screen";
-import * as React from "react";
+import { FontAwesome } from '@expo/vector-icons';
+import * as Font from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen';
+import * as React from 'react';
 import {
   Nunito_200ExtraLight,
   Nunito_200ExtraLight_Italic,
@@ -17,7 +17,7 @@ import {
   Nunito_800ExtraBold_Italic,
   Nunito_900Black,
   Nunito_900Black_Italic,
-} from "@expo-google-fonts/nunito";
+} from '@expo-google-fonts/nunito';
 
 export default function useCachedResources() {
   const [isLoadingComplete, setLoadingComplete] = React.useState(false);
@@ -30,8 +30,8 @@ export default function useCachedResources() {
 
         // Load fonts
         await Font.loadAsync({
-          shelter: require("../../assets/fonts/shelter.ttf"),
-          fontello: require("../../assets/fonts/shelter.ttf"),
+          shelter: require('../../assets/fonts/shelter.ttf'),
+          fontello: require('../../assets/fonts/shelter.ttf'),
           Nunito_200ExtraLight,
           Nunito_200ExtraLight_Italic,
           Nunito_300Light,
@@ -57,7 +57,7 @@ export default function useCachedResources() {
       } finally {
         setTimeout(() => {
           setLoadingComplete(true);
-          console.log("SplashScreen.hideAsync");
+          console.log('SplashScreen.hideAsync');
         }, 2000);
         await SplashScreen.hideAsync();
       }

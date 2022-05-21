@@ -1,9 +1,9 @@
-import React from "react";
-import { Animated, Dimensions, Image } from "react-native";
-import { scale } from "react-native-size-matters";
-import styles from "./style";
-import { Text, View } from "../Themed";
-const { width } = Dimensions.get("screen");
+import React from 'react';
+import { Animated, Dimensions, Image } from 'react-native';
+import { scale } from 'react-native-size-matters';
+import styles from './style';
+import { Text, View } from '../Themed';
+const { width } = Dimensions.get('screen');
 
 export default function OnboardingPage({ source, text, style, textStyle }) {
   const [opacity] = React.useState(new Animated.Value(0));

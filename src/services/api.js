@@ -1,41 +1,42 @@
-import axios from "axios";
-import env from "./environment";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { PROFILE, TOKEN } from "../constants/User";
-import { Alert } from "react-native";
-import Routes from "../navigation/Routes";
-import { getToken } from "../store/redux/getters";
+import axios from 'axios';
+import env from './environment';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { PROFILE, TOKEN } from '../constants/User';
+import { Alert } from 'react-native';
+import Routes from '../navigation/Routes';
+import { getToken } from '../store/redux/getters';
+import store from "../store/redux";
 const $http = axios.create({ baseURL: env.baseURL });
 
-$http.interceptors.request.use(async (config) => {
-  const token = await getToken();
+$http.interceptors.request.use(async config => {
+  const token = await getToken(store.getState());
   return {
     ...config,
     headers: {
       ...config.headers,
-      Authorization: "Bearer " + token,
+      Authorization: 'Bearer ' + token,
     },
   };
 });
 $http.interceptors.response.use(
-  async (response) => {
+  async response => {
     return response;
   },
-  async (error) => {
+  async error => {
     if (error.response && error.response.status === 401) {
       Alert.alert(
-        "",
+        '',
         '      Authorization: "Bearer " + token,\n Session has expired. Please login to continue.',
         [
           {
             onPress: async () => {
               await AsyncStorage.removeItem(TOKEN, null);
               const value = JSON.parse(
-                (await AsyncStorage.getItem(PROFILE)) || "{}"
+                (await AsyncStorage.getItem(PROFILE)) || '{}',
               );
               await AsyncStorage.setItem(
                 PROFILE,
-                JSON.stringify({ email: value.email, name: value.name })
+                JSON.stringify({ email: value.email, name: value.name }),
               );
               try {
                 $http.$__navigation?.reset({
@@ -45,13 +46,13 @@ $http.interceptors.response.use(
                 $http.$__navigation?.navigate(Routes.Login);
               }
             },
-            text: "Login",
+            text: 'Login',
           },
-        ]
+        ],
       );
     }
     return Promise.reject(error);
-  }
+  },
 );
 
 export default $http;

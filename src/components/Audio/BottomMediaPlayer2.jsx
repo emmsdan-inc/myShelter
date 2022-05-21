@@ -1,15 +1,15 @@
-import React from "react";
-import { Image, Text, TouchableOpacity, View } from "react-native";
-import styles from "./style";
-import FlexSpaceBetweenCenter from "../Untils";
-import Icon from "../Icon";
-import Colors from "../../constants/Colors";
-import Spacer from "../Spacer";
-import { LikeMedia } from "../../screens/MediaPlayer";
+import React from 'react';
+import { Image, Text, TouchableOpacity, View } from 'react-native';
+import styles from './style';
+import FlexSpaceBetweenCenter from '../Untils';
+import Icon from '../Icon';
+import Colors from '../../constants/Colors';
+import Spacer from '../Spacer';
+import { LikeMedia } from '../../screens/MediaPlayer';
 
-import { Audio } from "expo-av";
-import Routes from "../../navigation/Routes";
-import useReduxState from "../../hooks/useReduxState";
+import { Audio } from 'expo-av';
+import Routes from '../../navigation/Routes';
+import useReduxState from '../../hooks/useReduxState';
 import {
   rcBottomTabHeightAtom,
   rcMediaObjectAtom,
@@ -18,19 +18,19 @@ import {
   rcMediaPlayObjectAtom,
   rcMediaCurrentlyPlayingSelector,
   rcNavigatorAtom,
-} from "../../store/redux/states";
+} from '../../store/redux/states';
 
 export default function MediaPlayer() {
   const [height] = useReduxState(rcBottomTabHeightAtom);
   const [open] = useReduxState(rcOpenMiniPlayerAtom);
   const [, setPlaybackInstance] = useReduxState(
-    rcMediaPlaybackStatusUpdateAtom
+    rcMediaPlaybackStatusUpdateAtom,
   );
   const [playStatus, onPlaybackStatusUpdate] = useReduxState(
-    rcMediaPlayObjectAtom
+    rcMediaPlayObjectAtom,
   );
   const [currentlyPlaying, setCurrentlyPlaying] = useReduxState(
-    rcMediaCurrentlyPlayingSelector
+    rcMediaCurrentlyPlayingSelector,
   );
   const [media] = useReduxState(rcMediaObjectAtom);
   const [navigation] = useReduxState(rcNavigatorAtom);
@@ -38,15 +38,15 @@ export default function MediaPlayer() {
   // const [open, setOpen] = React.useState(false);
   const [isPlaying, setIsPlaying] = React.useState(true);
   const uri = null;
-  const title = "The Rise of a Great Army Pst. Ayoola Jolayemi";
-  const author = "Pst. Ayoola Jolayemi";
-  const source = uri ? { uri } : require("../../../assets/images/logo.png");
+  const title = 'The Rise of a Great Army Pst. Ayoola Jolayemi';
+  const author = 'Pst. Ayoola Jolayemi';
+  const source = uri ? { uri } : require('../../../assets/images/logo.png');
 
   // console.log({playStatus, media}, "playStatus");
-  const loadAudio = async (uri) => {
+  const loadAudio = async uri => {
     try {
       if (currentlyPlaying.uri === uri) return;
-      console.log(uri, "9876-098ujh", "playStatus");
+      console.log(uri, '9876-098ujh', 'playStatus');
       const playbackInstance = new Audio.Sound();
       const source = { uri };
       const status = {
@@ -57,14 +57,14 @@ export default function MediaPlayer() {
       await playbackInstance.loadAsync(source, status, false);
       setPlaybackInstance(playbackInstance);
       // setCurrentlyPlaying(media);
-      console.log("got here");
+      console.log('got here');
     } catch (e) {
       console.log(e);
     }
   };
   React.useEffect(() => {
     if (media.url) {
-      console.log("sxdfsdfds", "send to player");
+      console.log('sxdfsdfds', 'send to player');
       loadAudio(media.url);
     }
   }, [media]);
@@ -76,7 +76,7 @@ export default function MediaPlayer() {
   };
   return open ? (
     <View style={[styles.miniPlayerContainer, { bottom: height }]}>
-      <FlexSpaceBetweenCenter style={[{ width: "100%" }]}>
+      <FlexSpaceBetweenCenter style={[{ width: '100%' }]}>
         <Image source={source} style={styles.miniPlayerIcon} />
         <TouchableOpacity onPress={onPress} style={styles.audioListCardContent}>
           <Text style={styles.miniPlayerTitle} numberOfLines={1}>
@@ -87,10 +87,10 @@ export default function MediaPlayer() {
           </Text>
         </TouchableOpacity>
         <FlexSpaceBetweenCenter style={{ width: 40 }}>
-          <LikeMedia id={"dsfsd"} />
+          <LikeMedia id={'dsfsd'} />
           <Spacer size={4} />
           <Icon
-            name={isPlaying ? "pause-1" : "play"}
+            name={isPlaying ? 'pause-1' : 'play'}
             size={15}
             color={Colors().primary}
             onPress={() => setIsPlaying(!isPlaying)}

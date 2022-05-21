@@ -1,4 +1,4 @@
-import { faker } from "@faker-js/faker";
+import { faker } from '@faker-js/faker';
 
 export default {
   demoPrayers: Array.from({ length: 20 }, () => ({

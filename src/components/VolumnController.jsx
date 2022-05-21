@@ -1,15 +1,15 @@
-import React from "react";
-import Colors from "../constants/Colors";
-import FlexSpaceBetweenCenter from "./Untils";
-import Icon from "./Icon";
-import { Slider } from "@miblanchard/react-native-slider";
-import { Dimensions } from "react-native";
-import useReduxState from "../hooks/useReduxState";
+import React from 'react';
+import Colors from '../constants/Colors';
+import FlexSpaceBetweenCenter from './Untils';
+import Icon from './Icon';
+import { Slider } from '@miblanchard/react-native-slider';
+import { Dimensions } from 'react-native';
+import useReduxState from '../hooks/useReduxState';
 import {
   rcMediaPlayObjectAtom,
   rcMediaPlaybackStatusUpdateAtom,
-} from "../store/redux/states";
-const { width } = Dimensions.get("screen");
+} from '../store/redux/states';
+const { width } = Dimensions.get('screen');
 
 export default function VolumeController() {
   const [instance] = useReduxState(rcMediaPlaybackStatusUpdateAtom);
@@ -19,7 +19,7 @@ export default function VolumeController() {
   const mutedColor = isMuted ? Colors().primary : Colors().blackGlaze;
   const mutedColorWash = isMuted ? Colors().primaryWash : Colors().blackWash;
 
-  const handleVolumeChange = (value) => {
+  const handleVolumeChange = value => {
     console.log({ value: value });
     instance.setVolumeAsync(value);
   };
@@ -30,7 +30,7 @@ export default function VolumeController() {
   return (
     <FlexSpaceBetweenCenter>
       <Icon
-        name={isMuted ? "mutevolumn" : "lowvolumn"}
+        name={isMuted ? 'mutevolumn' : 'lowvolumn'}
         onPress={handleMuteChange}
         color={mutedColor}
       />
@@ -50,7 +50,7 @@ export default function VolumeController() {
         containerStyle={{ height: 15, width: width - 90 }}
         disabled={isMuted}
       />
-      <Icon name={"highvolumn"} color={mutedColor} />
+      <Icon name={'highvolumn'} color={mutedColor} />
     </FlexSpaceBetweenCenter>
   );
 }

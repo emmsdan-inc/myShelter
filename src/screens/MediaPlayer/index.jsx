@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Image,
   ScrollView,
@@ -6,35 +6,35 @@ import {
   TouchableOpacity,
   View,
   ActivityIndicator,
-} from "react-native";
+} from 'react-native';
 
-import FlexSpaceBetweenCenter, { BaseWrapper } from "../../components/Untils";
-import styles from "./style";
-import Icon from "../../components/Icon";
-import Colors from "../../constants/Colors";
-import Spacer from "../../components/Spacer";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import AudioDropdown from "../../components/Audio/Dropdown";
-import { useNavigation } from "@react-navigation/native";
+import FlexSpaceBetweenCenter, { BaseWrapper } from '../../components/Untils';
+import styles from './style';
+import Icon from '../../components/Icon';
+import Colors from '../../constants/Colors';
+import Spacer from '../../components/Spacer';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import AudioDropdown from '../../components/Audio/Dropdown';
+import { useNavigation } from '@react-navigation/native';
 import MediaPlayerActions, {
   MedialPlayerTimeTracker,
-} from "../../components/MediaPlayerController";
-import useGetMedia from "../../hooks/useGetMedia";
-import useTrackPlayer from "../../hooks/useTrackPlayer";
-import { useFocusEffect } from "@react-navigation/native";
-import useReduxState from "../../hooks/useReduxState";
+} from '../../components/MediaPlayerController';
+import useGetMedia from '../../hooks/useGetMedia';
+import useTrackPlayer from '../../hooks/useTrackPlayer';
+import { useFocusEffect } from '@react-navigation/native';
+import useReduxState from '../../hooks/useReduxState';
 import {
   rcNavigatorAtom,
   rcOpenMiniPlayerAtom,
-} from "../../store/redux/states";
+} from '../../store/redux/states';
 
-export const TopNavigation = (props) => {
+export const TopNavigation = props => {
   const [open, setOpen] = React.useState(false);
   const navigation = useNavigation();
 
   return (
     <View style={{ zIndex: 1 }}>
-      <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+      <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
         <Icon
           name="backarrow"
           onPress={() => {
@@ -70,7 +70,7 @@ export const LikeMedia = ({ isLiked, id }) => {
   const [liked, setIsLiked] = React.useState(isLiked);
   return (
     <Icon
-      name={"heart"}
+      name={'heart'}
       color={liked ? Colors().primary : Colors().blackGlaze}
       onPress={() => setIsLiked(!liked)}
     />
@@ -94,11 +94,11 @@ export default function MediaPlayerScreen({ navigation, route }) {
 
   useFocusEffect(
     React.useCallback(() => {
-      setOpenMiniPlayer(!openMiniPlayer).then((r) => {});
+      setOpenMiniPlayer(!openMiniPlayer).then(r => {});
       return () => {
-        setOpenMiniPlayer(!openMiniPlayer).then((r) => {});
+        setOpenMiniPlayer(!openMiniPlayer).then(r => {});
       };
-    }, [route.params])
+    }, [route.params]),
   );
 
   useFocusEffect(
@@ -112,7 +112,7 @@ export default function MediaPlayerScreen({ navigation, route }) {
           }
         });
       }
-    }, [media.dataIsLoading])
+    }, [media.dataIsLoading]),
   );
 
   return (
@@ -129,9 +129,9 @@ export default function MediaPlayerScreen({ navigation, route }) {
             source={
               track && track.artwork
                 ? { uri: track.artwork }
-                : require("../../../assets/images/logo.png")
+                : require('../../../assets/images/logo.png')
             }
-            style={{ width: "100%", height: 315, borderRadius: 15 }}
+            style={{ width: '100%', height: 315, borderRadius: 15 }}
           />
           <Spacer size={20} />
           <Text style={styles.title} numberOfLines={3}>
@@ -142,7 +142,7 @@ export default function MediaPlayerScreen({ navigation, route }) {
             <Text style={styles.author} numberOfLines={1}>
               {track.author}
             </Text>
-            <LikeMedia id={"sdfdsfsd"} />
+            <LikeMedia id={'sdfdsfsd'} />
           </FlexSpaceBetweenCenter>
 
           <Spacer size={20} />

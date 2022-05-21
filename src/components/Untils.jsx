@@ -1,7 +1,7 @@
-import React from "react";
-import { ScrollView, TouchableOpacity, View, Linking } from "react-native";
-import styles from "./style";
-import { scale } from "react-native-size-matters";
+import React from 'react';
+import { ScrollView, TouchableOpacity, View, Linking } from 'react-native';
+import styles from './style';
+import { scale } from 'react-native-size-matters';
 
 export default function FlexSpaceBetweenCenter({
   children,
@@ -11,9 +11,9 @@ export default function FlexSpaceBetweenCenter({
 }) {
   const styles = [
     {
-      flexDirection: "row",
-      justifyContent: "space-between",
-      alignItems: "center",
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
     },
     style,
   ];
@@ -33,8 +33,8 @@ export default function FlexSpaceBetweenCenter({
 export function FlexSpaceBetween({ children, style, onPress, activeOpacity }) {
   const styles = [
     {
-      flexDirection: "row",
-      alignItems: "center",
+      flexDirection: 'row',
+      alignItems: 'center',
     },
     style,
   ];
@@ -56,12 +56,12 @@ export function FlexCenter({
   style,
   onPress,
   activeOpacity,
-  flexDirection = "column",
+  flexDirection = 'column',
 }) {
   const styles = [
     {
       flexDirection,
-      justifyContent: "center",
+      justifyContent: 'center',
     },
     style,
   ];

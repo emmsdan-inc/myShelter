@@ -1,28 +1,28 @@
-import React from "react";
-import { Text, View } from "../../components/Themed";
-import styles from "./style";
-import Spacer from "../../components/Spacer";
-import Item from "../../components/ListItems";
-import { FlatList, Platform, TextInput } from "react-native";
-import Button from "../../components/Button";
-import { BaseWrapper, FlexSpaceBetween } from "../../components/Untils";
-import { useNavigation } from "@react-navigation/native";
-import { TopHeader } from "../../components/NavTab/TabBar";
-import Routes from "../../navigation/Routes";
-import { KeyboardAvoidingView } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
-import Colors from "../../constants/Colors";
+import React from 'react';
+import { Text, View } from '../../components/Themed';
+import styles from './style';
+import Spacer from '../../components/Spacer';
+import Item from '../../components/ListItems';
+import { FlatList, Platform, TextInput } from 'react-native';
+import Button from '../../components/Button';
+import { BaseWrapper, FlexSpaceBetween } from '../../components/Untils';
+import { useNavigation } from '@react-navigation/native';
+import { TopHeader } from '../../components/NavTab/TabBar';
+import Routes from '../../navigation/Routes';
+import { KeyboardAvoidingView } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+import Colors from '../../constants/Colors';
 import {
   create,
   prayerAndTestimoniesActions,
   update,
-} from "../../services/others";
-import { searchService } from "../../services/media";
-import { sendNotification, toaster } from "../../shared/helpers/func";
-import Toast from "react-native-toast-message";
+} from '../../services/others';
+import { searchService } from '../../services/media';
+import { sendNotification, toaster } from '../../shared/helpers/func';
+import Toast from 'react-native-toast-message';
 
-const onShare = (item) => {
-  prayerAndTestimoniesActions()(item.id, "testimony");
+const onShare = item => {
+  prayerAndTestimoniesActions()(item.id, 'testimony');
 };
 
 export const GetTestimony = ({ onCreateTestimony, route }) => {
@@ -30,16 +30,16 @@ export const GetTestimony = ({ onCreateTestimony, route }) => {
   const [loading, setLoading] = React.useState(null);
   const navigation = useNavigation();
 
-  const onDelete = async (item) => {
+  const onDelete = async item => {
     await prayerAndTestimoniesActions(() => {
       fetchData();
-    })(item.id, "testimony", "delete");
+    })(item.id, 'testimony', 'delete');
   };
-  const onEdit = (item) => {
+  const onEdit = item => {
     navigation.navigate(Routes.CreateTestimony, item);
   };
-  const onSend = (item) => {
-    console.log("onShare", item);
+  const onSend = item => {
+    console.log('onShare', item);
   };
   const getId = (item, action = () => {}) => {
     // console.log ("getId", item.id, action.name);
@@ -47,7 +47,7 @@ export const GetTestimony = ({ onCreateTestimony, route }) => {
   };
   function fetchData() {
     setLoading(true);
-    searchService("testimony", { limit: 100 }).then(({ data }) => {
+    searchService('testimony', { limit: 100 }).then(({ data }) => {
       setLoading(false);
       setSearch(data);
     });
@@ -62,7 +62,7 @@ export const GetTestimony = ({ onCreateTestimony, route }) => {
     <FlatList
       showsVerticalScrollIndicator={false}
       data={data}
-      keyExtractor={(item) => item.id}
+      keyExtractor={item => item.id}
       renderItem={({ item, index }) => (
         <Item
           onPress={getId(item, onEdit)}
@@ -76,9 +76,9 @@ export const GetTestimony = ({ onCreateTestimony, route }) => {
       ListHeaderComponent={
         <>
           {(!data && !loading) || (data && !data.length) ? (
-            <BaseWrapper style={{ alignItems: "center" }}>
+            <BaseWrapper style={{ alignItems: 'center' }}>
               <Spacer size={30} />
-              <Text style={[styles.menuText, { textAlign: "center" }]}>
+              <Text style={[styles.menuText, { textAlign: 'center' }]}>
                 You have not shared any testimony yet.
               </Text>
               <Spacer />
@@ -125,20 +125,17 @@ export function CreateTestimony({ route }) {
         name: state.testimony.slice(0, 40),
         testimony: state.testimony,
       };
-      await update("testimony/" + state.id, payload);
-      await toaster(
-        "Testimony",
-        "Your testimony has been updated"
-      );
+      await update('testimony/' + state.id, payload);
+      await toaster('Testimony', 'Your testimony has been updated');
     } else {
       // create
       const payload = {
         name: state.testimony.slice(0, 40),
         testimony: state.testimony,
       };
-      const data = await create("testimony", payload);
+      const data = await create('testimony', payload);
       setState(data);
-      await toaster("Testimony", "Your testimony has been added");
+      await toaster('Testimony', 'Your testimony has been added');
     }
   };
 
@@ -146,7 +143,7 @@ export function CreateTestimony({ route }) {
     <View style={{ flex: 1 }}>
       <BaseWrapper>
         <TopHeader
-          title={`${state.name ? "Edit" : "Create"} Testimony`}
+          title={`${state.name ? 'Edit' : 'Create'} Testimony`}
           back={{
             name: Routes.Testimony,
             params: { id: state.id, random: Math.random() },
@@ -157,19 +154,20 @@ export function CreateTestimony({ route }) {
               size={30}
               color={Colors().primary}
               onPress={onSave}
-            />}
+            />
+          }
         />
       </BaseWrapper>
       <Spacer size={15} />
 
       <KeyboardAvoidingView
-        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       >
         <TextInput
           placeholder="Enter Your Testimony"
           value={state.testimony}
-          onChangeText={(text) => setState({ ...state, testimony: text })}
-          style={[styles.textArea, { height: "90%" }]}
+          onChangeText={text => setState({ ...state, testimony: text })}
+          style={[styles.textArea, { height: '90%' }]}
           multiline={true}
           showsVerticalScrollIndicator={false}
         />
@@ -178,7 +176,7 @@ export function CreateTestimony({ route }) {
             {
               paddingHorizontal: 20,
               marginBottom: -15,
-              justifyContent: "flex-end",
+              justifyContent: 'flex-end',
             },
           ]}
         >

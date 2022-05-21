@@ -1,18 +1,18 @@
-import React from "react";
-import { TouchableOpacity, Platform } from "react-native";
-import styles from "./styles";
-import Icon from "../Icon";
-import FlexSpaceBetweenCenter, { BaseWrapper, FlexCenter } from "../Untils";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import Colors from "../../constants/Colors";
-import { useNavigation } from "@react-navigation/native";
-import { Text, View } from "../Themed";
-import MediaPlayer from "../Audio/BottomMediaPlayer";
+import React from 'react';
+import { TouchableOpacity, Platform } from 'react-native';
+import styles from './styles';
+import Icon from '../Icon';
+import FlexSpaceBetweenCenter, { BaseWrapper, FlexCenter } from '../Untils';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import Colors from '../../constants/Colors';
+import { useNavigation } from '@react-navigation/native';
+import { Text, View } from '../Themed';
+import MediaPlayer from '../Audio/BottomMediaPlayer';
 
 const TabBar = ({ state, descriptors, navigation }) => {
   const insets = useSafeAreaInsets();
   const bottom =
-    Platform.OS !== "ios"
+    Platform.OS !== 'ios'
       ? { paddingBottom: insets.bottom + 20 }
       : { paddingBottom: insets.bottom + 5 };
 
@@ -26,7 +26,7 @@ const TabBar = ({ state, descriptors, navigation }) => {
 
           const onPress = () => {
             const event = navigation.emit({
-              type: "tabPress",
+              type: 'tabPress',
               target: route.key,
               canPreventDefault: true,
             });
@@ -38,15 +38,15 @@ const TabBar = ({ state, descriptors, navigation }) => {
 
           const onLongPress = () => {
             navigation.emit({
-              type: "tabLongPress",
+              type: 'tabLongPress',
               target: route.key,
             });
           };
 
-          const getIconName = (name) => {
+          const getIconName = name => {
             const icon = {
-              Root: "Home",
-              Give: "wallet",
+              Root: 'Home',
+              Give: 'wallet',
             };
             // console.log('name', {name})
             return icon[name] || name;
@@ -58,7 +58,7 @@ const TabBar = ({ state, descriptors, navigation }) => {
           // drawer.setOptions({
           //   headerShown: !hideOnRoute.includes(route.name),
           // })
-          return route.name.startsWith("__$") ? null : (
+          return route.name.startsWith('__$') ? null : (
             <TouchableOpacity
               key={route.key}
               onPress={onPress}
@@ -83,9 +83,9 @@ export const TopHeader = ({ title, back, rightContent }) => {
   return (
     <FlexCenter
       style={{
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "space-between",
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
         marginTop: insets.top + 10,
         paddingLeft: 10,
       }}
@@ -107,15 +107,15 @@ export const TopHeader = ({ title, back, rightContent }) => {
       />
       <FlexSpaceBetweenCenter
         style={{
-          flexDirection: "row",
-          justifyContent: "center",
+          flexDirection: 'row',
+          justifyContent: 'center',
         }}
       >
         <Text
           style={[styles.mainTitle, { paddingHorizontal: 10, fontSize: 18 }]}
           numberOfLines={1}
         >
-          {title ?? "Prayer Request"}
+          {title ?? 'Prayer Request'}
         </Text>
       </FlexSpaceBetweenCenter>
       <View />

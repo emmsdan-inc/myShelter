@@ -1,16 +1,16 @@
-import React from "react";
-import FlexSpaceBetweenCenter from "./Untils";
-import Icon from "./Icon";
-import Colors from "../constants/Colors";
-import { ActivityIndicator, Text, TouchableOpacity } from "react-native";
-import { Slider } from "@miblanchard/react-native-slider";
-import styles from "./style";
-import { useDebounce } from "usehooks-ts";
+import React from 'react';
+import FlexSpaceBetweenCenter from './Untils';
+import Icon from './Icon';
+import Colors from '../constants/Colors';
+import { ActivityIndicator, Text, TouchableOpacity } from 'react-native';
+import { Slider } from '@miblanchard/react-native-slider';
+import styles from './style';
+import { useDebounce } from 'usehooks-ts';
 
-import useTrackPlayer from "../hooks/useTrackPlayer";
+import useTrackPlayer from '../hooks/useTrackPlayer';
 
 let lastId = 0;
-const getRandomArrayId = (arr) => {
+const getRandomArrayId = arr => {
   const yu = Math.floor(Math.random() * (arr.length - 1));
   if (yu !== lastId) {
     lastId = yu;
@@ -44,14 +44,14 @@ export default function MediaPlayerActions() {
   return (
     <FlexSpaceBetweenCenter>
       <Icon
-        name={"union"}
+        name={'union'}
         onPress={shuffle}
         size={16}
         color={!isShuffled ? Colors().primary : Colors().blackGlaze}
       />
       <FlexSpaceBetweenCenter>
         <Icon
-          name={"back"}
+          name={'back'}
           size={16}
           color={Colors().primary}
           onPress={previous}
@@ -64,25 +64,25 @@ export default function MediaPlayerActions() {
             marginHorizontal: 5,
             width: 46,
             height: 46,
-            alignItems: "center",
-            justifyContent: "center",
+            alignItems: 'center',
+            justifyContent: 'center',
           }}
         >
           <Icon
-            name={state.isPlaying ? "pause-1" : "play"}
+            name={state.isPlaying ? 'pause-1' : 'play'}
             size={14}
             color={Colors().background}
           />
         </TouchableOpacity>
         <Icon
-          name={"forward"}
+          name={'forward'}
           size={16}
           color={Colors().primary}
           onPress={next}
         />
       </FlexSpaceBetweenCenter>
       <Icon
-        name={"shuffle"}
+        name={'shuffle'}
         onPress={repeat}
         size={16}
         color={!isRepeat ? Colors().primary : Colors().blackGlaze}
@@ -97,7 +97,7 @@ export const MedialPlayerTimeTracker = () => {
   const debouncedValue = useDebounce(allowSeek, 500);
   const { state, seekTo } = useTrackPlayer();
 
-  const seek = (time) => {
+  const seek = time => {
     let percent;
     if (Array.isArray(time)) {
       percent = time[0] * 888;

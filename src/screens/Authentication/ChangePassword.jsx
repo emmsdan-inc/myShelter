@@ -1,19 +1,19 @@
-import * as React from "react";
-import { ActivityIndicator, Image, ScrollView } from "react-native";
-import { Text, View } from "../../components/Themed";
+import * as React from 'react';
+import { ActivityIndicator, Image, ScrollView } from 'react-native';
+import { Text, View } from '../../components/Themed';
 
-import styles from "./style";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import Routes from "../../navigation/Routes";
-import Button from "../../components/Button";
-import Input from "../../components/Input";
-import Spacer from "../../components/Spacer";
-import FlexSpaceBetweenCenter from "../../components/Untils";
-import { useForm, Controller } from "react-hook-form";
-import Notification from "../../components/Notification";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { changePasswordScheme } from "./validation";
-import { changePasswordService } from "../../services/authentication";
+import styles from './style';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import Routes from '../../navigation/Routes';
+import Button from '../../components/Button';
+import Input from '../../components/Input';
+import Spacer from '../../components/Spacer';
+import FlexSpaceBetweenCenter from '../../components/Untils';
+import { useForm, Controller } from 'react-hook-form';
+import Notification from '../../components/Notification';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { changePasswordScheme } from './validation';
+import { changePasswordService } from '../../services/authentication';
 
 export default function ChangePasswordScreen({ navigation }) {
   const insets = useSafeAreaInsets();
@@ -25,16 +25,16 @@ export default function ChangePasswordScreen({ navigation }) {
     formState: { errors, isValid, isSubmitting },
   } = useForm({
     defaultValues: {
-      password: "",
-      password1: "",
+      password: '',
+      password1: '',
     },
     resolver: yupResolver(changePasswordScheme),
-    mode: "all",
+    mode: 'all',
   });
-  const onSubmit = handleSubmit(async (data) => {
+  const onSubmit = handleSubmit(async data => {
     // console.log({data})
     if (data.password !== data.password1) {
-      setIsError("Password does not match");
+      setIsError('Password does not match');
       return;
     }
     setIsError(false);
@@ -43,7 +43,7 @@ export default function ChangePasswordScreen({ navigation }) {
       setIsError(resp.error.message || resp.message);
       return;
     }
-    setIsError("success");
+    setIsError('success');
     setTimeout(() => navigation.navigate(Routes.Login), 3000);
   });
 
@@ -53,19 +53,19 @@ export default function ChangePasswordScreen({ navigation }) {
       style={[styles.container, { paddingTop: insets.top * 2, flex: 1 }]}
     >
       <View style={[{ paddingTop: insets.top * 3 }]}>
-        <View style={{ alignItems: "center" }}>
+        <View style={{ alignItems: 'center' }}>
           <Image
-            source={require("../../../assets/images/logo-black.png")}
+            source={require('../../../assets/images/logo-black.png')}
             style={styles.image}
           />
         </View>
         <Spacer size={30} />
         <Notification
           visible={isError}
-          mode={isError === "success" ? "success" : "notification"}
+          mode={isError === 'success' ? 'success' : 'notification'}
           message={
-            isError === "success"
-              ? "Your password has been updated successfully. Please log in again."
+            isError === 'success'
+              ? 'Your password has been updated successfully. Please log in again.'
               : isError
           }
         />
@@ -107,10 +107,10 @@ export default function ChangePasswordScreen({ navigation }) {
         />
         <Spacer size={20} />
 
-        <View style={{ alignItems: "center" }}>
+        <View style={{ alignItems: 'center' }}>
           <View style={{ width: 185 }}>
             <Button disabled={!isValid || isSubmitting} onPress={onSubmit}>
-              {isSubmitting ? <ActivityIndicator color={"black"} /> : "Reset"}
+              {isSubmitting ? <ActivityIndicator color={'black'} /> : 'Reset'}
             </Button>
           </View>
           <Spacer size={8} />

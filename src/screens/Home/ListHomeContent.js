@@ -1,15 +1,15 @@
-import React from "react";
-import $http from "../../services/api";
-import { Text, View } from "react-native";
-import Skeleton from "./Skeleton";
-import AudioImageCard from "../../components/Audio/AudioImageCard";
-import Routes from "../../navigation/Routes";
-import SectionTitle from "../../components/SectionTitle/SectionTitle";
-import Spacer from "../../components/Spacer";
-import { HorizontalScroll } from "../../components/Untils";
-import styles from "./style";
-import { BaseWrapper } from "../../components/Untils";
-import useTrackPlayer from "../../hooks/useTrackPlayer";
+import React from 'react';
+import $http from '../../services/api';
+import { Text, View } from 'react-native';
+import Skeleton from './Skeleton';
+import AudioImageCard from '../../components/Audio/AudioImageCard';
+import Routes from '../../navigation/Routes';
+import SectionTitle from '../../components/SectionTitle/SectionTitle';
+import Spacer from '../../components/Spacer';
+import { HorizontalScroll } from '../../components/Untils';
+import styles from './style';
+import { BaseWrapper } from '../../components/Untils';
+import useTrackPlayer from '../../hooks/useTrackPlayer';
 
 const ListHomeContent = ({ navigation }) => {
   const [response, setResponse] = React.useState([]);
@@ -18,7 +18,7 @@ const ListHomeContent = ({ navigation }) => {
   const getAudio = async () => {
     setLoading(true);
     try {
-      const resp = await $http.get("category");
+      const resp = await $http.get('category');
       setResponse(resp.data.data);
     } catch (error) {
       console.error(error);
@@ -42,7 +42,7 @@ const ListHomeContent = ({ navigation }) => {
   ) : (
     <>
       {response
-        .filter((item) => (item.media || []).length)
+        .filter(item => (item.media || []).length)
         .map((item, index) => {
           const data = [];
 
@@ -92,7 +92,7 @@ const ListHomeContent = ({ navigation }) => {
           }
 
           const names = {
-            accelerate: "Accelerate Service Sermons",
+            accelerate: 'Accelerate Service Sermons',
           };
           const onPress = () => {
             navigation.navigate(Routes.Discover, {

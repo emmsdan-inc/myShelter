@@ -1,14 +1,14 @@
-import * as React from "react";
-import { View } from "../../components/Themed";
+import * as React from 'react';
+import { View } from '../../components/Themed';
 
-import Spacer from "../../components/Spacer";
-import { BaseWrapper } from "../../components/Untils";
-import { FloatingButton } from "../../components/Button";
-import { GetTestimony } from "./Testimony";
-import Routes from "../../navigation/Routes";
-import { TopHeader } from "../../components/NavTab/TabBar";
-import { Ionicons } from "@expo/vector-icons";
-import Colors from "../../constants/Colors";
+import Spacer from '../../components/Spacer';
+import { BaseWrapper } from '../../components/Untils';
+import { FloatingButton } from '../../components/Button';
+import { GetTestimony } from './Testimony';
+import Routes from '../../navigation/Routes';
+import { TopHeader } from '../../components/NavTab/TabBar';
+import { Ionicons } from '@expo/vector-icons';
+import Colors from '../../constants/Colors';
 
 export default function Testimony({ navigation, route }) {
   const onCreateTestimony = () => {
@@ -18,7 +18,7 @@ export default function Testimony({ navigation, route }) {
   };
   return (
     <BaseWrapper style={{ flex: 1 }}>
-      <TopHeader title={"Testimony"} />
+      <TopHeader title={'Testimony'} />
 
       <View style={{ paddingVertical: 20 }}>
         <GetTestimony route={route} onCreateTestimony={onCreateTestimony} />

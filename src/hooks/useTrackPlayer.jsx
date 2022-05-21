@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import TrackPlayer, {
   RepeatMode,
   Event,
@@ -6,15 +6,15 @@ import TrackPlayer, {
   usePlaybackState,
   useProgress,
   useTrackPlayerEvents,
-} from "react-native-track-player";
+} from 'react-native-track-player';
 import {
   _getHHMMSSFromMillis,
   getPercentageOf,
   toTrackFormat,
-} from "../shared/helpers/general";
-import SoundPlayer from "react-native-sound-player";
-import env from "../services/environment";
-import { Platform } from "react-native";
+} from '../shared/helpers/general';
+import SoundPlayer from 'react-native-sound-player';
+import env from '../services/environment';
+import { Platform } from 'react-native';
 // Creates the player
 const setup = async (num = 0) => {
   try {
@@ -28,10 +28,10 @@ const setup = async (num = 0) => {
         await TrackPlayer.add(env.initAudio);
         await TrackPlayer.setRepeatMode(RepeatMode.Queue);
       } catch (error) {
-        if (error.code !== "player_already_initialized") {
+        if (error.code !== 'player_already_initialized') {
           await TrackPlayer.setupPlayer();
           await setup(num + 1);
-          console.warn("Init Player Error:", error.message, { num });
+          console.warn('Init Player Error:', error.message, { num });
         }
       }
     } catch (e) {
@@ -40,7 +40,7 @@ const setup = async (num = 0) => {
   } catch (e) {}
 };
 
-const togglePlayback = (playbackState) => async () => {
+const togglePlayback = playbackState => async () => {
   const currentTrack = await TrackPlayer.getCurrentTrack();
   if (currentTrack == null) {
     const tracks = await TrackPlayer.getQueue();
@@ -61,7 +61,7 @@ const togglePlayback = (playbackState) => async () => {
   }
 };
 
-const add = async (musics) => {
+const add = async musics => {
   try {
     const tracks = toTrackFormat(musics);
     try {
@@ -82,7 +82,7 @@ export function useTrackPlayer() {
   const [track, setTrack] = React.useState(null);
   const [info, setInfo] = React.useState({ percent: 0, duration: 0 });
 
-  useTrackPlayerEvents([Event.PlaybackTrackChanged], async (event) => {
+  useTrackPlayerEvents([Event.PlaybackTrackChanged], async event => {
     if (
       event.type === Event.PlaybackTrackChanged &&
       event.nextTrack !== undefined
@@ -97,7 +97,7 @@ export function useTrackPlayer() {
     const currentTime = _getHHMMSSFromMillis(progress.position * 1000);
     const duration = _getHHMMSSFromMillis(progress.duration * 1000);
     const timeLeft = _getHHMMSSFromMillis(
-      progress.duration * 1000 - progress.position * 1000
+      progress.duration * 1000 - progress.position * 1000,
     );
     setInfo({
       percent,
@@ -136,12 +136,12 @@ export function useTrackPlayer() {
     previous: async () => {
       await TrackPlayer.skipToPrevious();
     },
-    seekTo: async (position) => {
+    seekTo: async position => {
       await TrackPlayer.seekTo(position);
     },
     resetAndPlay: async (musics, reset = false) => {
       try {
-        if (Platform.OS === "ios") {
+        if (Platform.OS === 'ios') {
           await TrackPlayer.removeUpcomingTracks();
         } else {
           await TrackPlayer.reset();
@@ -156,7 +156,7 @@ export function useTrackPlayer() {
         console.warn(e);
       }
     },
-    addPlaylist: async (musics) => {
+    addPlaylist: async musics => {
       try {
         // check currently playing track
         const id = await TrackPlayer.getCurrentTrack();
@@ -166,7 +166,7 @@ export function useTrackPlayer() {
           // remove current track from playlist
           const tracks = toTrackFormat(musics).reduce((arr, track) => {
             if (track.id !== currentTrack.id) {
-              const index = queue.findIndex((t) => t.id === track.id);
+              const index = queue.findIndex(t => t.id === track.id);
               if (index === -1) {
                 arr.push(track);
               } else {

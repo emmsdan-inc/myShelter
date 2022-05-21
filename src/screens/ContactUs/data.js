@@ -1,21 +1,21 @@
-import querystring from "querystring";
+import querystring from 'querystring';
 export default {
   contactInfo: [
     {
-      title: "Address",
+      title: 'Address',
       content:
-        "RCCG The Shelter,\n" +
-        "47, Faramobi Ajike street,\n" +
-        "Anthony Village, Lagos",
+        'RCCG The Shelter,\n' +
+        '47, Faramobi Ajike street,\n' +
+        'Anthony Village, Lagos',
     },
     {
-      title: "Phone",
-      content: "+234 808 224 9952",
-      content2: "+234 705 854 0173",
+      title: 'Phone',
+      content: '+234 808 224 9952',
+      content2: '+234 705 854 0173',
     },
     {
-      title: "Email",
-      content: "example@example.com",
+      title: 'Email',
+      content: 'example@example.com',
     },
   ],
   coordinates: {

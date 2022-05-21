@@ -1,24 +1,24 @@
-import React from "react";
+import React from 'react';
 import {
   ActivityIndicator,
   Image,
   ScrollView,
   Text,
   TouchableOpacity,
-} from "react-native";
+} from 'react-native';
 
-import FlexSpaceBetweenCenter, { BaseWrapper } from "../../components/Untils";
-import styles from "../MediaPlayer/style";
-import Spacer from "../../components/Spacer";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { TopNavigation } from "../MediaPlayer";
-import get from "lodash/get";
-import SoundPlayer from "react-native-sound-player";
-import Colors from "../../constants/Colors";
-import Icon from "../../components/Icon";
-import { useInterval } from "usehooks-ts";
-import { View } from "../../components/Themed";
-import { FloatingButton } from "../../components/Button";
+import FlexSpaceBetweenCenter, { BaseWrapper } from '../../components/Untils';
+import styles from '../MediaPlayer/style';
+import Spacer from '../../components/Spacer';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { TopNavigation } from '../MediaPlayer';
+import get from 'lodash/get';
+import SoundPlayer from 'react-native-sound-player';
+import Colors from '../../constants/Colors';
+import Icon from '../../components/Icon';
+import { useInterval } from 'usehooks-ts';
+import { View } from '../../components/Themed';
+import { FloatingButton } from '../../components/Button';
 
 export default function MixlrMediaPlayerScreen({ route }) {
   const [state, setState] = React.useState({});
@@ -28,10 +28,10 @@ export default function MixlrMediaPlayerScreen({ route }) {
   const insets = useSafeAreaInsets();
   React.useEffect(() => {
     if (route.params.broadcast_ids) {
-      const broadcast = get(route.params, "broadcasts.0", {});
+      const broadcast = get(route.params, 'broadcasts.0', {});
       const appEmbedUrl = `https://listen.mixlr.com/${get(
         route.params,
-        "broadcast_ids.0"
+        'broadcast_ids.0',
       )}`;
       setState({
         ...route.params,
@@ -56,18 +56,18 @@ export default function MixlrMediaPlayerScreen({ route }) {
 
   const image = get(
     state,
-    "profile_image_url",
-    get(state, "artwork_url", null)
+    'profile_image_url',
+    get(state, 'artwork_url', null),
   );
   return loading ? (
-    <View style={{ flex: 1, justifyContent: "center" }}>
+    <View style={{ flex: 1, justifyContent: 'center' }}>
       <ActivityIndicator size={40} color={Colors().primary} />
     </View>
   ) : (
     <>
       <FloatingButton onPress={toggle} style={{ bottom: insets.bottom + 20 }}>
         <Icon
-          name={playing ? "pause-1" : "play"}
+          name={playing ? 'pause-1' : 'play'}
           size={14}
           color={Colors().background}
         />
@@ -86,9 +86,9 @@ export default function MixlrMediaPlayerScreen({ route }) {
             source={
               state && image
                 ? { uri: image }
-                : require("../../../assets/images/logo.png")
+                : require('../../../assets/images/logo.png')
             }
-            style={{ width: "100%", height: 315, borderRadius: 15 }}
+            style={{ width: '100%', height: 315, borderRadius: 15 }}
           />
           <Spacer size={20} />
           <Text style={styles.title} numberOfLines={3}>

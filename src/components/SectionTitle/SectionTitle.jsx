@@ -1,13 +1,13 @@
-import React from "react";
-import FlexSpaceBetweenCenter, { BaseWrapper } from "../Untils";
-import { Text, TouchableOpacity, TouchableWithoutFeedback } from "react-native";
-import styles from "./style";
-import Icon from "../Icon";
-import Colors from "../../constants/Colors";
+import React from 'react';
+import FlexSpaceBetweenCenter, { BaseWrapper } from '../Untils';
+import { Text, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
+import styles from './style';
+import Icon from '../Icon';
+import Colors from '../../constants/Colors';
 
 export default function SectionTitle({
   title,
-  seeMoreText = "See more",
+  seeMoreText = 'See more',
   onPress,
   hideSeeMore,
 }) {
@@ -19,10 +19,10 @@ export default function SectionTitle({
           <FlexSpaceBetweenCenter>
             <TouchableOpacity onPress={onPress} style={styles.seeMoreBorder}>
               <Text style={styles.seeMoreText}>
-                {seeMoreText || "See more"}
+                {seeMoreText || 'See more'}
               </Text>
             </TouchableOpacity>
-            <Icon name={"right"} color={Colors().primary} />
+            <Icon name={'right'} color={Colors().primary} />
           </FlexSpaceBetweenCenter>
         ) : null}
       </FlexSpaceBetweenCenter>

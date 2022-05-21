@@ -1,13 +1,13 @@
-import React from "react";
-import { Text, View } from "../../components/Themed";
-import styles from "./style";
-import Spacer from "../../components/Spacer";
-import data from "./data";
-import { WebView } from "react-native-webview";
+import React from 'react';
+import { Text, View } from '../../components/Themed';
+import styles from './style';
+import Spacer from '../../components/Spacer';
+import data from './data';
+import { WebView } from 'react-native-webview';
 
 export const ContactInfo = () => {
   return data.contactInfo.map((item, index) => (
-    <View key={`${index}${item.accountNumber}`} style={{ width: "100%" }}>
+    <View key={`${index}${item.accountNumber}`} style={{ width: '100%' }}>
       <Text style={styles.heading2}>{item.title}</Text>
       <Text style={styles.text}>{item.content}</Text>
       {item.content2 && <Text style={styles.text}>{item.content2}</Text>}

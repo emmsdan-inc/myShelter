@@ -1,10 +1,10 @@
-import EStyleSheet from "react-native-extended-stylesheet";
-import Colors from "../../constants/Colors";
-import { scale } from "react-native-size-matters";
+import EStyleSheet from 'react-native-extended-stylesheet';
+import Colors from '../../constants/Colors';
+import { scale } from 'react-native-size-matters';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
-} from "react-native-responsive-screen";
+} from 'react-native-responsive-screen';
 
 export default EStyleSheet.create({
   audioImageCard: {
@@ -20,7 +20,7 @@ export default EStyleSheet.create({
     height: scale(54),
     borderRadius: scale(10),
     flex: 1,
-    flexDirection: "row",
+    flexDirection: 'row',
     marginVertical: scale(15),
   },
   audioListCardImage: {
@@ -33,23 +33,23 @@ export default EStyleSheet.create({
     width: scale(210),
   },
   audioListCardIcon: {
-    transform: [{ rotate: "90deg" }],
-    justifyContent: "center",
+    transform: [{ rotate: '90deg' }],
+    justifyContent: 'center',
     paddingRight: scale(30),
     paddingLeft: scale(15),
     paddingTop: scale(10),
     marginTop: scale(15),
   },
   audioListCardTitle: {
-    fontFamily: "Nunito_600SemiBold",
+    fontFamily: 'Nunito_600SemiBold',
     fontSize: scale(14),
     color: Colors().primary1,
     marginBottom: scale(5),
   },
   audioListCardSmallFont: {
-    fontFamily: "nunito",
+    fontFamily: 'nunito',
     fontSize: scale(10),
-    fontWeight: "300",
+    fontWeight: '300',
     color: Colors().darkBlueBlack,
   },
   audioListCardAuthor: {
@@ -58,7 +58,7 @@ export default EStyleSheet.create({
   },
   audioListCardDropDown: {
     marginBottom: 10,
-    position: "absolute",
+    position: 'absolute',
     right: scale(20),
     // bottom: scale(50),
     backgroundColor: Colors().background,
@@ -70,20 +70,20 @@ export default EStyleSheet.create({
     zIndex: 100,
   },
   dropDownOverlay: {
-    position: "absolute",
+    position: 'absolute',
     top: 0,
     left: 0,
     right: 0,
     bottom: 0,
-    height: hp("100%"),
-    width: wp("100%"),
+    height: hp('100%'),
+    width: wp('100%'),
   },
   miniPlayerContainer: {
-    flexDirection: "row",
+    flexDirection: 'row',
     // height: 70,
     backgroundColor: Colors().background,
-    position: "absolute",
-    width: "100%",
+    position: 'absolute',
+    width: '100%',
     paddingHorizontal: 20,
     paddingVertical: 5,
     // borderWidth: 1
@@ -106,14 +106,14 @@ export default EStyleSheet.create({
     marginRight: scale(7),
   },
   miniPlayerTitle: {
-    fontFamily: "Nunito_Bold",
+    fontFamily: 'Nunito_Bold',
     fontSize: scale(12),
     color: Colors().primary,
   },
   miniPlayerAuthor: {
-    fontFamily: "nunito",
+    fontFamily: 'nunito',
     fontSize: scale(10),
-    fontWeight: "300",
+    fontWeight: '300',
     color: Colors().blackGlaze,
   },
 });

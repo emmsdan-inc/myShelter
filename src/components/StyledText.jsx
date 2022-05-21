@@ -1,7 +1,7 @@
-import * as React from "react";
+import * as React from 'react';
 
-import { Text } from "./Themed";
+import { Text } from './Themed';
 
 export function MonoText(props) {
-  return <Text {...props} style={[props.style, { fontFamily: "nunito" }]} />;
+  return <Text {...props} style={[props.style, { fontFamily: 'nunito' }]} />;
 }

@@ -1,12 +1,12 @@
-import React from "react";
-import { View, Text } from "react-native";
-import styles, { textStyles } from "./styles";
+import React from 'react';
+import { View, Text } from 'react-native';
+import styles, { textStyles } from './styles';
 
 export default function Notification({
   visible,
   message,
   style,
-  mode = "notification",
+  mode = 'notification',
 }) {
   return !!message && visible ? (
     <View style={[styles.container, styles[mode], style]}>

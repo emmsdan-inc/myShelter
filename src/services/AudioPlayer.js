@@ -1,16 +1,16 @@
-import { Audio, AVPlaybackStatus, AVPlaybackNativeSource } from "expo-av";
-import { Platform } from "react-native";
-import { getXFromPercentageOf } from "../shared/helpers/general";
+import { Audio, AVPlaybackStatus, AVPlaybackNativeSource } from 'expo-av';
+import { Platform } from 'react-native';
+import { getXFromPercentageOf } from '../shared/helpers/general';
 
 class AudioPlayer {
   isPlaying = false;
   audioInstance = null;
-  url = "";
+  url = '';
   info = {
-    title: "",
-    artist: "",
-    album: "",
-    artwork: "",
+    title: '',
+    artist: '',
+    album: '',
+    artwork: '',
   };
   statusUpdate = null;
 
@@ -24,14 +24,14 @@ class AudioPlayer {
     if (!this.audioInstance) {
       this.audioInstance = new Audio.Sound();
       await Audio.setAudioModeAsync(
-        Platform.OS === "ios"
+        Platform.OS === 'ios'
           ? {
               interruptionModeIOS: Audio.INTERRUPTION_MODE_IOS_DO_NOT_MIX,
             }
           : {
               // allowsRecordingIOS: true,
               staysActiveInBackground: true,
-            }
+            },
       );
       this.audioInstance.setOnPlaybackStatusUpdate(this.onPlaybackStatusUpdate);
     }
@@ -46,7 +46,7 @@ class AudioPlayer {
   getStatusUpdate = (cb = () => {}) => {
     this.statusUpdate = cb;
   };
-  onPlaybackStatusUpdate = (status) => {
+  onPlaybackStatusUpdate = status => {
     if (status.isLoaded && this.audioInstance) {
       this.isPlaying = status.isPlaying;
       this.audioInstance.playAsync();
@@ -60,7 +60,7 @@ class AudioPlayer {
     await this.disable();
     await this.enable();
   };
-  start = async (url) => {
+  start = async url => {
     if (this.audioInstance && url) {
       const source = {
         uri: url,
@@ -72,10 +72,10 @@ class AudioPlayer {
           shouldPlay: true,
           volume: 1.0,
         },
-        false
+        false,
       );
     } else {
-      console.log("AudioPlayer: start: no audio instance or url");
+      console.log('AudioPlayer: start: no audio instance or url');
     }
   };
   play = async () => {
@@ -115,16 +115,16 @@ class AudioPlayer {
   isPlayingAudio = async () => {
     return this.isPlaying;
   };
-  infoAsync = (info) => {
+  infoAsync = info => {
     this.info = info;
   };
 
-  seekTo = (position) => {
+  seekTo = position => {
     if (this.audioInstance) {
-      this.audioInstance.getStatusAsync().then((status) => {
+      this.audioInstance.getStatusAsync().then(status => {
         if (status && this.audioInstance) {
           this.audioInstance.setPositionAsync(
-            getXFromPercentageOf(position, status.durationMillis)
+            getXFromPercentageOf(position, status.durationMillis),
           );
         }
       });
@@ -133,6 +133,6 @@ class AudioPlayer {
 }
 const audio = new AudioPlayer();
 audio.enable().then(() => {
-  console.log("AudioPlayer: enabled");
+  console.log('AudioPlayer: enabled');
 });
 export default audio;

@@ -1,13 +1,13 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { atom, selector } from "recoil";
-import { APP_FIRST_TIME_USE } from "../../constants/User";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { atom, selector } from 'recoil';
+import { APP_FIRST_TIME_USE } from '../../constants/User';
 
 export const rcFirstTimeUseAtom = atom({
-  key: "RCFirstTimeUse",
+  key: 'RCFirstTimeUse',
   default: false,
 });
 export const rcFirstTimeUseSelector = selector({
-  key: "RCFirstTimeUse2",
+  key: 'RCFirstTimeUse2',
   get: async () => await AsyncStorage.getItem(APP_FIRST_TIME_USE),
   set: (__, newValue) => {
     const value = JSON.stringify(!!newValue);
@@ -17,17 +17,17 @@ export const rcFirstTimeUseSelector = selector({
 });
 
 export const rcBottomTabHeightAtom = atom({
-  key: "RCBottomTabHeight",
+  key: 'RCBottomTabHeight',
   default: 80,
 });
 
 export const rcOpenMiniPlayerAtom = atom({
-  key: "RCOpenMiniPlayer",
+  key: 'RCOpenMiniPlayer',
   default: false,
 });
 
 export const rcNavigatorAtom = atom({
-  key: "RCNavigator",
+  key: 'RCNavigator',
   default: {},
 });
 // export const rcFirstTimeUseSelector = selector({

@@ -1,14 +1,14 @@
-import React from "react";
-import { ScrollView } from "react-native";
-import { BaseWrapper } from "../../components/Untils";
-import { scale } from "react-native-size-matters";
-import Spacer from "../../components/Spacer";
-import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
-import LiveEventPlaceholders from "../../components/LiveEventPlaceholders";
-import ListHomeContent from "./ListHomeContent";
-import $http from "../../services/api";
-import { rcBottomTabHeightAtom } from "../../store/redux/states";
-import useReduxState from "../../hooks/useReduxState";
+import React from 'react';
+import { ScrollView } from 'react-native';
+import { BaseWrapper } from '../../components/Untils';
+import { scale } from 'react-native-size-matters';
+import Spacer from '../../components/Spacer';
+import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
+import LiveEventPlaceholders from '../../components/LiveEventPlaceholders';
+import ListHomeContent from './ListHomeContent';
+import $http from '../../services/api';
+import { rcBottomTabHeightAtom } from '../../store/redux/states';
+import useReduxState from '../../hooks/useReduxState';
 
 export default function HomeScreen({ navigation }) {
   const height = useBottomTabBarHeight();
@@ -23,7 +23,7 @@ export default function HomeScreen({ navigation }) {
     <ScrollView>
       <BaseWrapper
         style={{
-          flexDirection: "row",
+          flexDirection: 'row',
           paddingRight: scale(30),
           paddingLeft: scale(15),
         }}

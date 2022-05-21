@@ -1,13 +1,13 @@
-import React from "react";
-import { Image, TouchableOpacity } from "react-native";
-import { scale } from "react-native-size-matters";
+import React from 'react';
+import { Image, TouchableOpacity } from 'react-native';
+import { scale } from 'react-native-size-matters';
 
 const iconMap = {
-  close: require("../../../assets/images/icon/Close.png"),
-  menu: require("../../../assets/images/icon/Menu.png"),
-  notification: require("../../../assets/images/icon/Notification.png"),
-  mixlrWhite: require("../../../assets/images/icon/Mixlr-White.png"),
-  search: require("../../../assets/images/icon/Search.png"),
+  close: require('../../../assets/images/icon/Close.png'),
+  menu: require('../../../assets/images/icon/Menu.png'),
+  notification: require('../../../assets/images/icon/Notification.png'),
+  mixlrWhite: require('../../../assets/images/icon/Mixlr-White.png'),
+  search: require('../../../assets/images/icon/Search.png'),
 };
 
 const ImageIcon = ({ name, size, style, source, onPress } = {}) => (

@@ -1,10 +1,10 @@
-import React from "react";
-import VideoPlaceholder from "./VideoPlaceholder";
-import MixlrPlaceholder from "./MixlrPlaceholder";
-import Colors from "../constants/Colors";
-import { getLiveEventService } from "../services/media";
-import useReduxState from "../hooks/useReduxState";
-import { rcMediaLiveEventAtom } from "../store/redux/states";
+import React from 'react';
+import VideoPlaceholder from './VideoPlaceholder';
+import MixlrPlaceholder from './MixlrPlaceholder';
+import Colors from '../constants/Colors';
+import { getLiveEventService } from '../services/media';
+import useReduxState from '../hooks/useReduxState';
+import { rcMediaLiveEventAtom } from '../store/redux/states';
 
 export default function LiveEventPlaceholders({ navigation }) {
   // const navigation = useNavigation();
@@ -12,7 +12,7 @@ export default function LiveEventPlaceholders({ navigation }) {
 
   const [isLoading, setIsLoading] = React.useState(true);
   const offlineImage =
-    "https://via.placeholder.com/300x200.png?text=\n\nWe+are+Currently+offline.+++";
+    'https://via.placeholder.com/300x200.png?text=\n\nWe+are+Currently+offline.+++';
   const color = Colors().primary2;
   React.useEffect(() => {
     if (
@@ -23,7 +23,7 @@ export default function LiveEventPlaceholders({ navigation }) {
       setIsLoading(false);
       return;
     }
-    getLiveEventService().then(async (res) => {
+    getLiveEventService().then(async res => {
       setIsLoading(false);
       await setLiveEvent({ ...res, lastCheck: new Date().toISOString() });
     });

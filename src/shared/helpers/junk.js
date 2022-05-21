@@ -1,5 +1,5 @@
-import AudioImageCard from "../../components/Audio/AudioImageCard";
-import React from "react";
+import AudioImageCard from '../../components/Audio/AudioImageCard';
+import React from 'react';
 
 if (item.media.length === 10000) {
   for (let i = 0; i < item.media.length; ) {

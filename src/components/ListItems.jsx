@@ -1,16 +1,16 @@
-import React from "react";
-import { scale } from "react-native-size-matters";
-import { Text, View } from "./Themed";
+import React from 'react';
+import { scale } from 'react-native-size-matters';
+import { Text, View } from './Themed';
 
-import SkeletonPlaceholder from "react-native-skeleton-placeholder";
-import { TouchableOpacity } from "react-native-gesture-handler";
-import Icon from "./Icon";
-import FlexSpaceBetweenCenter, { FlexSpaceBetween } from "./Untils";
-import Colors from "../constants/Colors";
-import styles from "./style";
-import { widthPercentageToDP as wp } from "react-native-responsive-screen";
-import { Ionicons } from "@expo/vector-icons";
-import moment from "moment";
+import SkeletonPlaceholder from 'react-native-skeleton-placeholder';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import Icon from './Icon';
+import FlexSpaceBetweenCenter, { FlexSpaceBetween } from './Untils';
+import Colors from '../constants/Colors';
+import styles from './style';
+import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
+import { Ionicons } from '@expo/vector-icons';
+import moment from 'moment';
 export function ItemSkeleton() {
   return (
     <SkeletonPlaceholder marginRight={10}>
@@ -32,8 +32,8 @@ export function Item({
   React.useEffect(() => {}, []);
   const getTimestamp = () => {
     const date = moment(item.created_at).fromNow();
-    if (["days", "month", "year"].includes(date.split(" ")[1])) {
-      return moment(item.created_at).format("lll");
+    if (['days', 'month', 'year'].includes(date.split(' ')[1])) {
+      return moment(item.created_at).format('lll');
     }
     return date;
   };
@@ -58,9 +58,9 @@ export function Item({
             <Text
               style={{
                 backgroundColor: Colors().white,
-                fontFamily: "Nunito_600SemiBold",
+                fontFamily: 'Nunito_600SemiBold',
                 fontSize: scale(14),
-                width: scale(wp("60%")),
+                width: scale(wp('60%')),
               }}
               numberOfLines={1}
             >
@@ -69,7 +69,7 @@ export function Item({
           </TouchableOpacity>
           <TouchableOpacity onPress={() => setOpen(!open)}>
             <Icon
-              name={open ? "down-open" : "right-open"}
+              name={open ? 'down-open' : 'right-open'}
               size={scale(15)}
               color="gray"
             />
@@ -81,7 +81,7 @@ export function Item({
           <Text
             style={{
               fontSize: scale(12),
-              fontFamily: "Nunito_400Regular",
+              fontFamily: 'Nunito_400Regular',
             }}
             numberOfLines={5}
           >
@@ -89,7 +89,7 @@ export function Item({
           </Text>
           {onDelete && (
             <FlexSpaceBetween
-              style={[{ justifyContent: "space-between", marginTop: 20 }]}
+              style={[{ justifyContent: 'space-between', marginTop: 20 }]}
             >
               <Text>{getTimestamp()}</Text>
               {onSend && (

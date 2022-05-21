@@ -1,18 +1,18 @@
-import React from "react";
-import { TextInput, TouchableOpacity, View } from "react-native";
-import styles from "./style";
-import { returnStyle } from "../../shared/helpers/general";
-import Icon from "../Icon";
-import clsx from "clsx";
-import Colors from "../../constants/Colors";
-import ImageIcon from "../ImageIcon";
+import React from 'react';
+import { TextInput, TouchableOpacity, View } from 'react-native';
+import styles from './style';
+import { returnStyle } from '../../shared/helpers/general';
+import Icon from '../Icon';
+import clsx from 'clsx';
+import Colors from '../../constants/Colors';
+import ImageIcon from '../ImageIcon';
 export default function Input(props = {}) {
   const { icon, onIconPress } = props;
   const [isPassword, setIsPassword] = React.useState(
-    props.secureTextEntry || false
+    props.secureTextEntry || false,
   );
   const textInput = returnStyle([!!icon], [{ paddingRight: 40 }]);
-  const passIcon = props.secureTextEntry ? "hide" : null;
+  const passIcon = props.secureTextEntry ? 'hide' : null;
   function onIconPressEvent() {
     if (props.secureTextEntry) {
       setIsPassword(!isPassword);
@@ -24,7 +24,7 @@ export default function Input(props = {}) {
     [Colors().primary2]: !isPassword && props.secureTextEntry,
   });
   return (
-    <View style={[{ position: "relative" }]}>
+    <View style={[{ position: 'relative' }]}>
       <TextInput
         {...props}
         secureTextEntry={!!isPassword}
@@ -48,26 +48,26 @@ export const SearchInput = ({
   onTextChange,
   placeholder,
 } = {}) => {
-  const [value, setValue] = React.useState(propsValue || "");
-  const onChangeText = (value) => {
+  const [value, setValue] = React.useState(propsValue || '');
+  const onChangeText = value => {
     setValue(value);
     if (onTextChange) onTextChange(value);
   };
   return (
     <View
       style={{
-        position: "relative",
+        position: 'relative',
         height: 58,
       }}
     >
       <TextInput
         value={value}
-        placeholder={placeholder || "Search"}
+        placeholder={placeholder || 'Search'}
         onChangeText={onChangeText}
         style={styles.inputSearch}
       />
       <View style={styles.searchIcon}>
-        <ImageIcon name={"search"} size={16} onPress={() => onSearch(value)} />
+        <ImageIcon name={'search'} size={16} onPress={() => onSearch(value)} />
       </View>
     </View>
   );

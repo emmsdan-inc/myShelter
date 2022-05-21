@@ -1,6 +1,6 @@
-import EStyleSheet from "react-native-extended-stylesheet";
-import { scale } from "react-native-size-matters";
-import Colors from "../../constants/Colors";
+import EStyleSheet from 'react-native-extended-stylesheet';
+import { scale } from 'react-native-size-matters';
+import Colors from '../../constants/Colors';
 
 export default EStyleSheet.create({
   container: {
@@ -35,7 +35,7 @@ export const textStyles = EStyleSheet.create({
     color: Colors().background,
   },
   text: {
-    fontFamily: "Nunito_600SemiBold",
+    fontFamily: 'Nunito_600SemiBold',
     fontSize: scale(11),
   },
 });

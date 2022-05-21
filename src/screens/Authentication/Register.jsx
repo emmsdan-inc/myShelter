@@ -1,25 +1,25 @@
-import * as React from "react";
-import { ActivityIndicator, Image, ScrollView } from "react-native";
-import { Text, View } from "../../components/Themed";
+import * as React from 'react';
+import { ActivityIndicator, Image, ScrollView } from 'react-native';
+import { Text, View } from '../../components/Themed';
 
-import styles from "./style";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import data from "./data";
-import CheckBox from "expo-checkbox";
-import Routes from "../../navigation/Routes";
-import Button from "../../components/Button";
-import Input from "../../components/Input";
-import Spacer from "../../components/Spacer";
-import Colors from "../../constants/Colors";
+import styles from './style';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import data from './data';
+import CheckBox from 'expo-checkbox';
+import Routes from '../../navigation/Routes';
+import Button from '../../components/Button';
+import Input from '../../components/Input';
+import Spacer from '../../components/Spacer';
+import Colors from '../../constants/Colors';
 import FlexSpaceBetweenCenter, {
   FlexSpaceBetween,
-} from "../../components/Untils";
-import { useForm, Controller } from "react-hook-form";
-import Notification from "../../components/Notification";
-import { registerService } from "../../services/authentication";
-import useAuthenticateUser from "../../hooks/useAuthenticateUser";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { registerScheme } from "./validation";
+} from '../../components/Untils';
+import { useForm, Controller } from 'react-hook-form';
+import Notification from '../../components/Notification';
+import { registerService } from '../../services/authentication';
+import useAuthenticateUser from '../../hooks/useAuthenticateUser';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { registerScheme } from './validation';
 
 export default function RegisterScreen({ navigation }) {
   const insets = useSafeAreaInsets();
@@ -32,36 +32,36 @@ export default function RegisterScreen({ navigation }) {
     formState: { isValid, isSubmitting },
   } = useForm({
     defaultValues: {
-      email: "",
-      password: "",
-      name: "",
-      phone: "",
+      email: '',
+      password: '',
+      name: '',
+      phone: '',
       term: false,
     },
     resolver: yupResolver(registerScheme),
-    mode: "all",
+    mode: 'all',
   });
-  const onSubmit = handleSubmit(async (data) => {
+  const onSubmit = handleSubmit(async data => {
     setIsError(null);
     const resp = await registerService(data);
     if (resp.error || resp.errorInfo) {
       const flat = JSON.stringify(resp.error || resp.errorInfo);
-      const isUnique = flat.includes("unique validation");
-      const isEmailUnique = flat.includes("email") ? "email" : "";
-      const isPhoneUnique = flat.includes("phone") ? "phone number" : "";
+      const isUnique = flat.includes('unique validation');
+      const isEmailUnique = flat.includes('email') ? 'email' : '';
+      const isPhoneUnique = flat.includes('phone') ? 'phone number' : '';
       setIsError(
         isUnique
           ? `User already with this ${isPhoneUnique} ${
-              isPhoneUnique && isEmailUnique ? "and" : ""
+              isPhoneUnique && isEmailUnique ? 'and' : ''
             } ${isEmailUnique} already exist.`
-          : resp.message
+          : resp.message,
       );
-      saveUser({ token: "" });
+      saveUser({ token: '' });
       return;
     }
     if (!resp) {
-      setIsError("Something went wrong. Please try again later.");
-      saveUser({ token: "" });
+      setIsError('Something went wrong. Please try again later.');
+      saveUser({ token: '' });
       return;
     }
     await saveUser(resp);
@@ -74,15 +74,15 @@ export default function RegisterScreen({ navigation }) {
     >
       <View style={[]}>
         <Spacer size={8} />
-        <View style={{ alignItems: "center" }}>
+        <View style={{ alignItems: 'center' }}>
           <Image
-            source={require("../../../assets/images/logo-black.png")}
+            source={require('../../../assets/images/logo-black.png')}
             style={styles.image}
           />
         </View>
         <Spacer size={30} />
 
-        <Notification visible={isError} message={isError} mode={"error"} />
+        <Notification visible={isError} message={isError} mode={'error'} />
         <Spacer size={8} />
         <View>
           <Controller
@@ -92,12 +92,12 @@ export default function RegisterScreen({ navigation }) {
             }}
             render={({ field: { onChange, onBlur, value } }) => (
               <Input
-                icon={"profile"}
+                icon={'profile'}
                 onBlur={onBlur}
                 onChangeText={onChange}
                 value={value}
                 placeholder={data.nameLabel}
-                autoComplete={"name"}
+                autoComplete={'name'}
               />
             )}
             name="name"
@@ -110,15 +110,15 @@ export default function RegisterScreen({ navigation }) {
             }}
             render={({ field: { onChange, onBlur, value } }) => (
               <Input
-                icon={"message"}
+                icon={'message'}
                 onBlur={onBlur}
                 onChangeText={onChange}
                 value={value}
                 placeholder="Email"
-                autoCapitalize={"none"}
+                autoCapitalize={'none'}
                 keyboardType="email-address"
-                autoComplete={"email"}
-                textContentType={"emailAddress"}
+                autoComplete={'email'}
+                textContentType={'emailAddress'}
               />
             )}
             name="email"
@@ -132,13 +132,13 @@ export default function RegisterScreen({ navigation }) {
             }}
             render={({ field: { onChange, onBlur, value } }) => (
               <Input
-                icon={"call"}
+                icon={'call'}
                 onBlur={onBlur}
                 onChangeText={onChange}
                 value={value}
                 placeholder={data.phoneLabel}
                 keyboardType="phone-pad"
-                autoComplete={"tel"}
+                autoComplete={'tel'}
               />
             )}
             name="phone"
@@ -157,8 +157,8 @@ export default function RegisterScreen({ navigation }) {
                 onBlur={onBlur}
                 onChangeText={onChange}
                 value={value}
-                autoComplete={"password"}
-                icon={"password"}
+                autoComplete={'password'}
+                icon={'password'}
               />
             )}
             name="password"
@@ -189,10 +189,10 @@ export default function RegisterScreen({ navigation }) {
         </View>
         <Spacer size={30} />
 
-        <View style={{ alignItems: "center" }}>
+        <View style={{ alignItems: 'center' }}>
           <View style={{ width: 185 }}>
             <Button disabled={!isValid || isSubmitting} onPress={onSubmit}>
-              {isSubmitting ? <ActivityIndicator /> : "Sign up"}
+              {isSubmitting ? <ActivityIndicator /> : 'Sign up'}
             </Button>
           </View>
           <Spacer size={8} />

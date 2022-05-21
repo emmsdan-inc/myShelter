@@ -1,4 +1,4 @@
-import $http from "./api";
+import $http from './api';
 
 export async function searchService(page, params) {
   try {
@@ -11,7 +11,7 @@ export async function searchService(page, params) {
 
 export async function getLiveEventService() {
   try {
-    const event = await $http.get("event/live");
+    const event = await $http.get('event/live');
     return event.data;
   } catch (error) {
     return error?.response?.data || error.message;

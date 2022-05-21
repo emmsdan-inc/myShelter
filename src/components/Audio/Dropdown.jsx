@@ -1,8 +1,8 @@
-import React from "react";
-import { Text, View, TouchableOpacity } from "react-native";
-import styles from "./style";
-import { useNavigation } from "@react-navigation/native";
-import Routes from "../../navigation/Routes";
+import React from 'react';
+import { Text, View, TouchableOpacity } from 'react-native';
+import styles from './style';
+import { useNavigation } from '@react-navigation/native';
+import Routes from '../../navigation/Routes';
 
 export default function AudioDropdown({
   onPress,
@@ -18,7 +18,7 @@ export default function AudioDropdown({
     // pass id, title, uri
     // downloadThis({id, uri, title})
     // returns a notification
-    console.log("downloading media");
+    console.log('downloading media');
     onPress();
   };
 

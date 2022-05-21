@@ -1,39 +1,39 @@
-export const rcFirstTimeUseAtom = "rcFirstTimeUseAtom";
-export const rcOpenMiniPlayerAtom = "rcOpenMiniPlayerAtom";
-export const rcBottomTabHeightAtom = "rcBottomTabHeightAtom";
-export const rcNavigatorAtom = "rcNavigatorAtom";
+export const rcFirstTimeUseAtom = 'rcFirstTimeUseAtom';
+export const rcOpenMiniPlayerAtom = 'rcOpenMiniPlayerAtom';
+export const rcBottomTabHeightAtom = 'rcBottomTabHeightAtom';
+export const rcNavigatorAtom = 'rcNavigatorAtom';
 export const rcFirstTimeUseSelector = rcFirstTimeUseAtom;
 
-export const rcUserTokenAtom = "rcUserTokenAtom";
+export const rcUserTokenAtom = 'rcUserTokenAtom';
 export const rcUserTokenSelector = {
   key: rcUserTokenAtom,
-  value: "",
+  value: '',
 };
 
-export const rcUserProfileAtom = "rcUserProfileAtom";
+export const rcUserProfileAtom = 'rcUserProfileAtom';
 export const rcUserProfileSelector = {
   key: rcUserProfileAtom,
 };
 
 export const rcMediaPlaybackStatusUpdateAtom =
-  "rcMediaPlaybackStatusUpdateAtom";
+  'rcMediaPlaybackStatusUpdateAtom';
 
-import { ALL_MEDIAS_IN_STORE, CURRENTLY_PLAYING } from "../../constants/Media";
-import { searchService } from "../../services/media";
+import { ALL_MEDIAS_IN_STORE, CURRENTLY_PLAYING } from '../../constants/Media';
+import { searchService } from '../../services/media';
 
-export const rcMediaPlayObjectAtom = "rcMediaPlayObjectAtom";
+export const rcMediaPlayObjectAtom = 'rcMediaPlayObjectAtom';
 
-export const rcMediaObjectAtom = "rcMediaObjectAtom";
+export const rcMediaObjectAtom = 'rcMediaObjectAtom';
 
-export const rcMediaCurrentlyPlayingAtom = "rcMediaCurrentlyPlayingAtom";
+export const rcMediaCurrentlyPlayingAtom = 'rcMediaCurrentlyPlayingAtom';
 
 export const rcMediaCurrentlyPlayingSelector = rcMediaCurrentlyPlayingAtom;
 
 export const rcMediaLiveEventAtom = {
-  key: "rcMediaLiveEventAtom",
+  key: 'rcMediaLiveEventAtom',
   value: {},
 };
-export const rcMediasAtom = "rcMediasAtom";
+export const rcMediasAtom = 'rcMediasAtom';
 
 export const rcMediaAllMediaSelector = rcMediasAtom;
 

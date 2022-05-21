@@ -1,60 +1,60 @@
-import EStyleSheet from "react-native-extended-stylesheet";
-import Colors from "../../constants/Colors";
-import { scale } from "react-native-size-matters";
-import { widthPercentageToDP as wp } from "react-native-responsive-screen";
-import { Dimensions } from "react-native";
-const { width, height } = Dimensions.get("screen");
+import EStyleSheet from 'react-native-extended-stylesheet';
+import Colors from '../../constants/Colors';
+import { scale } from 'react-native-size-matters';
+import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
+import { Dimensions } from 'react-native';
+const { width, height } = Dimensions.get('screen');
 export default EStyleSheet.create({
   container: {
     backgroundColor: Colors().background,
     flex: 1,
-    width: "100%",
-    height: "100%",
-    alignItems: "center",
+    width: '100%',
+    height: '100%',
+    alignItems: 'center',
     // justifyContent: "center",
   },
   footer: {
-    width: wp("50%"),
-    position: "absolute",
+    width: wp('50%'),
+    position: 'absolute',
     bottom: scale(width >= 750 ? 10 : 20),
   },
   horizontalContainer: {
     width,
     height,
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   menu: {
-    width: "100%",
+    width: '100%',
     height: scale(40),
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
     borderBottomWidth: 2,
     borderBottomColor: Colors().primaryWash,
   },
   heading: {
     color: Colors().blackGlaze, // global variable $textColor
-    fontFamily: "nunito",
-    fontStyle: "normal",
-    fontWeight: "normal",
+    fontFamily: 'nunito',
+    fontStyle: 'normal',
+    fontWeight: 'normal',
     fontSize: scale(12),
     lineHeight: scale(17),
   },
   heading2: {
     color: Colors().primary, // global variable $textColor
-    fontFamily: "Nunito_700Bold",
-    fontStyle: "normal",
-    fontWeight: "normal",
+    fontFamily: 'Nunito_700Bold',
+    fontStyle: 'normal',
+    fontWeight: 'normal',
     fontSize: scale(14),
     lineHeight: scale(17),
-    textTransform: "uppercase",
+    textTransform: 'uppercase',
   },
   menuText: {
     color: Colors().blackGlaze, // global variable $textColor
-    fontFamily: "nunito",
-    fontStyle: "normal",
-    fontWeight: "normal",
+    fontFamily: 'nunito',
+    fontStyle: 'normal',
+    fontWeight: 'normal',
     fontSize: scale(16),
     lineHeight: scale(17),
   },
@@ -64,34 +64,34 @@ export default EStyleSheet.create({
   },
   navigator: {
     width: scale(100),
-    height: "100%",
-    position: "absolute", // 80% of screen width
+    height: '100%',
+    position: 'absolute', // 80% of screen width
   },
   text: {
     color: Colors().blackGlaze, // global variable $textColor
-    fontFamily: "Nunito",
-    fontStyle: "normal",
-    fontWeight: "normal",
+    fontFamily: 'Nunito',
+    fontStyle: 'normal',
+    fontWeight: 'normal',
     fontSize: scale(15),
     lineHeight: scale(24),
-    textAlign: "left",
+    textAlign: 'left',
     width: scale(280),
   },
   footerText: {
     color: Colors().darkBlueBlack, // global variable $textColor
-    fontFamily: "nunito",
-    fontStyle: "normal",
-    fontWeight: "normal",
+    fontFamily: 'nunito',
+    fontStyle: 'normal',
+    fontWeight: 'normal',
     fontSize: scale(11),
     lineHeight: scale(14),
     opacity: 0.3,
   },
   mainTitle: {
     fontSize: scale(20),
-    textAlign: "center",
+    textAlign: 'center',
   },
   textArea: {
-    fontFamily: "Nunito_400Regular",
+    fontFamily: 'Nunito_400Regular',
     fontSize: scale(15),
     padding: scale(20),
   },

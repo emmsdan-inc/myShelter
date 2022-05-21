@@ -1,14 +1,14 @@
-import React from "react";
+import React from 'react';
 import FlexSpaceBetweenCenter, {
   BaseWrapper,
   HorizontalScroll,
-} from "../Untils";
-import Spacer from "../Spacer";
-import { View } from "react-native";
-import SkeletonPlaceholder from "react-native-skeleton-placeholder";
-import random from "lodash/random";
-import { widthPercentageToDP as wp } from "react-native-responsive-screen";
-import { scale } from "react-native-size-matters";
+} from '../Untils';
+import Spacer from '../Spacer';
+import { View } from 'react-native';
+import SkeletonPlaceholder from 'react-native-skeleton-placeholder';
+import random from 'lodash/random';
+import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
+import { scale } from 'react-native-size-matters';
 
 export function AudioListSkeleton({ length = 10 }) {
   return Array(length)

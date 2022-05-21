@@ -1,12 +1,12 @@
-import React from "react";
-import { Image, Text, TouchableOpacity, View } from "react-native";
-import styles from "./style";
-import Icon from "../Icon";
-import FlexSpaceBetweenCenter, { FlexCenter } from "../Untils";
-import Colors from "../../constants/Colors";
-import AudioDropdown from "./Dropdown";
-import { useNavigation } from "@react-navigation/native";
-import Routes from "../../navigation/Routes";
+import React from 'react';
+import { Image, Text, TouchableOpacity, View } from 'react-native';
+import styles from './style';
+import Icon from '../Icon';
+import FlexSpaceBetweenCenter, { FlexCenter } from '../Untils';
+import Colors from '../../constants/Colors';
+import AudioDropdown from './Dropdown';
+import { useNavigation } from '@react-navigation/native';
+import Routes from '../../navigation/Routes';
 
 export default function AudioListCard({
   uri,
@@ -34,7 +34,7 @@ export default function AudioListCard({
     setOpen(!open);
     if (onPress) onPress();
   };
-  const source = uri ? { uri } : require("../../../assets/images/logo.png");
+  const source = uri ? { uri } : require('../../../assets/images/logo.png');
   return (
     <TouchableOpacity onPress={navigate}>
       <View style={styles.audioListCard}>

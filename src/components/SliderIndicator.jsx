@@ -1,6 +1,6 @@
-import React from "react";
-import { Animated } from "react-native";
-import { scale } from "react-native-size-matters";
+import React from 'react';
+import { Animated } from 'react-native';
+import { scale } from 'react-native-size-matters';
 
 export default function SliderIndicator({ active, color }) {
   const [size] = React.useState(new Animated.Value(0));
