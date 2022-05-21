@@ -68,7 +68,10 @@ export const SearchInput = ({
         onChangeText={onChangeText}
         style={styles.inputSearch}
       />
-      <TouchableOpacity style={styles.searchIcon} onPress={() => onSearch(value)}>
+      <TouchableOpacity
+        style={styles.searchIcon}
+        onPress={() => onSearch(value)}
+      >
         <ImageIcon name={'search'} size={16} />
       </TouchableOpacity>
     </View>

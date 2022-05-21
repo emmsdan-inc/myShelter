@@ -5,24 +5,14 @@ import { Text, View } from '../../components/Themed';
 import { scale } from 'react-native-size-matters';
 import styles from './style';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import data from './data';
-import { APPLICATION_NAME } from '../../constants/App';
 import Spacer from '../../components/Spacer';
-import FlexSpaceBetweenCenter, {
-  BaseWrapper,
-  OpenURLButton,
-} from '../../components/Untils';
-import Icon from '../../components/Icon';
-import ImageIcon from '../../components/ImageIcon';
-import Colors from '../../constants/Colors';
-import useAuthenticateUser from '../../hooks/useAuthenticateUser';
-import { NavigationProp } from '@react-navigation/native';
+import { OpenURLButton } from '../../components/Untils';
 import Button from '../../components/Button';
 import { GiveAccountInfo } from './GiveComponents';
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import env from '../../services/environment';
 
-export default function GiveComponent({ navigation }) {
+export default function GiveComponent({}) {
   const insets = useSafeAreaInsets();
 
   return (
@@ -50,19 +40,18 @@ export default function GiveComponent({ navigation }) {
         <Spacer size={8} />
         <GiveAccountInfo />
         <Spacer size={8} />
-  
-        <View style={[{ justifyContent: 'center', alignItems: 'center'}]}>
-        <OpenURLButton url={env.paymentURL}>
-          {({ onPress }) => (
-            <Button give sm onPress={onPress}>
-              Give
-            </Button>
-          )}
-        </OpenURLButton>
-        </View>
-  
-        <Spacer size={48} />
 
+        <View style={[{ justifyContent: 'center', alignItems: 'center' }]}>
+          <OpenURLButton url={env.paymentURL}>
+            {({ onPress }) => (
+              <Button give sm onPress={onPress}>
+                Give
+              </Button>
+            )}
+          </OpenURLButton>
+        </View>
+
+        <Spacer size={48} />
       </ScrollView>
     </View>
   );

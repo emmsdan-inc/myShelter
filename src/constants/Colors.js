@@ -56,6 +56,7 @@ const colors = {
     blackGlaze: basic.white,
     darkBlueBlack: basic.grayText,
     blackWash: '#D9DBDE',
+    blackShadow: '#043f56',
   },
 };
 export default function Colors(type) {

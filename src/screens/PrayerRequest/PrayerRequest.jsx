@@ -2,9 +2,8 @@ import React from 'react';
 import { Text, View } from '../../components/Themed';
 import styles from './style';
 import Spacer from '../../components/Spacer';
-import data from './data';
 import Item from '../../components/ListItems';
-import { Alert, FlatList, Platform, TextInput } from 'react-native';
+import { FlatList, Platform, TextInput } from 'react-native';
 import Button from '../../components/Button';
 import { BaseWrapper, FlexSpaceBetween } from '../../components/Untils';
 import { useNavigation } from '@react-navigation/native';
@@ -19,7 +18,6 @@ import {
   update,
 } from '../../services/others';
 import { searchService } from '../../services/media';
-import useCacheableGetRequest from '../../hooks/useCacheableGetRequest';
 import { toaster } from '../../shared/helpers/func';
 
 const onShare = item => {
@@ -113,32 +111,54 @@ export const GetPrayerRequests = ({ onCreatePrayer, route }) => {
 
 export function CreatePrayerRequest({ route }) {
   const [state, setState] = React.useState({});
+  const [updated, setUpdate] = React.useState(false);
+  const [prev, setPrev] = React.useState({});
   React.useEffect(() => {
     if (route.params) {
       setState(route.params || {});
     }
   }, [route.params]);
   const onSave = async () => {
-    if (state.id && !state.newPrayerId) {
-      // save
-      const payload = {
-        ...state,
-        title: state.description?.slice(0, 40),
-        description: state.description,
-      };
-      await update('prayer-request/' + state.id, payload);
-      toaster('Prayer Request', 'Your PR has been updated');
-    } else {
-      // create
-      const payload = {
-        title: state.description?.slice(0, 40),
-        description: state.description,
-      };
-      const data = await create('prayer-request', payload);
-      setState(data);
-      toaster('Prayer Request', 'Your PR has been created');
+    try {
+      if (state.id && !state.newPrayerId) {
+        // save
+        const payload = {
+          ...state,
+          title: state.description?.slice(0, 40),
+          description: state.description,
+        };
+        await update('prayer-request/' + state.id, payload);
+        setPrev(payload);
+  
+        toaster('Prayer Request', 'Your PR has been updated');
+      } else {
+        // create
+        const payload = {
+          title: state.description?.slice(0, 40),
+          description: state.description,
+        };
+        const data = await create('prayer-request', payload);
+        setState(data);
+        setPrev(data);
+  
+        toaster('Prayer Request', 'Your PR has been created');
+      }
+      setUpdate(true);
+    } catch (error) {
+      console.error(error);
     }
   };
+  
+  const textInput = React.useRef(null);
+  React.useEffect(() => {
+    if (textInput.current) {
+      textInput.current.focus();
+    }
+    if (state.description !== prev.description) {
+      setUpdate(false);
+    }
+  }, [state]);
+  
 
   return (
     <View style={{ flex: 1 }}>
@@ -151,9 +171,9 @@ export function CreatePrayerRequest({ route }) {
           }}
           rightContent={
             <Ionicons
-              name="checkmark-circle"
-              size={30}
-              color={Colors().primary}
+              name={ updated ? "checkmark-circle" :"checkmark-circle-outline" }
+              size={updated ? 25 : 35}
+              color={updated ?Colors().skeletonSuccess : Colors().blackGlaze}
               onPress={onSave}
             />
           }
@@ -166,28 +186,15 @@ export function CreatePrayerRequest({ route }) {
       >
         <TextInput
           placeholder="Enter Your Prayer request"
+          placeholderTextColor={Colors().textPlaceholder}
+          autoFocus={true}
+          ref={textInput}
+          style={[styles.textArea, { color: Colors().text }]}
           value={state.description}
           onChangeText={text => setState({ ...state, description: text })}
-          style={[styles.textArea, { height: '90%' }]}
           multiline={true}
           showsVerticalScrollIndicator={false}
         />
-        <FlexSpaceBetween
-          style={[
-            {
-              paddingHorizontal: 20,
-              marginBottom: -15,
-              justifyContent: 'flex-end',
-            },
-          ]}
-        >
-          <Ionicons
-            name="arrow-redo"
-            size={30}
-            color={Colors().primary}
-            onPress={() => onShare(state)}
-          />
-        </FlexSpaceBetween>
       </KeyboardAvoidingView>
     </View>
   );

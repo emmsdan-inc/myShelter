@@ -31,18 +31,25 @@ export default function ForgotPasswordScreen({ navigation }) {
     resolver: yupResolver(forgotPasswordScheme),
     mode: 'all',
   });
-  const onSubmit = handleSubmit(async data => {
-    setIsError(false);
-    const resp = await forgetPasswordService(data);
-    if (resp.error) {
-      setIsError(resp.message);
-      return;
-    }
-    navigation.navigate(Routes.ActivationCode, {
-      ...data,
-      next: Routes.ChangePassword,
-    });
-  });
+  const onSubmit = React.useCallback(
+    handleSubmit(async data => {
+      try {
+        setIsError(false);
+        const resp = await forgetPasswordService(data);
+        if (resp.error) {
+          setIsError(resp.message);
+          return;
+        }
+        navigation.navigate(Routes.ActivationCode, {
+          ...data,
+          next: Routes.ChangePassword,
+        });
+      } catch (error) {
+        setIsError(error.message);
+      }
+    }),
+    [navigation, isError, isValid],
+  );
 
   return (
     <ScrollView

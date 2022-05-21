@@ -1,6 +1,5 @@
 import 'react-native-gesture-handler';
 import { StatusBar } from "expo-status-bar";
-import { ActivityIndicator} from "react-native";
 import React from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
@@ -14,8 +13,6 @@ import Toast from 'react-native-toast-message';
 import {PersistGate} from 'redux-persist/integration/react';
 
 import { fetchAll, store, persistor } from "./src/store/redux";
-import Colors from "./src/constants/Colors";
-import { View } from "./src/components/Themed";
 import { Loading } from "./src/components/Untils";
 
 

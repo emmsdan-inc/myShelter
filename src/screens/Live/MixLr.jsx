@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  ActivityIndicator,
-  Image,
-  ScrollView,
-  Text,
-  TouchableOpacity,
-} from 'react-native';
+import { ActivityIndicator, Image, ScrollView, Text } from 'react-native';
 
 import FlexSpaceBetweenCenter, { BaseWrapper } from '../../components/Untils';
 import styles from '../MediaPlayer/style';
@@ -16,7 +10,6 @@ import get from 'lodash/get';
 import SoundPlayer from 'react-native-sound-player';
 import Colors from '../../constants/Colors';
 import Icon from '../../components/Icon';
-import { useInterval } from 'usehooks-ts';
 import { View } from '../../components/Themed';
 import { FloatingButton } from '../../components/Button';
 

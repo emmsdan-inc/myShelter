@@ -102,6 +102,7 @@ export const TopHeader = ({ title, back, rightContent }) => {
           }
         }}
         size={16}
+        color={Colors().blackGlaze}
       />
       <FlexSpaceBetweenCenter
         style={{

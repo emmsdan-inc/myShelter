@@ -3,7 +3,7 @@ import { Text, View, TouchableOpacity } from 'react-native';
 import styles from './style';
 import { useNavigation } from '@react-navigation/native';
 import Routes from '../../navigation/Routes';
-import Colors from "../../constants/Colors";
+import Colors from '../../constants/Colors';
 
 export default function AudioDropdown({
   onPress,
@@ -39,29 +39,17 @@ export default function AudioDropdown({
       onListen();
     }
   };
-  const style = { paddingVertical: 5, color: Colors().blackGlaze }
+  const style = { paddingVertical: 5, color: Colors().blackGlaze };
   return isVisible ? (
     <>
       <View style={styles.audioListCardDropDown}>
-        <Text
-          numberOfLines={1}
-          style={[style]}
-          onPress={DownloadMedia}
-        >
+        <Text numberOfLines={1} style={[style]} onPress={DownloadMedia}>
           Download
         </Text>
-        <Text
-          numberOfLines={1}
-          style={[style]}
-          onPress={ShareMedia}
-        >
+        <Text numberOfLines={1} style={[style]} onPress={ShareMedia}>
           Share
         </Text>
-        <Text
-          numberOfLines={1}
-          style={[style]}
-          onPress={ListenToMedia}
-        >
+        <Text numberOfLines={1} style={[style]} onPress={ListenToMedia}>
           Listen
         </Text>
       </View>

@@ -18,8 +18,7 @@ import {
   update,
 } from '../../services/others';
 import { searchService } from '../../services/media';
-import { sendNotification, toaster } from '../../shared/helpers/func';
-import Toast from 'react-native-toast-message';
+import { toaster } from '../../shared/helpers/func';
 
 const onShare = item => {
   prayerAndTestimoniesActions()(item.id, 'testimony');
@@ -111,32 +110,54 @@ export const GetTestimony = ({ onCreateTestimony, route }) => {
 
 export function CreateTestimony({ route }) {
   const [state, setState] = React.useState({});
+  const [updated, setUpdate] = React.useState(false);
+  const [prev, setPrev] = React.useState({});
+  
   React.useEffect(() => {
     if (route.params) {
       setState(route.params || {});
     }
   }, [route.params]);
   const onSave = async () => {
-    if (state.id && !state.newTestimonyId) {
-      // save
-      const payload = {
-        ...state,
-        name: state.testimony.slice(0, 40),
-        testimony: state.testimony,
-      };
-      await update('testimony/' + state.id, payload);
-      await toaster('Testimony', 'Your testimony has been updated');
-    } else {
-      // create
-      const payload = {
-        name: state.testimony.slice(0, 40),
-        testimony: state.testimony,
-      };
-      const data = await create('testimony', payload);
-      setState(data);
-      await toaster('Testimony', 'Your testimony has been added');
-    }
+   try {
+     if (state.id && !state.newTestimonyId) {
+       // save
+       const payload = {
+         ...state,
+         name: state.testimony.slice(0, 40),
+         testimony: state.testimony,
+       };
+       await update('testimony/' + state.id, payload);
+       setPrev(state);
+       await toaster('Testimony', 'Your testimony has been updated');
+     } else {
+       // create
+       const payload = {
+         name: state.testimony.slice(0, 40),
+         testimony: state.testimony,
+       };
+       const data = await create('testimony', payload);
+       setState(data);
+       setPrev(data);
+       await toaster('Testimony', 'Your testimony has been added');
+     }
+  
+     setUpdate(true);
+   } catch (error) {
+     console.error(error);
+   }
   };
+
+  const textInput = React.useRef(null);
+  React.useEffect(() => {
+    if (textInput.current) {
+      textInput.current.focus();
+    }
+  
+    if (state.testimony !== prev.testimony) {
+      setUpdate(false);
+    }
+  }, [state]);
 
   return (
     <View style={{ flex: 1 }}>
@@ -149,9 +170,9 @@ export function CreateTestimony({ route }) {
           }}
           rightContent={
             <Ionicons
-              name="checkmark-circle"
-              size={30}
-              color={Colors().primary}
+              name={ updated ? "checkmark-circle" :"checkmark-circle-outline" }
+              size={updated ? 25 : 35}
+              color={updated ?Colors().skeletonSuccess : Colors().blackGlaze}
               onPress={onSave}
             />
           }
@@ -160,33 +181,19 @@ export function CreateTestimony({ route }) {
       <Spacer size={15} />
 
       <KeyboardAvoidingView
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        behavior={Platform.OS === 'ios' ? 'padding' : 'padding'}
       >
         <TextInput
           placeholder="Enter Your Testimony"
+          placeholderTextColor={Colors().textPlaceholder}
           value={state.testimony}
           onChangeText={text => setState({ ...state, testimony: text })}
-          style={[styles.textArea, { height: '90%' }]}
+          style={[styles.textArea, { color: Colors().text }]}
           multiline={true}
           showsVerticalScrollIndicator={false}
+          autoFocus={true}
+          ref={textInput}
         />
-        <FlexSpaceBetween
-          style={[
-            {
-              paddingHorizontal: 20,
-              marginBottom: -15,
-              justifyContent: 'flex-end',
-            },
-          ]}
-        >
-          <Ionicons
-            name="arrow-redo"
-            size={30}
-            color={Colors().primary}
-            onPress={() => onShare(state)}
-          />
-          <Spacer size={10} />
-        </FlexSpaceBetween>
       </KeyboardAvoidingView>
     </View>
   );

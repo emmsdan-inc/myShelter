@@ -40,18 +40,24 @@ export default function LoginScreen({ navigation }) {
     resolver: yupResolver(loginScheme),
     mode: 'all',
   });
-  const onSubmit = handleSubmit(async data => {
-    setIsError(null);
-    const resp = await loginService(data);
-    if (resp.error) {
-      setIsError(resp.message);
-      saveUser({ token: '' });
-      return;
-    }
-    await saveUser(resp);
-  });
+  const onSubmit = React.useCallback(
+    handleSubmit(async data => {
+      try {
+        setIsError(null);
+        const resp = await loginService(data);
+        if (resp.error) {
+          setIsError(resp.message);
+          saveUser({ token: '' });
+          return;
+        }
+        await saveUser(resp);
+      } catch (error) {
+        setIsError(error.message);
+      }
+    }),
+    [navigation, isError, isValid],
+  );
 
- 
   return (
     <ScrollView
       style={[styles.container, { paddingTop: insets.top * 2 }]}

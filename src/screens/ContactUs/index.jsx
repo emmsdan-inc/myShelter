@@ -5,19 +5,10 @@ import { Text, View } from '../../components/Themed';
 import { scale } from 'react-native-size-matters';
 import styles from './style';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import data from './data';
-import { APPLICATION_NAME } from '../../constants/App';
 import Spacer from '../../components/Spacer';
-import FlexSpaceBetweenCenter, {
-  BaseWrapper,
-  OpenURLButton,
-} from '../../components/Untils';
-import Button from '../../components/Button';
 import { ContactInfo, ContactLocationMap } from './ContactComponents';
-import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
-import env from '../../services/environment';
 
-export default function ContactUs({ navigation }) {
+export default function ContactUs({}) {
   const insets = useSafeAreaInsets();
   return (
     <View style={[styles.container, { paddingHorizontal: scale(32) }]}>

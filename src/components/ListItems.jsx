@@ -57,7 +57,7 @@ export function Item({
           <TouchableOpacity onPress={onPress}>
             <Text
               style={{
-                backgroundColor: Colors().white,
+                backgroundColor: Colors().background,
                 fontFamily: 'Nunito_600SemiBold',
                 fontSize: scale(14),
                 width: scale(wp('60%')),
@@ -91,7 +91,9 @@ export function Item({
             <FlexSpaceBetween
               style={[{ justifyContent: 'space-between', marginTop: 20 }]}
             >
-              <Text>{getTimestamp()}</Text>
+              <Text style={{ fontSize: scale(10), color: Colors().blackWash }}>
+                {getTimestamp()}
+              </Text>
               {onSend && (
                 <Ionicons
                   onPress={onSend}

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ActivityIndicator, Image, ScrollView } from 'react-native';
+import { ActivityIndicator, ScrollView } from 'react-native';
 import { Text, View } from '../../components/Themed';
 
 import styles from './style';
@@ -32,20 +32,27 @@ export default function ChangePasswordScreen({ navigation }) {
     resolver: yupResolver(changePasswordScheme),
     mode: 'all',
   });
-  const onSubmit = handleSubmit(async data => {
-    if (data.password !== data.password1) {
-      setIsError('Password does not match');
-      return;
-    }
-    setIsError(false);
-    const resp = await changePasswordService({ ...data });
-    if (resp.error || !resp.continue) {
-      setIsError(resp.error.message || resp.message);
-      return;
-    }
-    setIsError('success');
-    setTimeout(() => navigation?.navigate(Routes.Login), 3000);
-  });
+  const onSubmit = React.useCallback(
+    handleSubmit(async data => {
+      try {
+        if (data.password !== data.password1) {
+          setIsError('Password does not match');
+          return;
+        }
+        setIsError(false);
+        const resp = await changePasswordService({ ...data });
+        if (resp.error || !resp.continue) {
+          setIsError(resp.error.message || resp.message);
+          return;
+        }
+        setIsError('success');
+        setTimeout(() => navigation?.navigate(Routes.Login), 3000);
+      } catch (error) {
+        setIsError(error.message);
+      }
+    }),
+    [navigation, isError, isValid],
+  );
 
   return (
     <ScrollView

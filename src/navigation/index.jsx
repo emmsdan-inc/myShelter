@@ -1,11 +1,14 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { DrawerActions, NavigationContainer, useNavigation } from '@react-navigation/native';
+import {
+  DrawerActions,
+  NavigationContainer,
+  useNavigation,
+} from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as React from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
 import Colors from '../constants/Colors';
-import ModalScreen from '../screens/ModalScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
 import LinkingConfiguration from './LinkingConfiguration';
 import Index from '../screens/OnBoarding';
@@ -31,12 +34,12 @@ import { CreatePrayerRequest } from '../screens/PrayerRequest/PrayerRequest';
 import Testimony from '../screens/Testimony';
 import { CreateTestimony } from '../screens/Testimony/Testimony';
 import useAuthenticateUser from '../hooks/useAuthenticateUser';
-import { useInterval } from "usehooks-ts";
+import { useInterval } from 'usehooks-ts';
 
 const headerCompsGenerateor = (props, toggle) => ({
   headerShadowVisible: false,
   headerShown: true,
-  headerLeft: MenuIcon(props,'menu', toggle),
+  headerLeft: MenuIcon(props, 'menu', toggle),
   headerRight: MenuIcon(props, 'notification', () =>
     props.navigation?.navigate(Routes.Notification),
   ),
@@ -62,7 +65,11 @@ function RootNavigator() {
   return !['false', 'true'].includes(isLoggedIn) ? (
     <Loading />
   ) : (
-    <Stack.Navigator initialRouteName={isLoggedIn === 'false' ? Routes.OnBoarding : Routes.Home}>
+    <Stack.Navigator
+      initialRouteName={
+        isLoggedIn === 'false' ? Routes.OnBoarding : Routes.Home
+      }
+    >
       <Stack.Screen
         name={Routes.OnBoarding}
         component={Index}
@@ -104,10 +111,10 @@ function RootNavigator() {
         options={{ headerShown: false }}
       />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
-        <Stack.Screen name="Modal" component={ModalScreen} />
+        <Stack.Screen name="Modal" component={DrawerNavigator} />
       </Stack.Group>
     </Stack.Navigator>
-  )
+  );
 }
 
 function DeepStackNavigator(props) {
@@ -190,7 +197,6 @@ const Drawer = createDrawerNavigator();
 
 function MenuIcon(props, name = 'menu', onPress = () => {}) {
   const navigation = useNavigation();
-  console.log(navigation?.openDrawer, 'toggleDrawer');
   return () => {
     return (
       <BaseWrapper>

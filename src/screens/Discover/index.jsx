@@ -1,8 +1,8 @@
 import React from 'react';
-import { ActivityIndicator, FlatList, Text } from 'react-native';
+import { FlatList, Text } from 'react-native';
 import FlexSpaceBetweenCenter, { BaseWrapper } from '../../components/Untils';
 import { scale } from 'react-native-size-matters';
-import { RouteProp, useRoute } from '@react-navigation/native';
+import { useRoute } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import styles from './style';
 import { SearchInput } from '../../components/Input';
@@ -45,7 +45,13 @@ export default function DiscoverScreen() {
     <SafeAreaView>
       <Spacer size={15} />
       <BaseWrapper>
-        <Text style={{ color: Colors().blackGlaze, fontSize: scale(24), textTransform: 'capitalize' }}>
+        <Text
+          style={{
+            color: Colors().blackGlaze,
+            fontSize: scale(24),
+            textTransform: 'capitalize',
+          }}
+        >
           {route.params?.title}
         </Text>
         <Spacer size={5} />

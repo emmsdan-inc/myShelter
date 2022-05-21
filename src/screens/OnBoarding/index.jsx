@@ -36,16 +36,16 @@ export default function Index({ navigation }) {
     }
   }, [isFirstTimeUse]);
 
-  function next() {
-    if (active >= 3) {
-      // setIsFirstTimeUse("true");
+  const next = React.useCallback(() => {
+    if (active < data.length - 1) {
+      setActive(active + 1);
+    } else {
       navigation.navigate(Routes.Login);
     }
-    setActive(active <= 2 ? active + 1 : 3);
-  }
-  function prev() {
+  }, [active]);
+  const prev = React.useCallback(() => {
     setActive(active >= 1 ? active - 1 : 0);
-  }
+  }, [active]);
   const { width } = Dimensions.get('screen');
 
   return (

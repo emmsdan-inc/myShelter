@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ActivityIndicator, Image, ScrollView } from 'react-native';
+import { ActivityIndicator, ScrollView } from 'react-native';
 import { View } from '../../components/Themed';
 // @ts-ignore
 import OTPInput from 'react-native-otp';
@@ -43,24 +43,35 @@ export default function ActivationCodeScreen({ navigation, route }) {
     resolver: yupResolver(otpScheme),
     mode: 'all',
   });
-  const onSubmit = handleSubmit(async data => {
-    setIsError(false);
-    const resp = await verifyOTPService(data);
-    if (resp.error) {
-      setIsError(resp.error.message || resp.message);
-      shouldResend(true);
-      return;
-    }
-    setAuthToken(resp.token);
-    navigation?.navigate(route?.params?.next);
-  });
+  const onSubmit = React.useCallback(
+    handleSubmit(async data => {
+      try {
+        setIsError(false);
+        const resp = await verifyOTPService(data);
+        if (resp.error) {
+          setIsError(resp.error.message || resp.message);
+          shouldResend(true);
+          return;
+        }
+        await setAuthToken(resp.token);
+        navigation?.navigate(route?.params?.next);
+      } catch (error) {
+        setIsError(error.message);
+      }
+    }),
+    [navigation, isError, isValid],
+  );
 
-  const onResend = async () => {
-    shouldResend(false);
-    setIsError('OTP has been sent.');
-    setTimeout(() => shouldResend(true), 50000);
-    await forgetPasswordService(route?.params || {});
-  };
+  const onResend = React.useCallback(async () => {
+    try {
+      shouldResend(false);
+      setIsError('OTP has been sent.');
+      setTimeout(() => shouldResend(true), 50000);
+      await forgetPasswordService(route?.params || {});
+    } catch (error) {
+      setIsError(error.message);
+    }
+  }, [isError, route?.params, enableResend === true]);
 
   return (
     <ScrollView

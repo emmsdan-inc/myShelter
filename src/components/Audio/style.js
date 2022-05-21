@@ -65,7 +65,7 @@ export default EStyleSheet.create({
     padding: 10,
     borderRadius: 5,
     borderWidth: 1,
-    borderColor: Colors().isDark ?  Colors().background :  Colors().primary,
+    borderColor: Colors().isDark ? Colors().background : Colors().primary,
     width: 100,
     zIndex: 100,
   },
