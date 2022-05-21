@@ -1,7 +1,7 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
 import Colors from '../../constants/Colors';
 import { scale } from 'react-native-size-matters';
-import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import { heightPercentageToDP as hp, widthPercentageToDP } from 'react-native-responsive-screen';
 import { Dimensions } from 'react-native';
 const { width, height } = Dimensions.get('screen');
 export default EStyleSheet.create({
@@ -40,6 +40,7 @@ export default EStyleSheet.create({
     width: scale(100),
     height: '100%',
     position: 'absolute', // 80% of screen width
+    zIndex: 1,
   },
   text: {
     color: Colors().blackGlaze, // global variable $textColor
@@ -50,5 +51,27 @@ export default EStyleSheet.create({
     lineHeight: scale(24),
     textAlign: 'center',
     width: scale(280),
+  },
+  button: {
+    borderRadius: scale(5),
+    backgroundColor: Colors().white,
+    alignItems: 'center',
+    justifyContent: 'center',
+    zIndex: 1,
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: widthPercentageToDP('5%'),
+    marginHorizontal: scale(width >= 750 ? 40 : 20),
+    height: scale(30),
+  },
+  buttonText: {
+    color: Colors().blackGlaze,
+    fontFamily: 'Nunito',
+    fontStyle: 'normal',
+    fontWeight: 'normal',
+    fontSize: scale(15),
+    lineHeight: scale(24),
+    textAlign: 'center',
   },
 });

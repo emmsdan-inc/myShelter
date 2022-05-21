@@ -32,6 +32,7 @@ export const basic = {
   white: '#fff',
   oldBackground: '#F4FCFF',
   initBackground: '#F4FCFF',
+  onboarding: 'rgba(0, 17, 23, 0.15)',
 };
 const colors = {
   light: {

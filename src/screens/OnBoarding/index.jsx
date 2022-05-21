@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Dimensions, TouchableOpacity } from 'react-native';
+import { Dimensions, TouchableOpacity, Text } from 'react-native';
 import { View } from '../../components/Themed';
 
 import SliderIndicator from '../../components/SliderIndicator';
@@ -14,6 +14,8 @@ import { rcFirstTimeUseSelector } from '../../store/redux/states';
 import useReduxState from '../../hooks/useReduxState';
 import Icon from '../../components/Icon';
 import FlexSpaceBetweenCenter, { FlexCenter } from '../../components/Untils';
+import Colors from '../../constants/Colors';
+import { widthPercentageToDP } from "react-native-responsive-screen";
 
 export default function Index({ navigation }) {
   const [isFirstTimeUse] = useReduxState(rcFirstTimeUseSelector);
@@ -21,9 +23,10 @@ export default function Index({ navigation }) {
 
   const [active, setActive] = React.useState(0);
   const colors = {
-    0: '#A8518A',
-    1: '#00AFEF',
-    2: '#A8CF45',
+    0: Colors().white || '#A8518A',
+    1: Colors().white || '#00AFEF',
+    2: Colors().white || '#A8CF45',
+    3: Colors().white || '#A8CF45',
   };
 
   React.useEffect(() => {
@@ -34,11 +37,11 @@ export default function Index({ navigation }) {
   }, [isFirstTimeUse]);
 
   function next() {
-    if (active >= 2) {
+    if (active >= 3) {
       // setIsFirstTimeUse("true");
       navigation.navigate(Routes.Login);
     }
-    setActive(active <= 1 ? active + 1 : 2);
+    setActive(active <= 2 ? active + 1 : 3);
   }
   function prev() {
     setActive(active >= 1 ? active - 1 : 0);
@@ -49,7 +52,11 @@ export default function Index({ navigation }) {
     <View style={[styles.container, { paddingTop: insets.top }]}>
       {data.map((data, index) =>
         index === active ? (
-          <OnboardingPage {...data} key={data.text + index} />
+          <OnboardingPage
+            {...data}
+            color={Colors().white}
+            key={data.text + index}
+          />
         ) : null,
       )}
       <View style={[{ paddingTop: scale(100) }]} />
@@ -77,28 +84,49 @@ export default function Index({ navigation }) {
         ]}
         onPress={prev}
       />
-
+  
       <View
         style={[
-          { width, justifyContent: 'space-between', alignItems: 'center', flexDirection: 'row', paddingHorizontal: scale(20) },
+          {
+            width,
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            flexDirection: 'row',
+            paddingHorizontal: scale(20),
+            zIndex: 1,
+            position: 'absolute',
+            bottom: widthPercentageToDP('17%'),
+            backgroundColor: 'transparent',
+          },
         ]}
       >
-        <TouchableOpacity         onPress={prev}
-        >
-          {
-            active !== 0 && <Icon name="angle-left" size={scale(30)} color={colors[active]} />
-          }
+        <TouchableOpacity onPress={prev}>
+          {active !== 0 && (
+            <Icon name="angle-left" size={scale(30)} color={colors[active]} />
+          )}
         </TouchableOpacity>
-        <View style={[styles.sliderContainer]}>
-          <SliderIndicator color={colors[active]} active={active === 0} />
-          <SliderIndicator color={colors[active]} active={active === 1} />
-          <SliderIndicator color={colors[active]} active={active >= 2} />
-        </View>
-        <TouchableOpacity         onPress={next}
+        <View
+          style={[styles.sliderContainer, { backgroundColor: 'transparent' }]}
         >
+          {data.map((data, index) => (
+            <SliderIndicator
+              key={data.text + index}
+              active={active === index}
+              color={colors[index]}
+            />
+          ))}
+        </View>
+        <TouchableOpacity onPress={next}>
           <Icon name="angle-right" size={scale(30)} color={colors[active]} />
         </TouchableOpacity>
       </View>
+  
+      <TouchableOpacity
+        style={[styles.button]}
+        onPress={()=> navigation.navigate(Routes.Login)}
+      >
+        <Text style={styles.buttonText}>Login</Text>
+      </TouchableOpacity>
     </View>
   );
 }
