@@ -36,28 +36,31 @@ export const basic = {
 };
 const colors = {
   light: {
+    ...basic,
     text: '#02202B',
     background: '#fcfcfc',
     tint: tintColorLight,
     tabIconDefault: '#ccc',
     tabIconSelected: tintColorLight,
     textPlaceholder: '#ccc',
-    ...basic,
   },
   dark: {
+    ...basic,
+  
     text: '#FAFEFF',
     textPlaceholder: basic.grayText,
     background: '#02202B',
     tint: tintColorDark,
     tabIconDefault: '#ccc',
     tabIconSelected: tintColorDark,
-    ...basic,
+    blackGlaze: basic.white,
+    darkBlueBlack: basic.grayText,
   },
 };
 export default function Colors(type) {
   const colorScheme = type || Appearance.getColorScheme();
   if (colorScheme === 'dark') {
-    return { ...colors.dark, dark: true, colors: colors.dark };
+    return { ...colors.dark, dark: true, isDark: true, colors: colors.dark };
   }
   return { ...colors.light, dark: false, colors: colors.light };
 }

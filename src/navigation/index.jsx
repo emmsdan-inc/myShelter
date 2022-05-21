@@ -195,7 +195,7 @@ function MenuIcon(props, name = 'menu', onPress = () => {}) {
     );
   };
 }
-function DrawerNavigator(props) {
+function DrawerNavigator() {
   return (
     <Drawer.Navigator
       initialRouteName="App"

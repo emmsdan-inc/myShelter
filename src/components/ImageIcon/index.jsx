@@ -10,7 +10,7 @@ const iconMap = {
   search: require('../../../assets/images/icon/Search.png'),
 };
 
-const ImageIcon = ({ name, size, style, source, onPress } = {}) => (
+const ImageIcon = ({ name, size, style, source, onPress, color } = {}) => (
   <TouchableOpacity onPress={onPress} activeOpacity={onPress ? 0.4 : 0}>
     <Image
       // @ts-ignore
@@ -19,6 +19,7 @@ const ImageIcon = ({ name, size, style, source, onPress } = {}) => (
         { width: scale(size), height: scale(size), borderWidth: 0 },
         style,
       ]}
+      tintColor={color}
       resizeMode="contain"
     />
   </TouchableOpacity>

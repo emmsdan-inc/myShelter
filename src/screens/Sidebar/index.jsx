@@ -43,12 +43,13 @@ export default function SidebarComponent({ navigation }) {
             style={{ width: scale(37), height: scale(37), borderRadius: 50 }}
           />
         ) : (
-          <Icon name={'profile'} size={scale(30)} />
+          <Icon name={'profile'} size={scale(30)} color={Colors().text} />
         )}
         <ImageIcon
           name={'close'}
           size={scale(15)}
           onPress={navigation.closeDrawer}
+          color={Colors().text}
         />
       </FlexSpaceBetweenCenter>
 

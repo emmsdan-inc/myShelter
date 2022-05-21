@@ -31,7 +31,7 @@ export default function Index({ navigation }) {
 
   React.useEffect(() => {
     if (isFirstTimeUse) {
-      // navigation.navigate(Routes.Login);
+      navigation.navigate(Routes.Login);
       return;
     }
   }, [isFirstTimeUse]);
