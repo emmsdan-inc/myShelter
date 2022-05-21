@@ -1,7 +1,14 @@
 import React from 'react';
-import { ScrollView, TouchableOpacity, View, Linking } from 'react-native';
+import {
+  ScrollView,
+  TouchableOpacity,
+  View,
+  Linking,
+  ActivityIndicator,
+} from 'react-native';
 import styles from './style';
 import { scale } from 'react-native-size-matters';
+import Colors from '../constants/Colors';
 
 export default function FlexSpaceBetweenCenter({
   children,
@@ -122,3 +129,9 @@ export const OpenURLButton = ({ url, children }) => {
 
   return children({ onPress: handlePress });
 };
+
+export const Loading = () => (
+  <View style={{ flex: 1, justifyContent: 'center' }}>
+    <ActivityIndicator size={40} color={Colors().primary} />
+  </View>
+);

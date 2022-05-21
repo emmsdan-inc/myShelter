@@ -20,7 +20,7 @@ import { loginScheme } from './validation';
 import { useInterval } from 'usehooks-ts';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import store, { persistor } from '../../store/redux';
-import Logo from "../../components/Logo";
+import Logo from '../../components/Logo';
 
 export default function LoginScreen({ navigation }) {
   const insets = useSafeAreaInsets();

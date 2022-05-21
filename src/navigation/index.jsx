@@ -17,7 +17,7 @@ import RegisterScreen from '../screens/Authentication/Register';
 import SidebarComponent from '../screens/Sidebar';
 import ImageIcon from '../components/ImageIcon';
 import ChangePasswordScreen from '../screens/Authentication/ChangePassword';
-import { BaseWrapper } from '../components/Untils';
+import { BaseWrapper, Loading } from '../components/Untils';
 import TabBar from '../components/NavTab/TabBar';
 import HomeScreen from '../screens/Home';
 import DiscoverScreen from '../screens/Discover';
@@ -30,6 +30,7 @@ import PrayerRequest from '../screens/PrayerRequest';
 import { CreatePrayerRequest } from '../screens/PrayerRequest/PrayerRequest';
 import Testimony from '../screens/Testimony';
 import { CreateTestimony } from '../screens/Testimony/Testimony';
+import useAuthenticateUser from '../hooks/useAuthenticateUser';
 
 const headerCompsGenerateor = props => ({
   headerShadowVisible: false,
@@ -55,8 +56,12 @@ export default function Navigation() {
 const Stack = createNativeStackNavigator();
 
 function RootNavigator() {
-  return (
-    <Stack.Navigator>
+  const [, , , isLoggedIn] = useAuthenticateUser();
+
+  return !['false', 'true'].includes(isLoggedIn) ? (
+    <Loading />
+  ) : (
+    <Stack.Navigator initialRouteName={isLoggedIn === 'false' ? Routes.OnBoarding : Routes.Home}>
       <Stack.Screen
         name={Routes.OnBoarding}
         component={Index}
@@ -101,7 +106,7 @@ function RootNavigator() {
         <Stack.Screen name="Modal" component={ModalScreen} />
       </Stack.Group>
     </Stack.Navigator>
-  );
+  )
 }
 
 function DeepStackNavigator(props) {

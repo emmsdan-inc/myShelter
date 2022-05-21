@@ -1,7 +1,10 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
 import Colors from '../../constants/Colors';
 import { scale } from 'react-native-size-matters';
-import { heightPercentageToDP as hp, widthPercentageToDP } from 'react-native-responsive-screen';
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP,
+} from 'react-native-responsive-screen';
 import { Dimensions } from 'react-native';
 const { width, height } = Dimensions.get('screen');
 export default EStyleSheet.create({

@@ -15,7 +15,7 @@ import useReduxState from '../../hooks/useReduxState';
 import Icon from '../../components/Icon';
 import FlexSpaceBetweenCenter, { FlexCenter } from '../../components/Untils';
 import Colors from '../../constants/Colors';
-import { widthPercentageToDP } from "react-native-responsive-screen";
+import { widthPercentageToDP } from 'react-native-responsive-screen';
 
 export default function Index({ navigation }) {
   const [isFirstTimeUse] = useReduxState(rcFirstTimeUseSelector);
@@ -84,7 +84,7 @@ export default function Index({ navigation }) {
         ]}
         onPress={prev}
       />
-  
+
       <View
         style={[
           {
@@ -120,10 +120,10 @@ export default function Index({ navigation }) {
           <Icon name="angle-right" size={scale(30)} color={colors[active]} />
         </TouchableOpacity>
       </View>
-  
+
       <TouchableOpacity
         style={[styles.button]}
-        onPress={()=> navigation.navigate(Routes.Login)}
+        onPress={() => navigation.navigate(Routes.Login)}
       >
         <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>

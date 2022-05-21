@@ -14,7 +14,7 @@ import Notification from '../../components/Notification';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { changePasswordScheme } from './validation';
 import { changePasswordService } from '../../services/authentication';
-import Logo from "../../components/Logo";
+import Logo from '../../components/Logo';
 
 export default function ChangePasswordScreen({ navigation }) {
   const insets = useSafeAreaInsets();

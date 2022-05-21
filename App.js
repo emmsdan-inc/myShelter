@@ -16,10 +16,9 @@ import {PersistGate} from 'redux-persist/integration/react';
 import { fetchAll, store, persistor } from "./src/store/redux";
 import Colors from "./src/constants/Colors";
 import { View } from "./src/components/Themed";
+import { Loading } from "./src/components/Untils";
 
-const Loading = () =>(<View style={{ flex: 1, justifyContent: 'center'}}>
-  <ActivityIndicator size={40} color={Colors().primary} />
-</View>)
+
 export default function App() {
   const isLoadingComplete = useCachedResources();
   const { setup } =useTrackPlayer();

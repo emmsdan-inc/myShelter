@@ -18,7 +18,7 @@ import {
 } from '../../services/authentication';
 import useReduxState from '../../hooks/useReduxState';
 import { rcUserTokenSelector } from '../../store/redux/states';
-import Logo from "../../components/Logo";
+import Logo from '../../components/Logo';
 
 export default function ActivationCodeScreen({ navigation, route }) {
   const insets = useSafeAreaInsets();

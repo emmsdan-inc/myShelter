@@ -46,7 +46,7 @@ const colors = {
   },
   dark: {
     ...basic,
-  
+
     text: '#FAFEFF',
     textPlaceholder: basic.grayText,
     background: '#02202B',

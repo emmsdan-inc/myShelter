@@ -13,6 +13,7 @@ export default function useAuthenticateUser(navigation, logout = false) {
   const [, setIsFirstTimeUse] = useReduxState(rcFirstTimeUseSelector);
   const [token, setAuthToken] = useReduxState(rcUserTokenSelector);
   const [profile, setUserProfile] = useReduxState(rcUserProfileAtom);
+  const [isLoggedIn, setIsLoggedIn] = React.useState('loading');
 
   async function logUserOut() {
     await setAuthToken('');
@@ -26,12 +27,18 @@ export default function useAuthenticateUser(navigation, logout = false) {
   }, [logout]);
 
   React.useEffect(() => {
-    if (!token || !profile) return;
+    if (!token || !profile) {
+      setIsLoggedIn('false');
+      return;
+    }
     if (!isExpired(profile.expires_at) && profile.expires_at) {
       setIsFirstTimeUse('true').then(r => {
         console.log('User is authenticated');
+        setIsLoggedIn('true');
         navigation.navigate(Routes.Home);
       });
+    } else {
+      setIsLoggedIn('false');
     }
   }, []);
 
@@ -44,5 +51,5 @@ export default function useAuthenticateUser(navigation, logout = false) {
     }
   }
 
-  return [profile, successfulLogin, logUserOut];
+  return [profile, successfulLogin, logUserOut, isLoggedIn];
 }

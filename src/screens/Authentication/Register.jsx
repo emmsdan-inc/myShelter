@@ -20,7 +20,7 @@ import { registerService } from '../../services/authentication';
 import useAuthenticateUser from '../../hooks/useAuthenticateUser';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { registerScheme } from './validation';
-import Logo from "../../components/Logo";
+import Logo from '../../components/Logo';
 
 export default function RegisterScreen({ navigation }) {
   const insets = useSafeAreaInsets();

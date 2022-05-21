@@ -14,7 +14,7 @@ import Notification from '../../components/Notification';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { forgotPasswordScheme } from './validation';
 import { forgetPasswordService } from '../../services/authentication';
-import Logo from "../../components/Logo";
+import Logo from '../../components/Logo';
 
 export default function ForgotPasswordScreen({ navigation }) {
   const insets = useSafeAreaInsets();
