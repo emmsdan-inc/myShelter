@@ -22,7 +22,7 @@ export default function VideoPlaceholder({
       ? { width: scale(185), height: scale(112) }
       : { width: '98%', height: scale(192) };
   const size = type === 'sm' ? 30 : 48;
-  const color = pressable ? Colors().background : Colors().primary2;
+  const color = pressable ? Colors().white : Colors().primary2;
   return isLoading ? (
     <View style={{ marginHorizontal: scale(5), marginVertical: scale(5) }}>
       <SkeletonPlaceholder direction={'left'}>

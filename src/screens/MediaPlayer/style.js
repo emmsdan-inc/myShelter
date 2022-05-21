@@ -4,7 +4,7 @@ import { scale } from 'react-native-size-matters';
 export default EStyleSheet.create({
   title: {
     fontSize: scale(19),
-    color: Colors().black,
+    color: Colors().text,
     fontFamily: 'Nunito_700Bold',
     fontStyle: 'normal',
     lineHeight: scale(27),

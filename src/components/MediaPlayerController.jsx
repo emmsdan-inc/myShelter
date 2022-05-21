@@ -71,7 +71,7 @@ export default function MediaPlayerActions() {
           <Icon
             name={state.isPlaying ? 'pause-1' : 'play'}
             size={14}
-            color={Colors().background}
+            color={Colors().white}
           />
         </TouchableOpacity>
         <Icon
@@ -124,7 +124,7 @@ export const MedialPlayerTimeTracker = () => {
       <Slider
         value={state.percent}
         onValueChange={seek}
-        thumbTintColor={Colors().background}
+        thumbTintColor={Colors().primary}
         thumbStyle={{
           borderColor: Colors().primary,
           borderWidth: 4,
