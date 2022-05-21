@@ -18,6 +18,7 @@ import {
 } from '../../services/authentication';
 import useReduxState from '../../hooks/useReduxState';
 import { rcUserTokenSelector } from '../../store/redux/states';
+import Logo from "../../components/Logo";
 
 export default function ActivationCodeScreen({ navigation, route }) {
   const insets = useSafeAreaInsets();
@@ -68,10 +69,7 @@ export default function ActivationCodeScreen({ navigation, route }) {
     >
       <View style={[{ paddingTop: insets.top * 3 }]}>
         <View style={{ alignItems: 'center' }}>
-          <Image
-            source={require('../../../assets/images/logo-black.png')}
-            style={styles.image}
-          />
+          <Logo />
         </View>
         <Spacer size={30} />
         <Notification

@@ -20,6 +20,7 @@ import { loginScheme } from './validation';
 import { useInterval } from 'usehooks-ts';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import store, { persistor } from '../../store/redux';
+import Logo from "../../components/Logo";
 
 export default function LoginScreen({ navigation }) {
   const insets = useSafeAreaInsets();
@@ -70,10 +71,7 @@ export default function LoginScreen({ navigation }) {
         <View>
           <Spacer size={30} />
           <View style={{ alignItems: 'center' }}>
-            <Image
-              source={require('../../../assets/images/logo-black.png')}
-              style={styles.image}
-            />
+            <Logo />
           </View>
           <Spacer size={30} />
           <Notification visible={!!isError} message={isError} mode={'error'} />

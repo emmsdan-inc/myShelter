@@ -14,6 +14,7 @@ import Notification from '../../components/Notification';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { changePasswordScheme } from './validation';
 import { changePasswordService } from '../../services/authentication';
+import Logo from "../../components/Logo";
 
 export default function ChangePasswordScreen({ navigation }) {
   const insets = useSafeAreaInsets();
@@ -54,10 +55,7 @@ export default function ChangePasswordScreen({ navigation }) {
     >
       <View style={[{ paddingTop: insets.top * 3 }]}>
         <View style={{ alignItems: 'center' }}>
-          <Image
-            source={require('../../../assets/images/logo-black.png')}
-            style={styles.image}
-          />
+          <Logo />
         </View>
         <Spacer size={30} />
         <Notification

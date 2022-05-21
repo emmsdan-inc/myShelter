@@ -26,8 +26,10 @@ export default function Input(props = {}) {
   return (
     <View style={[{ position: 'relative' }]}>
       <TextInput
+        placeholderTextColor={Colors().textPlaceholder}
         {...props}
         secureTextEntry={!!isPassword}
+        returnKeyType={'go'}
         style={[styles.inputContainer, styles.textInput, textInput]}
       />
       {icon || passIcon ? (

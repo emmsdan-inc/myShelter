@@ -20,6 +20,7 @@ import { registerService } from '../../services/authentication';
 import useAuthenticateUser from '../../hooks/useAuthenticateUser';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { registerScheme } from './validation';
+import Logo from "../../components/Logo";
 
 export default function RegisterScreen({ navigation }) {
   const insets = useSafeAreaInsets();
@@ -75,10 +76,7 @@ export default function RegisterScreen({ navigation }) {
       <View style={[]}>
         <Spacer size={8} />
         <View style={{ alignItems: 'center' }}>
-          <Image
-            source={require('../../../assets/images/logo-black.png')}
-            style={styles.image}
-          />
+          <Logo />
         </View>
         <Spacer size={30} />
 

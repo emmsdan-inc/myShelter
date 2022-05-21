@@ -6,6 +6,7 @@ export default EStyleSheet.create({
     // flex: 1,
     paddingHorizontal: scale(53),
     // justifyContent: "center",
+    backgroundColor: Colors().background,
   },
   text: {
     fontFamily: 'Nunito_300Light',

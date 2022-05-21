@@ -41,10 +41,12 @@ const colors = {
     tint: tintColorLight,
     tabIconDefault: '#ccc',
     tabIconSelected: tintColorLight,
+    textPlaceholder: '#ccc',
     ...basic,
   },
   dark: {
     text: '#FAFEFF',
+    textPlaceholder: basic.grayText,
     background: '#02202B',
     tint: tintColorDark,
     tabIconDefault: '#ccc',

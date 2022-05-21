@@ -14,6 +14,7 @@ import Notification from '../../components/Notification';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { forgotPasswordScheme } from './validation';
 import { forgetPasswordService } from '../../services/authentication';
+import Logo from "../../components/Logo";
 
 export default function ForgotPasswordScreen({ navigation }) {
   const insets = useSafeAreaInsets();
@@ -50,10 +51,7 @@ export default function ForgotPasswordScreen({ navigation }) {
     >
       <View style={[{ paddingTop: insets.top * 3 }]}>
         <View style={{ alignItems: 'center' }}>
-          <Image
-            source={require('../../../assets/images/logo-black.png')}
-            style={styles.image}
-          />
+          <Logo />
         </View>
         <Spacer size={30} />
         <Notification
@@ -74,7 +72,7 @@ export default function ForgotPasswordScreen({ navigation }) {
               onBlur={onBlur}
               onChangeText={onChange}
               value={value}
-              placeholder="Email"
+              placeholder="Email Address"
               keyboardType="email-address"
               autoComplete={'email'}
               textContentType={'emailAddress'}

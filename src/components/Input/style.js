@@ -8,6 +8,7 @@ export default EStyleSheet.create({
     borderWidth: 1,
     borderRadius: 10,
     borderColor: Colors().primary,
+    color: Colors().text,
   },
   iconContainer: {
     position: 'absolute',
