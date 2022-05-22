@@ -112,40 +112,40 @@ export function CreateTestimony({ route }) {
   const [state, setState] = React.useState({});
   const [updated, setUpdate] = React.useState(false);
   const [prev, setPrev] = React.useState({});
-  
+
   React.useEffect(() => {
     if (route.params) {
       setState(route.params || {});
     }
   }, [route.params]);
   const onSave = async () => {
-   try {
-     if (state.id && !state.newTestimonyId) {
-       // save
-       const payload = {
-         ...state,
-         name: state.testimony.slice(0, 40),
-         testimony: state.testimony,
-       };
-       await update('testimony/' + state.id, payload);
-       setPrev(state);
-       await toaster('Testimony', 'Your testimony has been updated');
-     } else {
-       // create
-       const payload = {
-         name: state.testimony.slice(0, 40),
-         testimony: state.testimony,
-       };
-       const data = await create('testimony', payload);
-       setState(data);
-       setPrev(data);
-       await toaster('Testimony', 'Your testimony has been added');
-     }
-  
-     setUpdate(true);
-   } catch (error) {
-     console.error(error);
-   }
+    try {
+      if (state.id && !state.newTestimonyId) {
+        // save
+        const payload = {
+          ...state,
+          name: state.testimony.slice(0, 40),
+          testimony: state.testimony,
+        };
+        await update('testimony/' + state.id, payload);
+        setPrev(state);
+        await toaster('Testimony', 'Your testimony has been updated');
+      } else {
+        // create
+        const payload = {
+          name: state.testimony.slice(0, 40),
+          testimony: state.testimony,
+        };
+        const data = await create('testimony', payload);
+        setState(data);
+        setPrev(data);
+        await toaster('Testimony', 'Your testimony has been added');
+      }
+
+      setUpdate(true);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const textInput = React.useRef(null);
@@ -153,7 +153,7 @@ export function CreateTestimony({ route }) {
     if (textInput.current) {
       textInput.current.focus();
     }
-  
+
     if (state.testimony !== prev.testimony) {
       setUpdate(false);
     }
@@ -170,9 +170,9 @@ export function CreateTestimony({ route }) {
           }}
           rightContent={
             <Ionicons
-              name={ updated ? "checkmark-circle" :"checkmark-circle-outline" }
+              name={updated ? 'checkmark-circle' : 'checkmark-circle-outline'}
               size={updated ? 25 : 35}
-              color={updated ?Colors().skeletonSuccess : Colors().blackGlaze}
+              color={updated ? Colors().skeletonSuccess : Colors().blackGlaze}
               onPress={onSave}
             />
           }

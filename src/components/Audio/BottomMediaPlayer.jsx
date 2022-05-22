@@ -18,12 +18,17 @@ import {
 } from '../../store/redux/states';
 import { widthPercentageToDP } from 'react-native-responsive-screen';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-export default function MediaPlayer({ navigation }) {
+import { useNavigation } from '@react-navigation/native';
+
+export default function MediaPlayer({
+  navigation,
+  state: { index = 0, routeNames = [] },
+}) {
   const [bottom] = useReduxState(rcBottomTabHeightAtom);
-  const { state, toggle, track, getCurrentTrack } = useTrackPlayer();
+  const { state, toggle, track, getCurrentTrack, pause, play } =
+    useTrackPlayer();
   const [open, setOpen] = React.useState(false);
-  // const [navigation] = useReduxState(rcNavigatorAtom);
-  const [openA] = useReduxState(rcOpenMiniPlayerAtom);
+  const [canOpenPlayerOnRoute] = useReduxState(rcOpenMiniPlayerAtom);
   const insets = useSafeAreaInsets();
 
   const uri = get(track, 'artwork', get(track, 'thumbnail_url', null));
@@ -33,16 +38,22 @@ export default function MediaPlayer({ navigation }) {
 
   React.useEffect(() => {
     if (state.isPlaying || state.isPaused) {
-      setOpen(
-        !(
-          !state.isPlaying &&
-          !state.isPaused &&
-          !state.position &&
-          !state.buffered
-        ) && openA,
+      const shouldOpen = !(
+        !state.isPlaying &&
+        !state.isPaused &&
+        !state.position &&
+        !state.buffered
       );
+      if (shouldOpen) {
+        const action = canOpenPlayerOnRoute(routeNames[index], true);
+        setOpen(shouldOpen && action?.hide);
+        if (!action?.pause) {
+          pause();
+        }
+      }
     }
   }, [state]);
+
   React.useEffect(() => {
     getCurrentTrack();
   }, [state.position]);

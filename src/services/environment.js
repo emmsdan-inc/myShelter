@@ -9,4 +9,6 @@ export default {
     artist: '',
     title: '',
   },
+  enableTheme: false,
+  defaultTheme: 'light',
 };

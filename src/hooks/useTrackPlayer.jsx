@@ -129,6 +129,7 @@ export function useTrackPlayer() {
       return track;
     },
     play: TrackPlayer.play,
+    pause: TrackPlayer.pause,
     add,
     next: async () => {
       await TrackPlayer.skipToNext();

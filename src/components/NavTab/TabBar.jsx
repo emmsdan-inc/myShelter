@@ -18,7 +18,7 @@ const TabBar = ({ state, descriptors, navigation }) => {
 
   return (
     <BaseWrapper style={styles.tabShadow}>
-      <MediaPlayer navigation={navigation} />
+      <MediaPlayer navigation={navigation} state={state} />
       <FlexSpaceBetweenCenter style={[bottom]}>
         {state.routes.map((route, index) => {
           const { options } = descriptors[route.key];

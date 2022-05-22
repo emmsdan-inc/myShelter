@@ -142,7 +142,7 @@ function BottomTabNavigator(props) {
         ...headerCompsGenerateor(props, props.navigation.toggleDrawer),
         tabBarActiveTintColor: Colors().tint,
       }}
-      tabBar={props => <TabBar {...props} />}
+      tabBar={tabProps => <TabBar {...tabProps} props={props} />}
     >
       <BottomTab.Screen name={Routes.Home} component={HomeScreen} />
       <BottomTab.Screen

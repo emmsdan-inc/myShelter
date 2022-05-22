@@ -1,5 +1,5 @@
 import { Appearance } from 'react-native';
-
+import env from '../services/environment';
 const tintColorLight = '#2f95dc';
 const tintColorDark = '#fff';
 export const basic = {
@@ -60,7 +60,10 @@ const colors = {
   },
 };
 export default function Colors(type) {
-  const colorScheme = type || Appearance.getColorScheme();
+  let colorScheme = type || Appearance.getColorScheme();
+  if (!env.enableTheme) {
+    colorScheme = 'light';
+  }
   if (colorScheme === 'dark') {
     return { ...colors.dark, dark: true, isDark: true, colors: colors.dark };
   }

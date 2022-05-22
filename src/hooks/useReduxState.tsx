@@ -6,7 +6,7 @@ import { updateSlice } from '../store/redux/global';
 const getKey = rcObject =>
   typeof rcObject === 'object' ? get(rcObject, 'key', '') : rcObject;
 const getFetchFunction = rcObject =>
-  typeof rcObject === 'object' ? get(rcObject, 'get', () => {}) : () => {};
+  typeof rcObject === 'object' ? get(rcObject, 'get', v => v) : v => v;
 const getUpdateFunc = rcObject =>
   typeof rcObject === 'object' ? get(rcObject, 'set', v => v) : v => v;
 
@@ -24,7 +24,7 @@ export const useStore = (rcObject, globalState = null) => {
     const newValue = await set(value);
     dispatch(updateSlice({ key: getKey(rcObject), value: newValue }));
   };
-  return { state: store, update };
+  return { state: getFetchFunction(rcObject)(store), update };
 };
 
 const useGlobalState = key => {

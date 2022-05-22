@@ -5,7 +5,7 @@ import Spacer from '../../components/Spacer';
 import Item from '../../components/ListItems';
 import { FlatList, Platform, TextInput } from 'react-native';
 import Button from '../../components/Button';
-import { BaseWrapper, FlexSpaceBetween } from '../../components/Untils';
+import { BaseWrapper } from '../../components/Untils';
 import { useNavigation } from '@react-navigation/native';
 import { TopHeader } from '../../components/NavTab/TabBar';
 import Routes from '../../navigation/Routes';
@@ -129,7 +129,7 @@ export function CreatePrayerRequest({ route }) {
         };
         await update('prayer-request/' + state.id, payload);
         setPrev(payload);
-  
+
         toaster('Prayer Request', 'Your PR has been updated');
       } else {
         // create
@@ -140,7 +140,7 @@ export function CreatePrayerRequest({ route }) {
         const data = await create('prayer-request', payload);
         setState(data);
         setPrev(data);
-  
+
         toaster('Prayer Request', 'Your PR has been created');
       }
       setUpdate(true);
@@ -148,7 +148,7 @@ export function CreatePrayerRequest({ route }) {
       console.error(error);
     }
   };
-  
+
   const textInput = React.useRef(null);
   React.useEffect(() => {
     if (textInput.current) {
@@ -158,7 +158,6 @@ export function CreatePrayerRequest({ route }) {
       setUpdate(false);
     }
   }, [state]);
-  
 
   return (
     <View style={{ flex: 1 }}>
@@ -171,9 +170,9 @@ export function CreatePrayerRequest({ route }) {
           }}
           rightContent={
             <Ionicons
-              name={ updated ? "checkmark-circle" :"checkmark-circle-outline" }
+              name={updated ? 'checkmark-circle' : 'checkmark-circle-outline'}
               size={updated ? 25 : 35}
-              color={updated ?Colors().skeletonSuccess : Colors().blackGlaze}
+              color={updated ? Colors().skeletonSuccess : Colors().blackGlaze}
               onPress={onSave}
             />
           }
