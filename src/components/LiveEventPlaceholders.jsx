@@ -5,6 +5,7 @@ import Colors from '../constants/Colors';
 import { getLiveEventService } from '../services/media';
 import useReduxState from '../hooks/useReduxState';
 import { rcMediaLiveEventAtom } from '../store/redux/states';
+import Routes from "../navigation/Routes";
 
 export default function LiveEventPlaceholders({ navigation }) {
   // const navigation = useNavigation();
@@ -49,3 +50,19 @@ export default function LiveEventPlaceholders({ navigation }) {
     </>
   );
 }
+
+export const getLiveEvent = (event, navigation) => {
+  return {
+    live: event?.youtube || event?.mixlr,
+    go: ()=> {
+      if (event && event.youtube) {
+        navigation.navigate(Routes.LiveVideo, {
+          params: event.youtube,
+          screen: Routes.LiveVideo,
+        })
+      } else if (event && event.mixlr) {
+        navigation.navigate(Routes.MixlrMediaPlayer, event.mixlr);
+      }
+    }
+  }
+};

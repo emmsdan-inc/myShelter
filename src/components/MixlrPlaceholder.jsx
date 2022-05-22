@@ -13,6 +13,7 @@ export default function MixlrPlaceholder({
   mixlr,
   navigation,
   isLoading,
+  pressable
 }) {
   const source = { uri: 'http://emmsdan.com' };
   const imageSize =
@@ -44,7 +45,7 @@ export default function MixlrPlaceholder({
       <ImageIcon
         name={'mixlrWhite'}
         size={size}
-        onPress={() => navigation.navigate(Routes.MixlrMediaPlayer, mixlr)}
+        onPress={() => pressable ? navigation.navigate(Routes.MixlrMediaPlayer, mixlr): null}
       />
     </ImageBackground>
   );

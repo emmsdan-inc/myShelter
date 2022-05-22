@@ -20,7 +20,7 @@ import RegisterScreen from '../screens/Authentication/Register';
 import SidebarComponent from '../screens/Sidebar';
 import ImageIcon from '../components/ImageIcon';
 import ChangePasswordScreen from '../screens/Authentication/ChangePassword';
-import { BaseWrapper, Loading } from '../components/Untils';
+import { BaseWrapper, FlexCenter, Loading } from '../components/Untils';
 import TabBar from '../components/NavTab/TabBar';
 import HomeScreen from '../screens/Home';
 import DiscoverScreen from '../screens/Discover';
@@ -35,12 +35,18 @@ import Testimony from '../screens/Testimony';
 import { CreateTestimony } from '../screens/Testimony/Testimony';
 import useAuthenticateUser from '../hooks/useAuthenticateUser';
 import { useInterval } from 'usehooks-ts';
+import { Octicons } from "@expo/vector-icons";
+import { Text, View } from "../components/Themed";
+import useReduxState from "../hooks/useReduxState";
+import { rcMediaLiveEventAtom } from "../store/redux/states";
+import { getLiveEvent } from "../components/LiveEventPlaceholders";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 const headerCompsGenerateor = (props, toggle) => ({
   headerShadowVisible: false,
   headerShown: true,
   headerLeft: MenuIcon(props, 'menu', toggle),
-  headerRight: MenuIcon(props, 'notification', () =>
+  headerRight: MenuIcon(props, 'broadcast', () =>
     props.navigation?.navigate(Routes.Notification),
   ),
   headerTitle: () => <></>,
@@ -197,15 +203,30 @@ const Drawer = createDrawerNavigator();
 
 function MenuIcon(props, name = 'menu', onPress = () => {}) {
   const navigation = useNavigation();
+  const [liveEvent] = useReduxState(rcMediaLiveEventAtom);
+  const event = getLiveEvent(liveEvent, navigation);
   return () => {
     return (
       <BaseWrapper>
+        {
+          name === 'broadcast' && event.live ?
+            <TouchableOpacity onPress={event.go} style={{ flexDirection: 'row', alignItems: 'center'}}>
+              <Octicons
+                name="broadcast"
+                size={14}
+                color={Colors().error}
+                style={{ paddingVertical: 10, paddingLeft: 10 }}
+                onPress={event.go}
+              />
+              <Text style={{color: Colors().error, fontSize: 13, fontFamily: 'Nunito'}}>{' '}live</Text>
+            </TouchableOpacity>
+       :
         <ImageIcon
           name={name}
           size={17}
           onPress={onPress || navigation?.toggleDrawer}
           color={Colors().text}
-        />
+        />}
       </BaseWrapper>
     );
   };
