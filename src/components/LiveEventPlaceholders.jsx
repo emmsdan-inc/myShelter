@@ -7,6 +7,7 @@ import useReduxState from '../hooks/useReduxState';
 import { rcMediaLiveEventAtom } from '../store/redux/states';
 import Routes from '../navigation/Routes';
 import { getMixlrValues, getYoutubeValues } from '../shared/helpers/func';
+import { get } from "lodash";
 
 export default function LiveEventPlaceholders({ navigation }) {
   // const navigation = useNavigation();
@@ -41,16 +42,16 @@ export default function LiveEventPlaceholders({ navigation }) {
       <VideoPlaceholder
         type="sm"
         uri={liveEvent.youtube ? liveEvent.youtube?.thumbnail : offlineImage}
-        pressable={liveEvent.youtube}
+        pressable={get(liveEvent.youtube, 'publishTime')}
         video={liveEvent.youtube}
         isLive={liveEvent.youtube}
         isLoading={isLoading}
       />
       <MixlrPlaceholder
         mixlr={liveEvent.mixlr}
-        pressable={liveEvent.mixlr}
-        color={liveEvent.mixlr ? null : color}
+        color={get(liveEvent.mixlr, 'is_live') ? null : color}
         navigation={navigation}
+        pressable={get(liveEvent.mixlr, 'is_live')}
         isLoading={isLoading}
       />
     </>

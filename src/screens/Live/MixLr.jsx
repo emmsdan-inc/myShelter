@@ -19,7 +19,6 @@ export default function MixlrMediaPlayerScreen({ route }) {
   const [loading, setLoading] = React.useState(true);
   // fetch data from server/store api
   const insets = useSafeAreaInsets();
-  console.log(route.params);
 
   React.useEffect(() => {
     if (route.params.streamUrl) {

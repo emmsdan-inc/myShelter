@@ -15,8 +15,7 @@ export default function OnboardingPage({
   back = false,
 }) {
   const [opacity] = React.useState(new Animated.Value(0.5));
-  const [slideUpValue] = React.useState(new Animated.Value(0.9));
-
+  
   React.useEffect(() => {
     Animated.timing(opacity, {
       toValue: 1,
