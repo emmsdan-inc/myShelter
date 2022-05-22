@@ -1,5 +1,10 @@
 import * as React from 'react';
-import { Dimensions, TouchableOpacity, Text } from 'react-native';
+import {
+  Dimensions,
+  TouchableOpacity,
+  Text,
+  ImageBackground,
+} from 'react-native';
 import { View } from '../../components/Themed';
 
 import SliderIndicator from '../../components/SliderIndicator';
@@ -7,7 +12,7 @@ import { scale } from 'react-native-size-matters';
 import Routes from '../../navigation/Routes';
 import styles from './style';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import data from './data';
+import data, { SplashImage } from './data';
 import OnboardingPage from '../../components/Onboarding/OnboardingPage';
 
 import { rcFirstTimeUseSelector } from '../../store/redux/states';
@@ -16,12 +21,14 @@ import Icon from '../../components/Icon';
 import FlexSpaceBetweenCenter, { FlexCenter } from '../../components/Untils';
 import Colors from '../../constants/Colors';
 import { widthPercentageToDP } from 'react-native-responsive-screen';
+import { getBackgroundColor } from 'react-native/Libraries/LogBox/UI/LogBoxStyle';
 
 export default function Index({ navigation }) {
   const [isFirstTimeUse] = useReduxState(rcFirstTimeUseSelector);
   const insets = useSafeAreaInsets();
 
   const [active, setActive] = React.useState(0);
+  const [page, setPage] = React.useState('next');
   const colors = {
     0: Colors().white || '#A8518A',
     1: Colors().white || '#00AFEF',
@@ -39,23 +46,31 @@ export default function Index({ navigation }) {
   const next = React.useCallback(() => {
     if (active < data.length - 1) {
       setActive(active + 1);
+      setPage('next');
     } else {
       navigation.navigate(Routes.Login);
     }
   }, [active]);
   const prev = React.useCallback(() => {
     setActive(active >= 1 ? active - 1 : 0);
+    setPage('prev');
   }, [active]);
   const { width } = Dimensions.get('screen');
 
   return (
-    <View style={[styles.container, { paddingTop: insets.top }]}>
+    <View
+      style={[
+        styles.container,
+        { flex: 1, backgroundColor: Colors().darkBlueBlack },
+      ]}
+    >
       {data.map((data, index) =>
         index === active ? (
           <OnboardingPage
             {...data}
             color={Colors().white}
             key={data.text + index}
+            back={page === 'prev'}
           />
         ) : null,
       )}

@@ -35,12 +35,12 @@ import Testimony from '../screens/Testimony';
 import { CreateTestimony } from '../screens/Testimony/Testimony';
 import useAuthenticateUser from '../hooks/useAuthenticateUser';
 import { useInterval } from 'usehooks-ts';
-import { Octicons } from "@expo/vector-icons";
-import { Text, View } from "../components/Themed";
-import useReduxState from "../hooks/useReduxState";
-import { rcMediaLiveEventAtom } from "../store/redux/states";
-import { getLiveEvent } from "../components/LiveEventPlaceholders";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { Octicons } from '@expo/vector-icons';
+import { Text, View } from '../components/Themed';
+import useReduxState from '../hooks/useReduxState';
+import { rcMediaLiveEventAtom } from '../store/redux/states';
+import { getLiveEvent } from '../components/LiveEventPlaceholders';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const headerCompsGenerateor = (props, toggle) => ({
   headerShadowVisible: false,
@@ -158,7 +158,7 @@ function BottomTabNavigator(props) {
       />
 
       <BottomTab.Screen name={Routes.Give} component={GiveComponent} />
-      <BottomTab.Screen name="TabTwo" component={DiscoverScreen} />
+      <BottomTab.Screen name={Routes.Search} component={DiscoverScreen} />
       <BottomTab.Screen name={Routes.LiveVideo} component={VideoScreen} />
       <BottomTab.Screen
         options={{ headerShown: false }}
@@ -208,25 +208,37 @@ function MenuIcon(props, name = 'menu', onPress = () => {}) {
   return () => {
     return (
       <BaseWrapper>
-        {
-          name === 'broadcast' && event.live ?
-            <TouchableOpacity onPress={event.go} style={{ flexDirection: 'row', alignItems: 'center'}}>
-              <Octicons
-                name="broadcast"
-                size={14}
-                color={Colors().error}
-                style={{ paddingVertical: 10, paddingLeft: 10 }}
-                onPress={event.go}
-              />
-              <Text style={{color: Colors().error, fontSize: 13, fontFamily: 'Nunito'}}>{' '}live</Text>
-            </TouchableOpacity>
-       :
-        <ImageIcon
-          name={name}
-          size={17}
-          onPress={onPress || navigation?.toggleDrawer}
-          color={Colors().text}
-        />}
+        {name === 'broadcast' && event.live ? (
+          <TouchableOpacity
+            onPress={event.go}
+            style={{ flexDirection: 'row', alignItems: 'center' }}
+          >
+            <Octicons
+              name="broadcast"
+              size={14}
+              color={Colors().error}
+              style={{ paddingVertical: 10, paddingLeft: 10 }}
+              onPress={event.go}
+            />
+            <Text
+              style={{
+                color: Colors().error,
+                fontSize: 13,
+                fontFamily: 'Nunito',
+              }}
+            >
+              {' '}
+              live
+            </Text>
+          </TouchableOpacity>
+        ) : (
+          <ImageIcon
+            name={name}
+            size={17}
+            onPress={onPress || navigation?.toggleDrawer}
+            color={Colors().text}
+          />
+        )}
       </BaseWrapper>
     );
   };

@@ -8,6 +8,8 @@ import Colors from '../../constants/Colors';
 import { useNavigation } from '@react-navigation/native';
 import { Text, View } from '../Themed';
 import MediaPlayer from '../Audio/BottomMediaPlayer';
+import ImageIcon from '../ImageIcon';
+import { Octicons } from '@expo/vector-icons';
 
 const TabBar = ({ state, descriptors, navigation }) => {
   const insets = useSafeAreaInsets();
@@ -47,6 +49,7 @@ const TabBar = ({ state, descriptors, navigation }) => {
             const icon = {
               Root: 'Home',
               Give: 'wallet',
+              Search: 'search',
             };
             return icon[name] || name;
           };
@@ -63,7 +66,11 @@ const TabBar = ({ state, descriptors, navigation }) => {
               onLongPress={onLongPress}
               style={[styles.tab, !isFocused ? styles.inactiveTab : {}]}
             >
-              <Icon name={iconName} color={Colors().primary} size={24} />
+              {iconName === 'search' ? (
+                <Octicons name="search" size={24} color={Colors().primary} />
+              ) : (
+                <Icon name={iconName} color={Colors().primary} size={24} />
+              )}
             </TouchableOpacity>
           );
         })}

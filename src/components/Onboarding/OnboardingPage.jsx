@@ -12,20 +12,22 @@ export default function OnboardingPage({
   style,
   textStyle,
   color,
+  back = false,
 }) {
-  const [opacity] = React.useState(new Animated.Value(0));
+  const [opacity] = React.useState(new Animated.Value(0.5));
+  const [slideUpValue] = React.useState(new Animated.Value(0.9));
+
   React.useEffect(() => {
     Animated.timing(opacity, {
       toValue: 1,
-      duration: 500,
+      duration: 700,
       useNativeDriver: false,
     }).start();
   }, []);
   return (
-    <Animated.View style={[{ opacity, zIndex: -1 }]}>
-      <ImageBackground source={source} style={[styles.image, style]} />
+    <Animated.View style={[{ opacity, zIndex: -1, flex: 1 }]}>
+      <ImageBackground source={source} style={[styles.image]} />
       <Text style={[styles.text, textStyle, { color }]}>{text}</Text>
-
       <View
         style={{
           height,

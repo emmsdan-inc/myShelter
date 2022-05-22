@@ -19,4 +19,5 @@ export default {
   CreatePrayerRequest: '__$Create Prayer Request',
   Testimony: '__$Testimony',
   CreateTestimony: '__$Create Testimony',
+  Search: 'Search',
 };

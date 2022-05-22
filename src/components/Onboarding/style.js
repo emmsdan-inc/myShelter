@@ -12,6 +12,7 @@ export default EStyleSheet.create({
     width,
     // alignItems: 'center',
     // justifyContent: 'center',
+    backgroundColor: Colors().blackGlaze,
   },
   onboarding: {
     // width,
@@ -20,12 +21,18 @@ export default EStyleSheet.create({
     justifyContent: 'space-between',
   },
   image: {
-    maxWidth: width, //: scale(238),
+    minWidth: width,
+    maxWidth: width,
     maxHeight: height, //: scale(170),
-    width,
+    // width,
     height,
     flex: 1,
     resizeMode: 'cover',
+    position: 'relative',
+    left: 0,
+    top: 0,
+    right: 0,
+    bottom: 0,
   },
   text: {
     // color: Colors().blackGlaze, // global variable $textColor
@@ -37,7 +44,7 @@ export default EStyleSheet.create({
     // textAlign: 'center',
     width: scale(220),
     zIndex: 1,
-    marginBottom: widthPercentageToDP('13%'),
+    // marginBottom: widthPercentageToDP('0%'),
     marginHorizontal: scale(20),
   },
 });

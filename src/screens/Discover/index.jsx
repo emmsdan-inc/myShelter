@@ -12,16 +12,23 @@ import AudioListCard from '../../components/Audio/AudioListCard';
 import useCacheableGetRequest from '../../hooks/useCacheableGetRequest';
 import Colors from '../../constants/Colors';
 import AudioListSkeleton from '../../components/Audio/AudioListSkeleton';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export default function DiscoverScreen() {
   const route = useRoute();
   const { category, series } = route.params || {};
 
   const [value, setValue] = React.useState('');
-  const [type, setType] = React.useState(category ? 'category' : 'series');
+  const [type, setType] = React.useState(
+    category ? 'category' : series ? 'series' : '',
+  );
 
-  const { data, error, prev, next, loading, setParams, reset } =
-    useCacheableGetRequest('media', true, { categories: category, series });
+  const { data, error, prev, next, loading, setParams, reset, isLastPage } =
+    useCacheableGetRequest('media', true, {
+      categories: category,
+      series,
+      limit: 15,
+    });
   const onTitlePress = type => () => {
     setType(type);
   };
@@ -43,48 +50,38 @@ export default function DiscoverScreen() {
   }, [route.params]);
   return (
     <SafeAreaView>
-      <Spacer size={15} />
       <BaseWrapper>
-        <Text
-          style={{
-            color: Colors().blackGlaze,
-            fontSize: scale(24),
-            textTransform: 'capitalize',
-          }}
-        >
-          {route.params?.title}
-        </Text>
-        <Spacer size={5} />
+        {route.params?.title && (
+          <>
+            <Spacer size={12} />
+            <Text
+              style={{
+                color: Colors().blackGlaze,
+                fontSize: scale(24),
+                textTransform: 'capitalize',
+              }}
+            >
+              {route.params?.title}
+            </Text>
+          </>
+        )}
         <SearchInput value={value} onSearch={setValue} />
       </BaseWrapper>
-      <Spacer size={15} />
-      {!category ? (
+      {category || series ? (
         <BaseWrapper>
           <FlexSpaceBetweenCenter>
-            {!category ? (
+            {series && (
               <Title
                 title={'Series'}
                 onPress={onTitlePress('series')}
                 active={type === 'series' || !type}
               />
-            ) : null}
-            {category ? (
+            )}
+            {category && (
               <Title
                 title={'Category'}
                 onPress={onTitlePress('category')}
                 active={type === 'category' || !type}
-              />
-            ) : null}
-            <Title
-              title={'Recently Played'}
-              onPress={onTitlePress('recent')}
-              active={type === 'recent'}
-            />
-            {category && series ? null : (
-              <Title
-                title={'Downloads'}
-                onPress={onTitlePress('download')}
-                active={type === 'download'}
               />
             )}
           </FlexSpaceBetweenCenter>
@@ -107,7 +104,7 @@ export default function DiscoverScreen() {
               playlist={index}
             />
           )}
-          keyExtractor={item => item.id}
+          keyExtractor={(item, index) => `${item.id}-${index}`}
           style={styles.flatList}
           ListFooterComponent={() => (
             <>
@@ -127,12 +124,22 @@ export default function DiscoverScreen() {
                   </Text>
                 </Text>
               ) : null}
+              {!isLastPage ? (
+                <TouchableOpacity
+                  onPress={next}
+                  style={{
+                    paddingVertical: 15,
+                    paddingHorizontal: 20,
+                    alignSelf: 'center',
+                  }}
+                >
+                  <Text style={{ fontSize: scale(14) }}>Load More</Text>
+                </TouchableOpacity>
+              ) : null}
               <Spacer size={40} />
             </>
           )}
           refreshing={loading}
-          onEndReached={next}
-          onScroll={next}
           onEndReachedThreshold={0.5}
         />
       </BaseWrapper>

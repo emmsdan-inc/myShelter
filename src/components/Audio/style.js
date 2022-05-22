@@ -43,11 +43,11 @@ export default EStyleSheet.create({
   audioListCardTitle: {
     fontFamily: 'Nunito_600SemiBold',
     fontSize: scale(14),
-    color: Colors().blackWash,
+    color: Colors().blackGlaze,
     marginBottom: scale(5),
   },
   audioListCardSmallFont: {
-    fontFamily: 'nunito',
+    fontFamily: 'Nunito',
     fontSize: scale(10),
     fontWeight: '300',
     color: Colors().darkBlueBlack,
@@ -55,6 +55,8 @@ export default EStyleSheet.create({
   audioListCardAuthor: {
     fontSize: scale(12),
     width: scale(152),
+    color: Colors().blackWash,
+    fontFamily: 'Nunito',
   },
   audioListCardDropDown: {
     marginBottom: 10,

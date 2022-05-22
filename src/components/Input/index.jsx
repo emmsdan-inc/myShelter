@@ -6,6 +6,7 @@ import Icon from '../Icon';
 import clsx from 'clsx';
 import Colors from '../../constants/Colors';
 import ImageIcon from '../ImageIcon';
+import { Octicons } from '@expo/vector-icons';
 export default function Input(props = {}) {
   const { icon, onIconPress } = props;
   const [isPassword, setIsPassword] = React.useState(
@@ -54,6 +55,7 @@ export const SearchInput = ({
   const onChangeText = value => {
     setValue(value);
     if (onTextChange) onTextChange(value);
+    if (onSearch && value.length > 2) onSearch(value);
   };
   return (
     <View
@@ -72,7 +74,12 @@ export const SearchInput = ({
         style={styles.searchIcon}
         onPress={() => onSearch(value)}
       >
-        <ImageIcon name={'search'} size={16} />
+        <Octicons
+          name="search"
+          size={24}
+          color={Colors().primary}
+          onPress={() => onSearch(value)}
+        />
       </TouchableOpacity>
     </View>
   );

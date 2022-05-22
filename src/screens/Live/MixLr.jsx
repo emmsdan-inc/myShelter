@@ -19,17 +19,14 @@ export default function MixlrMediaPlayerScreen({ route }) {
   const [loading, setLoading] = React.useState(true);
   // fetch data from server/store api
   const insets = useSafeAreaInsets();
+  console.log(route.params);
+
   React.useEffect(() => {
-    if (route.params.broadcast_ids) {
-      const broadcast = get(route.params, 'broadcasts.0', {});
-      const appEmbedUrl = `https://listen.mixlr.com/${get(
-        route.params,
-        'broadcast_ids.0',
-      )}`;
+    if (route.params.streamUrl) {
+      const appEmbedUrl = `https://${get(route.params, 'streamUrl')}`;
       setState({
         ...route.params,
         ...state,
-        ...broadcast,
         appEmbedUrl,
       });
       SoundPlayer.playUrl(appEmbedUrl);
