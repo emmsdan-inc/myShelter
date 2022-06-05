@@ -14,6 +14,7 @@ import {PersistGate} from 'redux-persist/integration/react';
 
 import { fetchAll, store, persistor } from "./src/store/redux";
 import { Loading } from "./src/components/Untils";
+import { MenuProvider } from 'react-native-popup-menu';
 
 
 export default function App() {
@@ -33,10 +34,11 @@ export default function App() {
       <SafeAreaProvider>
         <Provider store={store}>
           <PersistGate  loading={<Loading />} persistor={persistor}>
-            
-            <Navigation />
-            <Toast />
-            <StatusBar />
+            <MenuProvider>
+              <Navigation />
+              <Toast />
+              <StatusBar />
+            </MenuProvider>
           </PersistGate>
         </Provider>
       </SafeAreaProvider>

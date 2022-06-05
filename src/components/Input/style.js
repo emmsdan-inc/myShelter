@@ -31,5 +31,5 @@ export default EStyleSheet.create({
     fontFamily: 'nunito',
     fontSize: 16,
   },
-  searchIcon: { position: 'absolute', right: scale(20), top: scale(16) },
+  searchIcon: { position: 'absolute', right: scale(20), top: scale(16), marginTop: -scale(5) },
 });

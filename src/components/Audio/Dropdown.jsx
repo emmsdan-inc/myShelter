@@ -4,6 +4,8 @@ import styles from './style';
 import { useNavigation } from '@react-navigation/native';
 import Routes from '../../navigation/Routes';
 import Colors from '../../constants/Colors';
+import { Menu, MenuOption, MenuOptions, MenuTrigger } from "react-native-popup-menu";
+import Icon from "../Icon";
 
 export default function AudioDropdown({
   onPress,
@@ -11,6 +13,7 @@ export default function AudioDropdown({
   media,
   onClose,
   onListen,
+  placeholder,
 } = {}) {
   const navigation = useNavigation();
 
@@ -39,25 +42,32 @@ export default function AudioDropdown({
       onListen();
     }
   };
-  const style = { paddingVertical: 5, color: Colors().blackGlaze };
+  const style = { paddingVertical: 2, paddingHorizontal: 10, color: Colors().blackGlaze };
+  
   return isVisible ? (
     <>
-      <View style={styles.audioListCardDropDown}>
-        <Text numberOfLines={1} style={[style]} onPress={DownloadMedia}>
-          Download
-        </Text>
-        <Text numberOfLines={1} style={[style]} onPress={ShareMedia}>
-          Share
-        </Text>
-        <Text numberOfLines={1} style={[style]} onPress={ListenToMedia}>
-          Listen
-        </Text>
-      </View>
-
-      <TouchableOpacity
-        style={styles.dropDownOverlay}
-        onPress={onClose}
-      ></TouchableOpacity>
+      <Menu onClose={onClose}>
+        <MenuTrigger>
+          {placeholder}
+        </MenuTrigger>
+        <MenuOptions customStyles={{ optionsContainer: { paddingVertical: 10, maxWidth: 110, shadowOpacity: 0.1 }}}>
+          <MenuOption onSelect={DownloadMedia}>
+            <Text numberOfLines={1} style={[style]} onPress={ListenToMedia}>
+              Download
+            </Text>
+          </MenuOption>
+          <MenuOption onSelect={ShareMedia}>
+            <Text numberOfLines={1} style={[style]} onPress={ListenToMedia}>
+              Share
+            </Text>
+          </MenuOption>
+          <MenuOption onSelect={ListenToMedia}>
+            <Text numberOfLines={1} style={[style]} onPress={ListenToMedia}>
+              Listen
+            </Text>
+          </MenuOption>
+        </MenuOptions>
+      </Menu>
     </>
   ) : null;
 }

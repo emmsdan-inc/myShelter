@@ -7,6 +7,7 @@ import Colors from '../../constants/Colors';
 import AudioDropdown from './Dropdown';
 import { useNavigation } from '@react-navigation/native';
 import Routes from '../../navigation/Routes';
+import { Menu, MenuOption, MenuOptions, MenuTrigger } from "react-native-popup-menu";
 
 export default function AudioListCard({
   uri,
@@ -63,17 +64,17 @@ export default function AudioListCard({
           onPress={onPressable}
           style={styles.audioListCardIcon}
         >
-          <Icon name="dot-3" size={30} color={Colors().primary} />
+          <AudioDropdown
+            isVisible={true}
+            onPress={onPressable}
+            {...{ uri, title, author, time, id }}
+            media={media}
+            onClose={() => setOpen(false)}
+            onListen={navigate}
+            placeholder={<Icon name="dot-3" size={30} color={Colors().primary} />}
+          />
         </TouchableOpacity>
       </View>
-      <AudioDropdown
-        isVisible={open}
-        onPress={onPressable}
-        {...{ uri, title, author, time, id }}
-        media={media}
-        onClose={() => setOpen(false)}
-        onListen={navigate}
-      />
     </TouchableOpacity>
   );
 }

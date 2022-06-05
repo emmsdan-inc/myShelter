@@ -1,6 +1,5 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {
-  DrawerActions,
   NavigationContainer,
   useNavigation,
 } from '@react-navigation/native';
@@ -20,7 +19,7 @@ import RegisterScreen from '../screens/Authentication/Register';
 import SidebarComponent from '../screens/Sidebar';
 import ImageIcon from '../components/ImageIcon';
 import ChangePasswordScreen from '../screens/Authentication/ChangePassword';
-import { BaseWrapper, FlexCenter, Loading } from '../components/Untils';
+import { BaseWrapper, Loading } from '../components/Untils';
 import TabBar from '../components/NavTab/TabBar';
 import HomeScreen from '../screens/Home';
 import DiscoverScreen from '../screens/Discover';
@@ -34,13 +33,13 @@ import { CreatePrayerRequest } from '../screens/PrayerRequest/PrayerRequest';
 import Testimony from '../screens/Testimony';
 import { CreateTestimony } from '../screens/Testimony/Testimony';
 import useAuthenticateUser from '../hooks/useAuthenticateUser';
-import { useInterval } from 'usehooks-ts';
 import { Octicons } from '@expo/vector-icons';
-import { Text, View } from '../components/Themed';
+import { Text } from '../components/Themed';
 import useReduxState from '../hooks/useReduxState';
 import { rcMediaLiveEventAtom } from '../store/redux/states';
 import { getLiveEvent } from '../components/LiveEventPlaceholders';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import SearchScreen from "../screens/Discover/Search";
 
 const headerCompsGenerateor = (props, toggle) => ({
   headerShadowVisible: false,
@@ -157,7 +156,7 @@ function BottomTabNavigator(props) {
       />
 
       <BottomTab.Screen name={Routes.Give} component={GiveComponent} />
-      <BottomTab.Screen name={Routes.Search} component={DiscoverScreen} />
+      <BottomTab.Screen name={Routes.Search} component={SearchScreen} />
       <BottomTab.Screen name={Routes.LiveVideo} component={VideoScreen} />
       <BottomTab.Screen
         options={{ headerShown: false }}
