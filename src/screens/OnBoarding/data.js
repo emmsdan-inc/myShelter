@@ -2,7 +2,7 @@ import { scale } from 'react-native-size-matters';
 
 // const Image1 = require('../../../assets/images/onboarding/loving.png');
 // const Image2 = require('../../../assets/images/onboarding/ice-cream.png');
-const Splash = require('../../../assets/images/splash.png');
+const Splash = require('../../../assets/images/splash-1.png');
 const Image1 = require('../../../assets/images/slider/1.jpg');
 const Image2 = require('../../../assets/images/slider/2.jpg');
 const Image3 = require('../../../assets/images/slider/3.jpg');

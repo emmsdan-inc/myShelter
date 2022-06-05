@@ -15,7 +15,7 @@ export default function OnboardingPage({
   back = false,
 }) {
   const [opacity] = React.useState(new Animated.Value(0.5));
-  
+
   React.useEffect(() => {
     Animated.timing(opacity, {
       toValue: 1,

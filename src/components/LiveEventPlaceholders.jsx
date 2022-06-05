@@ -7,7 +7,7 @@ import useReduxState from '../hooks/useReduxState';
 import { rcMediaLiveEventAtom } from '../store/redux/states';
 import Routes from '../navigation/Routes';
 import { getMixlrValues, getYoutubeValues } from '../shared/helpers/func';
-import { get } from "lodash";
+import { get } from 'lodash';
 
 export default function LiveEventPlaceholders({ navigation }) {
   // const navigation = useNavigation();
@@ -23,7 +23,7 @@ export default function LiveEventPlaceholders({ navigation }) {
     const currentTime = new Date(liveEvent.lastCheck)?.getTime();
     const distance = (currentTime - now) / 1000;
     const minutes = distance / 60;
-    if (liveEvent.lastCheck && minutes > -15) {
+    if (liveEvent.lastCheck && minutes > -10) {
       setIsLoading(false);
       return;
     }
