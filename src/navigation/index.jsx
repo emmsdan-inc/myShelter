@@ -154,7 +154,6 @@ function BottomTabNavigator(props) {
       <BottomTab.Screen
         name={Routes.Discover}
         component={DeepStackNavigator}
-        options={{ headerShown: false }}
       />
 
       <BottomTab.Screen name={Routes.Give} component={GiveComponent} />

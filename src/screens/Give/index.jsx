@@ -45,7 +45,7 @@ export default function GiveComponent({}) {
           <OpenURLButton url={env.paymentURL}>
             {({ onPress }) => (
               <Button give sm onPress={onPress}>
-                Give
+                Give Online
               </Button>
             )}
           </OpenURLButton>
